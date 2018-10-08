@@ -1,4 +1,4 @@
-import PublicInterface from "../interface.d";
+import PublicInterface from "../event-delegation.d";
 
 import IStatic = PublicInterface.Static;
 
