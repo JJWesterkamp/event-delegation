@@ -1,10 +1,20 @@
 {
-  "name": "",
-  "version": "1.0.0",
+  "name": "event-delegation",
+  "version": "0.1.0",
   "author": "Jeffrey Westerkamp",
-  "repository": "",
-  "description": "",
-  "keywords": [],
+  "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",
+  "description": "Lightweight event delegation implementation for browser events.",
+  "keywords": [
+    "DOM",
+    "Event",
+    "Delegation",
+    "Event delegation",
+    "Javascript",
+    "Typescript",
+    "CommonJS",
+    "UMD",
+    "ES Modules"
+  ],
   "license": "MIT",
 
   "main": "./cjs/index.js",
