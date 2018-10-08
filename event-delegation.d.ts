@@ -5,21 +5,22 @@ export as namespace EventDelegation;
 declare namespace EventDelegation {
 
     interface Static {
-        // ...
+        delegate(options: DelegationOptions): EventDelegation.Subscription;
     }
 
-    /**
-     * Alias for the HTML element that is the container the event-handling is delegated to.
-     */
-    type Delegatee = Element;
+    interface Subscription {
+        type(): string;
+        suspend(): boolean;
+    }
 
-    /**
-     * Alias for one of probably multiple elements that match the delegator selector.
-     */
-    type Delegator = Element;
+    interface DelegationOptions {
+        delegatee: HTMLElement;
+        delegatorSelector: string;
+        eventName: string;
+        listener: EventDelegation.Listener;
+    }
 
-    /**
-     * Alias for event target elements.
-     */
-    type EventTarget = Element;
+    interface Listener {
+        (this: HTMLElement, event: Event): void;
+    }
 }
