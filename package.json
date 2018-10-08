@@ -22,8 +22,7 @@
     "lint:declaration": "tslint -c tslint.json '*.d.ts' --fix",
     "prepublish": "npm-run-all lint build"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "awesome-typescript-loader": "^3.4.0",
     "babel-core": "^6.26.0",
