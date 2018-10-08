@@ -3,13 +3,13 @@ const { resolve } = require('path');
 
 module.exports = {
     entry: {
-        "package-name": "./src/index.ts",
-        "package-name.min": "./src/index.ts",
+        "event-delegation": "./src/index.ts",
+        "event-delegation.min": "./src/index.ts",
     },
     output: {
         path: resolve(__dirname, 'umd'),
         filename: '[name].js',
-        library: 'PackageName',
+        library: 'EventDelegation',
         libraryTarget: 'umd',
     },
 

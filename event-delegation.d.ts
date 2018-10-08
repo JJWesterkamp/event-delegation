@@ -2,6 +2,8 @@ declare const EventDelegation: EventDelegation.Static;
 export default EventDelegation;
 export as namespace EventDelegation;
 
+// tslint:disable:interface-name
+
 declare namespace EventDelegation {
 
     interface Static {
@@ -9,18 +11,26 @@ declare namespace EventDelegation {
     }
 
     interface Subscription {
-        type(): string;
-        suspend(): boolean;
+        suspend(): void;
     }
 
+    type CssSelector = string;
+
     interface DelegationOptions {
-        delegatee: HTMLElement;
-        delegatorSelector: string;
+
+        /**
+         * Optional. Can be either an HTMLElement reference or a CSS style selector for the delegatee element.
+         * If not given, document.body will be used as delegatee.
+         */
+        delegatee?: HTMLElement | CssSelector;
+
+        /**
+         * Selector that matches against
+         */
+        delegatorSelector: CssSelector;
         eventName: string;
         listener: EventDelegation.Listener;
     }
 
-    interface Listener {
-        (this: HTMLElement, event: Event): void;
-    }
+    type Listener = (this: HTMLElement, event: Event) => void;
 }

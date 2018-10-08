@@ -1,36 +1,26 @@
-import PublicInterface from "../event-delegation.d";
+import { EventHandler } from "./EventHandler";
+import "./polyfill/element.matches";
+import { createConfig } from "./utils";
 
-import IStatic = PublicInterface.Static;
-import IOptions = PublicInterface.DelegationOptions;
+// ---------------------------------------------------------------------------
+// Interface imports
+// ---------------------------------------------------------------------------
+
+import PublicInterface from "../event-delegation.d";
+import { DelegationConfig } from "./private-interface";
+
+import IStatic       = PublicInterface.Static;
+import IOptions      = PublicInterface.DelegationOptions;
 import ISubscription = PublicInterface.Subscription;
 
-import "./polyfill/element.matches";
-import { closestUntil } from "./util/dom";
+// ---------------------------------------------------------------------------
+// Interface implementation & exports
+// ---------------------------------------------------------------------------
 
 export function delegate(options: IOptions): ISubscription {
-
-    options.delegatee.addEventListener(options.eventName, (event) => {
-
-        const delegator = closestUntil(
-            event.target as HTMLElement,
-            options.delegatorSelector,
-            options.delegatee,
-        );
-
-        if (delegator) {
-            options.listener.call(delegator, event);
-        }
-    });
+    const config: DelegationConfig = createConfig(options);
+    return new EventHandler(config);
 }
 
 const defaultNamespace: IStatic = { delegate };
 export default defaultNamespace;
-
-// const subscription = delegate({
-//     delegatee: document.body,
-//     delegatorSelector: ".item",
-//     eventName: "click",
-//     listener() {
-//         this.classList.add("test");
-//     },
-// });

@@ -1,5 +1,18 @@
-# TS package boilerplate
+# event-delegation
 
-- Rename entry point keys in `webpack.config.js`
-- Rename `output.library` in `webpack.config.js`
-- Rename `PackageName` in `interface.d.ts`
+```javascript
+import { delegate } from 'event-delegation';
+
+const subscription = delegate({
+
+    delegatee: document.body,
+
+    delegatorSelector: ".item",
+
+    eventName: "click",
+
+    listener(event) {
+        this.classList.add(".item--clicked");
+    },
+});
+```
