@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Jeffrey Westerkamp",
   "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",
-  "description": "Lightweight event delegation implementation for browser events.",
+  "description": "Lightweight event delegation implementation for browser UI events.",
   "keywords": [
     "DOM",
     "Event",
@@ -16,11 +16,9 @@
     "ES Modules"
   ],
   "license": "MIT",
-
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
-  "types": "./interface.d.ts",
-
+  "types": "./event-delegation.d.ts",
   "scripts": {
     "dev": "run-p \"build:** -- --watch\"",
     "build": "run-p build:**",
@@ -32,8 +30,11 @@
     "lint:declaration": "tslint -c tslint.json '*.d.ts' --fix",
     "prepublish": "npm-run-all lint build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
   "devDependencies": {
+    "@types/ramda": "^0.25.39",
     "awesome-typescript-loader": "^3.4.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
