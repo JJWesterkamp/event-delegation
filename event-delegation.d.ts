@@ -7,27 +7,25 @@ export as namespace EventDelegation;
 declare namespace EventDelegation {
 
     interface Static {
-        create(options: IOptions): EventDelegation.Subscription;
+        create(options: EventDelegation.Options): EventDelegation.Subscription;
     }
 
     interface Subscription {
         suspend(): void;
     }
 
-    type CssSelector = string;
-
-    interface IOptions {
+    interface Options {
 
         /**
          * Optional. Can be either an HTMLElement reference or a CSS style selector for the delegatee element.
          * If not given, document.body will be used as delegatee.
          */
-        delegatee?: HTMLElement | CssSelector;
+        delegatee?: HTMLElement | string;
 
         /**
-         * Selector that matches against
+         * Selector that matches against the delegating elements. E.g. "li" | ".item"
          */
-        delegatorSelector: CssSelector;
+        delegatorSelector: string;
 
         /**
          * This would be "click", "mouseenter", etc...
@@ -37,8 +35,6 @@ declare namespace EventDelegation {
         /**
          *
          */
-        listener: EventDelegation.Listener;
+        listener: EventListener;
     }
-
-    type Listener = (this: HTMLElement, event: Event) => void;
 }

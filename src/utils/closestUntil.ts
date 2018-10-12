@@ -29,7 +29,11 @@ export function closestUntil(startElement: HTMLElement, selector: string, untilE
 
         current = current.parentElement || current.parentNode as HTMLElement;
 
-    } while (current && current !== untilElement && current.nodeType === 1);
+    } while (
+           current
+        && current !== untilElement
+        && current.nodeType === 1
+    );
 
     return null;
 }

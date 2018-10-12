@@ -1,4 +1,4 @@
-import { closestUntil } from "./utils";
+import { closestUntil } from "./utils/closestUntil";
 
 // ---------------------------------------------------------------------------
 // Interface imports
