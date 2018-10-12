@@ -1,3 +1,4 @@
+import { DelegationConfig } from "./private-interface";
 import { closestUntil } from "./utils/closestUntil";
 
 // ---------------------------------------------------------------------------
@@ -5,7 +6,6 @@ import { closestUntil } from "./utils/closestUntil";
 // ---------------------------------------------------------------------------
 
 import PublicInterface from "../event-delegation";
-import { DelegationConfig } from "./private-interface";
 import ISubscription = PublicInterface.Subscription;
 
 // ---------------------------------------------------------------------------
