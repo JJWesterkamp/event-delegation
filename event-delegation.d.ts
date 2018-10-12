@@ -11,7 +11,7 @@ declare namespace EventDelegation {
     }
 
     interface Subscription {
-        suspend(): void;
+        remove(): void;
     }
 
     interface Options {

@@ -15,6 +15,8 @@ import ISubscription = PublicInterface.Subscription;
 export class EventHandler implements ISubscription {
 
     protected handler: (event: Event) => void;
+    protected isAttached: boolean = false;
+    protected isDestroyed: boolean = false;
 
     constructor(protected config: DelegationConfig) {
 
@@ -34,10 +36,12 @@ export class EventHandler implements ISubscription {
         this.addListener();
     }
 
-    public suspend(): void {
+    public remove(): void {
         this.removeListener();
         delete this.handler;
         delete this.config;
+        this.isDestroyed = true;
+        this.isAttached = false;
     }
 
     // ---------------------------------------------------------------------------
@@ -45,7 +49,10 @@ export class EventHandler implements ISubscription {
     // ---------------------------------------------------------------------------
 
     protected addListener(): void {
-        this.config.delegatee.addEventListener(this.config.eventName, this.handler);
+        if ( ! this.isDestroyed) {
+            this.config.delegatee.addEventListener(this.config.eventName, this.handler);
+            this.isAttached = true;
+        }
     }
 
     protected removeListener(): void {

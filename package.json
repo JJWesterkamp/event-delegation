@@ -31,10 +31,8 @@
     "prepublish": "npm-run-all lint build"
   },
   "dependencies": {
-    "ramda": "^0.25.0"
   },
   "devDependencies": {
-    "@types/ramda": "^0.25.39",
     "awesome-typescript-loader": "^3.4.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

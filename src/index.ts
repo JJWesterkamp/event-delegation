@@ -60,10 +60,14 @@ function normalizeDelegatee(input: IOptions["delegatee"]): HTMLElement {
 
     const defaultElement: HTMLElement = document.body;
 
-    if (isString(input) && input.length > 0) {
-        const match = document.body.querySelector<HTMLElement>(input);
-        return match || defaultElement;
+    if ( ! (isString(input) && input.length > 0)) {
+        return defaultElement;
     }
 
-    return defaultElement;
+    try {
+        const match = document.body.querySelector<HTMLElement>(input);
+        return match || defaultElement;
+    } catch (err) {
+        return defaultElement;
+    }
 }
