@@ -33,8 +33,14 @@ declare namespace EventDelegation {
         eventName: string;
 
         /**
-         *
+         * The listener callback to invoke. If it is a regular function its call context will be the element
+         * that matched delegatorSelector.
          */
         listener: EventListener;
+
+        /**
+         * Optionally provide the options to pass through to internal `addEventListener` calls
+         */
+        listenerOptions?: AddEventListenerOptions;
     }
 }
