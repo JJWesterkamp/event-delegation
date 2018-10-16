@@ -1,4 +1,4 @@
-export interface DelegationConfig {
+export interface IDelegationConfig {
     readonly currentTarget: HTMLElement;
     readonly selector: string;
     readonly event: string;

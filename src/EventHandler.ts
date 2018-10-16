@@ -1,4 +1,4 @@
-import { DelegationConfig } from "./private-interface";
+import { IDelegationConfig } from "./private-interface";
 import { closestUntil } from "./utils/closestUntil";
 
 // ---------------------------------------------------------------------------
@@ -18,7 +18,7 @@ export class EventHandler implements ISubscription {
     protected isAttached: boolean = false;
     protected isDestroyed: boolean = false;
 
-    constructor(protected config: DelegationConfig) {
+    constructor(protected config: IDelegationConfig) {
         this.createHandler();
         this.addListener();
     }
@@ -34,7 +34,6 @@ export class EventHandler implements ISubscription {
         this.isDestroyed = true;
         this.isAttached = false;
     }
-
 
     // ---------------------------------------------------------------------------
     // Construction

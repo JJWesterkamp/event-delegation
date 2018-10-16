@@ -8,7 +8,7 @@ import { isFunction, isString } from "./utils/index";
 // ---------------------------------------------------------------------------
 
 import PublicInterface from "../event-delegation.d";
-import { DelegationConfig } from "./private-interface";
+import { IDelegationConfig } from "./private-interface";
 
 import IStatic       = PublicInterface.Static;
 import IOptions      = PublicInterface.Options;
@@ -22,16 +22,16 @@ const defaultNamespace: IStatic = { create };
 export default defaultNamespace;
 
 function create(options: IOptions): ISubscription {
-    const config: DelegationConfig = createConfig(options);
+    const config: IDelegationConfig = createConfig(options);
     return new EventHandler(config);
 }
 
 /**
  * @param options
  */
-function createConfig(options: IOptions): DelegationConfig {
+function createConfig(options: IOptions): IDelegationConfig {
 
-    const result: DelegationConfig = Object.assign({}, options, {
+    const result: IDelegationConfig = Object.assign({}, options, {
         currentTarget: normalizeCurrentTarget(options.currentTarget),
     });
 
