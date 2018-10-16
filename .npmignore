@@ -1,8 +1,7 @@
 node_modules
 src
 _config.yml
-.gitignore
-.nvmrc
+.*
 tsconfig.json
 tslint.json
 webpack.config.js
