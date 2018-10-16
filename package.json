@@ -1,5 +1,5 @@
 {
-  "name": "event-delegation",
+  "name": "@jjwesterkamp/event-delegation",
   "version": "0.1.0",
   "author": "Jeffrey Westerkamp",
   "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",

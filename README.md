@@ -1,6 +1,6 @@
 # event-delegation
 
-Event-delegation implementation for browser UI events.
+My take on an event-delegation implementation for browser UI events:
 
 - One single function signature
 - Uses an options object. No confusing parameter lists
@@ -10,7 +10,7 @@ Event-delegation implementation for browser UI events.
 ## Installation
 
 ```bash
-$ npm install event-delegation --save
+$ npm install @jjwesterkamp/event-delegation --save
 ```
 
 ## Usage
