@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Jeffrey Westerkamp",
   "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",
-  "description": "Lightweight event delegation implementation for browser UI events.",
+  "description": "Event-delegation implementation for browser UI events.",
   "keywords": [
     "DOM",
     "Event",
