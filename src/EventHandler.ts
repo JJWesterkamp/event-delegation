@@ -19,20 +19,7 @@ export class EventHandler implements ISubscription {
     protected isDestroyed: boolean = false;
 
     constructor(protected config: DelegationConfig) {
-
-        this.handler = (event) => {
-
-            const delegator = closestUntil(
-                event.target as HTMLElement,
-                this.config.selector,
-                this.config.currentTarget,
-            );
-
-            if (delegator) {
-                this.config.listener.call(delegator, event);
-            }
-        };
-
+        this.createHandler();
         this.addListener();
     }
 
@@ -46,6 +33,36 @@ export class EventHandler implements ISubscription {
         delete this.config;
         this.isDestroyed = true;
         this.isAttached = false;
+    }
+
+
+    // ---------------------------------------------------------------------------
+    // Construction
+    // ---------------------------------------------------------------------------
+
+    protected createHandler(): void {
+        if (this.handler) {
+            return;
+        }
+
+        this.handler = (event) => {
+
+            const delegator = closestUntil(
+                event.target as HTMLElement,
+                this.config.selector,
+                this.config.currentTarget,
+            );
+
+            if (delegator) {
+                this.config.listener.call(delegator, this.proxyEvent(event, delegator));
+            }
+        };
+    }
+
+    protected proxyEvent(event: Event, delegator: HTMLElement): Event {
+        // Todo: Find a way to proxy the event in order to return delegator
+        // when event.currentTarget is accessed.
+        return event;
     }
 
     // ---------------------------------------------------------------------------
