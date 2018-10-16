@@ -26,8 +26,8 @@ import EventDelegation from 'event-delegation';
 Create an options object (or inline it in the create call as you like) for the event-delegation setup.
 
 | property          	| required 	| type                   	| descripton                                                                           	| default         	|
-|-------------------	|----------	|------------------------	|--------------------------------------------------------------------------------------	|-----------------	|
-| `currentTarget`   	| no       	| `HTMLElement | string` 	| Can be either an HTMLElement reference or a CSS style selector for the element.      	| `document.body` 	|
+|-------------------	|----------	|-------------------------- |--------------------------------------------------------------------------------------	|-----------------	|
+| `currentTarget`   	| no       	| `HTMLElement` or `string` | Can be either an HTMLElement reference or a CSS style selector for the element.      	| `document.body` 	|
 | `selector`        	| yes      	| `string`               	| Selector that matches against the delegating elements. E.g. `"li"` or `".item"`      	| N/A             	|
 | `event`           	| yes      	| `string`               	| The event type to listen for                                                         	| N/A             	|
 | `listener`        	| yes      	| `function`             	| The event listener callback                                                          	| N/A             	|
