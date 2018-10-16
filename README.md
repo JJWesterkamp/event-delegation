@@ -1,4 +1,4 @@
-# event-delegation
+# event-delegation [![npm version](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg)](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation)
 
 My take on an event-delegation implementation for browser UI events:
 
