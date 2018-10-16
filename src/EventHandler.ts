@@ -24,8 +24,8 @@ export class EventHandler implements ISubscription {
 
             const delegator = closestUntil(
                 event.target as HTMLElement,
-                this.config.delegatorSelector,
-                this.config.delegatee,
+                this.config.selector,
+                this.config.currentTarget,
             );
 
             if (delegator) {
@@ -34,6 +34,10 @@ export class EventHandler implements ISubscription {
         };
 
         this.addListener();
+    }
+
+    public currentTarget(): HTMLElement {
+        return this.config.currentTarget;
     }
 
     public remove(): void {
@@ -50,12 +54,12 @@ export class EventHandler implements ISubscription {
 
     protected addListener(): void {
         if ( ! this.isDestroyed) {
-            this.config.delegatee.addEventListener(this.config.eventName, this.handler);
+            this.config.currentTarget.addEventListener(this.config.event, this.handler);
             this.isAttached = true;
         }
     }
 
     protected removeListener(): void {
-        this.config.delegatee.removeEventListener(this.config.eventName, this.handler);
+        this.config.currentTarget.removeEventListener(this.config.event, this.handler);
     }
 }

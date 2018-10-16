@@ -1,7 +1,7 @@
-import { InvalidArgumentError } from "./errors";
+import { InvalidArgumentError } from "./errors/index";
 import { EventHandler } from "./EventHandler";
 import "./polyfill/element.matches";
-import { isFunction, isString } from "./utils";
+import { isFunction, isString } from "./utils/index";
 
 // ---------------------------------------------------------------------------
 // Interface imports
@@ -32,13 +32,13 @@ function create(options: IOptions): ISubscription {
 function createConfig(options: IOptions): DelegationConfig {
 
     const result: DelegationConfig = Object.assign({}, options, {
-        delegatee: normalizeDelegatee(options.delegatee),
+        currentTarget: normalizeCurrentTarget(options.currentTarget),
     });
 
     try {
-        document.querySelector(result.delegatorSelector);
+        document.querySelector(result.selector);
     } catch (err) {
-        throw new InvalidArgumentError("options.delegatorSelector is not a valid selector");
+        throw new InvalidArgumentError("options.selector is not a valid selector");
     }
 
     if ( ! isFunction(result.listener)) {
@@ -52,7 +52,7 @@ function createConfig(options: IOptions): DelegationConfig {
  *
  * @param {string|HTMLElement} [input]
  */
-function normalizeDelegatee(input: IOptions["delegatee"]): HTMLElement {
+function normalizeCurrentTarget(input: IOptions["currentTarget"]): HTMLElement {
 
     if (input instanceof HTMLElement) {
         return input;

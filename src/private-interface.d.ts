@@ -1,6 +1,6 @@
 export interface DelegationConfig {
-    readonly delegatee: HTMLElement;
-    readonly delegatorSelector: string;
-    readonly eventName: string;
+    readonly currentTarget: HTMLElement;
+    readonly selector: string;
+    readonly event: string;
     readonly listener: EventListener;
 }

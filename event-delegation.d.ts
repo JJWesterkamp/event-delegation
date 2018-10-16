@@ -11,6 +11,9 @@ declare namespace EventDelegation {
     }
 
     interface Subscription {
+
+        currentTarget(): HTMLElement;
+
         remove(): void;
     }
 
@@ -20,17 +23,17 @@ declare namespace EventDelegation {
          * Optional. Can be either an HTMLElement reference or a CSS style selector for the delegatee element.
          * If not given, document.body will be used as delegatee.
          */
-        delegatee?: HTMLElement | string;
+        currentTarget?: HTMLElement | string;
 
         /**
          * Selector that matches against the delegating elements. E.g. "li" | ".item"
          */
-        delegatorSelector: string;
+        selector: string;
 
         /**
          * This would be "click", "mouseenter", etc...
          */
-        eventName: string;
+        event: string;
 
         /**
          * The listener callback to invoke. If it is a regular function its call context will be the element
