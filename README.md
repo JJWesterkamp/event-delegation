@@ -3,8 +3,8 @@
 My take on an event-delegation implementation for browser UI events:
 
 - One single function signature
-- Uses an options object. No confusing parameter lists
-- Calls listener callbacks in the context of matched _delegator_ elements
+- Uses an options object instead of confusing parameter lists
+- Calls listener callbacks in the context of matched elements, like jQuery does
 - Fully typed
 
 ## Installation
@@ -23,7 +23,8 @@ import EventDelegation from 'event-delegation';
 
 ### 2. Setup options
 
-Create an options object (or inline it in the create call as you like) for the event-delegation setup.
+Create an options object for the event-delegation setup. (or inline it in the create call at step 3) The table below
+shows the available configuration options:
 
 | property          	| required 	| type                   	| descripton                                                                           	| default         	|
 |-------------------	|----------	|-------------------------- |--------------------------------------------------------------------------------------	|-----------------	|
@@ -35,18 +36,18 @@ Create an options object (or inline it in the create call as you like) for the e
 
 **Example object:**
 
+Note: Inside `listener`, `this` is the element that matched `".item"`. In order for this binding to work, `listener` must be a regular function - not an arrow function.
+
 ```javascript
 const options = {
     currentTarget: document.body,
     selector: ".item",
     event: "click",
     listener(event) {
-        this.classList.add(".item--clicked");
+        this.classList.add("item--clicked");
     },
 };
 ```
-
-Note: Inside `listener`, `this` is the element that matched `".item"`. In order for this binding to work, `listener` must be a regular function - not an arrow function.
 
 ### 3. Create subscription with options
 ```javascript
