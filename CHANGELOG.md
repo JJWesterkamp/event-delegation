@@ -1,10 +1,15 @@
 # Changelog
 
-## [0.1.1]
+## 0.1.2
 
-    - npm ignore fix
-    - add npm version to README.md
+- Implemented application of `listenerOptions` configuration
+- README changes
 
-## [0.1.0]
+## 0.1.1
 
-    - Initial version
+- npm ignore fix
+- add npm version to README.md
+
+## 0.1.0
+
+- Initial version
