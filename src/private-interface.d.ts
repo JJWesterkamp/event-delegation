@@ -3,4 +3,5 @@ export interface IDelegationConfig {
     readonly selector: string;
     readonly event: string;
     readonly listener: EventListener;
+    readonly listenerOptions?: AddEventListenerOptions;
 }

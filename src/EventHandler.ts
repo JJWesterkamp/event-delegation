@@ -69,10 +69,13 @@ export class EventHandler implements ISubscription {
     // ---------------------------------------------------------------------------
 
     protected addListener(): void {
-        if ( ! this.isDestroyed) {
-            this.config.currentTarget.addEventListener(this.config.event, this.handler);
-            this.isAttached = true;
+
+        if (this.isAttached || this.isDestroyed) {
+            return;
         }
+
+        this.config.currentTarget.addEventListener(this.config.event, this.handler, this.config.listenerOptions);
+        this.isAttached = true;
     }
 
     protected removeListener(): void {
