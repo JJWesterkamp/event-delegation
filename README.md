@@ -18,7 +18,7 @@ $ npm install @jjwesterkamp/event-delegation --save
 ### 1. Import package
 
 ```javascript
-import EventDelegation from 'event-delegation';
+import EventDelegation from '@jjwesterkamp/event-delegation';
 ```
 
 ### 2. Setup options
@@ -64,4 +64,4 @@ subscription.remove();
 ```
 
 
-[mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Other_notes
+[mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
