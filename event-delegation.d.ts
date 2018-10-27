@@ -39,11 +39,19 @@ declare namespace EventDelegation {
          * The listener callback to invoke. If it is a regular function its call context will be the element
          * that matched delegatorSelector.
          */
-        listener: EventListener;
+        listener: DelegationEventListener;
 
         /**
          * Optionally provide the options to pass through to internal `addEventListener` calls
          */
         listenerOptions?: AddEventListenerOptions;
+    }
+
+    interface DelegationEvent extends Event {
+        delegator: HTMLElement;
+    }
+
+    interface DelegationEventListener {
+        (evt: DelegationEvent): void;
     }
 }

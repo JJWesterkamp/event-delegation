@@ -49,6 +49,7 @@ const options = {
 };
 ```
 
+
 ### 3. Create subscription with options
 ```javascript
 const subscription = EventDelegation.create(options);

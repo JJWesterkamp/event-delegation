@@ -7,6 +7,7 @@ import { closestUntil } from "./utils/closestUntil";
 
 import PublicInterface from "../event-delegation";
 import ISubscription = PublicInterface.Subscription;
+import IDelegationEvent = PublicInterface.DelegationEvent;
 
 // ---------------------------------------------------------------------------
 // Implementation
@@ -40,6 +41,7 @@ export class EventHandler implements ISubscription {
     // ---------------------------------------------------------------------------
 
     protected createHandler(): void {
+
         if (this.handler) {
             return;
         }
@@ -53,15 +55,13 @@ export class EventHandler implements ISubscription {
             );
 
             if (delegator) {
-                this.config.listener.call(delegator, this.proxyEvent(event, delegator));
+                this.config.listener.call(delegator, this.decorateEvent(event, delegator));
             }
         };
     }
 
-    protected proxyEvent(event: Event, delegator: HTMLElement): Event {
-        // Todo: Find a way to proxy the event in order to return delegator
-        // when event.currentTarget is accessed.
-        return event;
+    protected decorateEvent(event: Event, delegator: HTMLElement): IDelegationEvent {
+        return Object.assign(event, { delegator });
     }
 
     // ---------------------------------------------------------------------------
@@ -74,7 +74,12 @@ export class EventHandler implements ISubscription {
             return;
         }
 
-        this.config.currentTarget.addEventListener(this.config.event, this.handler, this.config.listenerOptions);
+        this.config.currentTarget.addEventListener(
+            this.config.event,
+            this.handler,
+            this.config.listenerOptions,
+        );
+
         this.isAttached = true;
     }
 
