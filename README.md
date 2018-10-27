@@ -36,7 +36,6 @@ shows the available configuration options:
 
 **Example object:**
 
-Note: Inside `listener`, `this` is the element that matched `".item"`. In order for this binding to work, `listener` must be a regular function - not an arrow function.
 
 ```javascript
 const options = {
@@ -46,6 +45,15 @@ const options = {
     listener(event) {
         this.classList.add("item--clicked");
     },
+};
+```
+
+Note: Inside `listener`, `this` is the element that matched `".item"`. In order for this binding to work, `listener` must be a regular function - not an arrow function. In case you do want to use an arrow function the event argument has an additional property `delegator` as an alternative to the explicit this-binding:
+
+```javascript
+const options = {
+    // ...
+    listener: (event) => event.delegator.classList.add("item--clicked"),
 };
 ```
 

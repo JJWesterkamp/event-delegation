@@ -51,7 +51,5 @@ declare namespace EventDelegation {
         delegator: HTMLElement;
     }
 
-    interface DelegationEventListener {
-        (evt: DelegationEvent): void;
-    }
+    type DelegationEventListener = (evt: DelegationEvent) => void;
 }
