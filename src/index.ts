@@ -71,25 +71,3 @@ function normalizeCurrentTarget(input: IOptions["currentTarget"]): HTMLElement {
         return defaultElement;
     }
 }
-
-interface IUser {
-    firstName: string;
-    lastName: string;
-}
-
-const me: IActiveUser = {
-    active: true,
-    firstName: "Jeffrey",
-    lastName: "Westerkamp",
-    fullName() {
-        return "";
-    },
-};
-
-interface IUser {
-    fullName(): string;
-}
-
-interface IActiveUser extends IUser {
-    active: true;
-}
