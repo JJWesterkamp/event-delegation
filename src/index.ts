@@ -21,17 +21,17 @@ import ISubscription = PublicInterface.Subscription;
 const defaultNamespace: IStatic = { create };
 export default defaultNamespace;
 
-function create(options: IOptions): ISubscription {
-    const config: IDelegationConfig = createConfig(options);
+function create<T extends HTMLElement>(options: IOptions<T>): ISubscription<T> {
+    const config: IDelegationConfig<T> = createConfig(options);
     return new EventHandler(config);
 }
 
 /**
  * @param options
  */
-function createConfig(options: IOptions): IDelegationConfig {
+function createConfig<T extends HTMLElement>(options: IOptions<T>): IDelegationConfig<T> {
 
-    const result: IDelegationConfig = Object.assign({}, options, {
+    const result: IDelegationConfig<T> = Object.assign({}, options, {
         currentTarget: normalizeCurrentTarget(options.currentTarget),
     });
 
@@ -52,7 +52,7 @@ function createConfig(options: IOptions): IDelegationConfig {
  *
  * @param {string|HTMLElement} [input]
  */
-function normalizeCurrentTarget(input: IOptions["currentTarget"]): HTMLElement {
+function normalizeCurrentTarget(input?: HTMLElement | string): HTMLElement {
 
     if (input instanceof HTMLElement) {
         return input;

@@ -13,13 +13,13 @@ import IDelegationEvent = PublicInterface.DelegationEvent;
 // Implementation
 // ---------------------------------------------------------------------------
 
-export class EventHandler implements ISubscription {
+export class EventHandler<T extends HTMLElement> implements ISubscription<T> {
 
     protected handler: (event: Event) => void;
     protected isAttached: boolean = false;
     protected isDestroyed: boolean = false;
 
-    constructor(protected config: IDelegationConfig) {
+    constructor(protected config: IDelegationConfig<T>) {
         this.createHandler();
         this.addListener();
     }
@@ -52,7 +52,7 @@ export class EventHandler implements ISubscription {
                 event.target as HTMLElement,
                 this.config.selector,
                 this.config.currentTarget,
-            );
+            ) as T | null;
 
             if (delegator) {
                 this.config.listener.call(delegator, this.decorateEvent(event, delegator));
@@ -60,7 +60,7 @@ export class EventHandler implements ISubscription {
         };
     }
 
-    protected decorateEvent(event: Event, delegator: HTMLElement): IDelegationEvent {
+    protected decorateEvent(event: Event, delegator: T): IDelegationEvent<T> {
         return Object.assign(event, { delegator });
     }
 

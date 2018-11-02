@@ -7,17 +7,17 @@ export as namespace EventDelegation;
 declare namespace EventDelegation {
 
     interface Static {
-        create(options: EventDelegation.Options): EventDelegation.Subscription;
+        create<T extends HTMLElement>(options: EventDelegation.Options<T>): EventDelegation.Subscription<T>;
     }
 
-    interface Subscription {
+    interface Subscription<T extends HTMLElement> {
 
         currentTarget(): HTMLElement;
 
         remove(): void;
     }
 
-    interface Options {
+    interface Options<T extends HTMLElement> {
 
         /**
          * Optional. Can be either an HTMLElement reference or a CSS style selector for the delegatee element.
@@ -39,7 +39,7 @@ declare namespace EventDelegation {
          * The listener callback to invoke. If it is a regular function its call context will be the element
          * that matched delegatorSelector.
          */
-        listener: DelegationEventListener;
+        listener: DelegationEventListener<T>;
 
         /**
          * Optionally provide the options to pass through to internal `addEventListener` calls
@@ -47,9 +47,10 @@ declare namespace EventDelegation {
         listenerOptions?: AddEventListenerOptions;
     }
 
-    interface DelegationEvent extends Event {
-        delegator: HTMLElement;
-    }
 
-    type DelegationEventListener = (evt: DelegationEvent) => void;
+    type DelegationEventListener<T extends HTMLElement> = (event: DelegationEvent<T>) => void;
+
+    interface DelegationEvent<T extends HTMLElement> extends Event {
+        delegator: T;
+    }
 }
