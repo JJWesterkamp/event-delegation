@@ -9,6 +9,14 @@ My take on an event-delegation implementation for browser UI events:
 
 ## Installation
 
+**CDN**
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation@0<version>/umd/event-delegation.min.js"></script>
+```
+
+**npm**
+
 ```bash
 $ npm install @jjwesterkamp/event-delegation --save
 ```

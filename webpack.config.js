@@ -3,8 +3,8 @@ const { resolve } = require('path');
 
 module.exports = {
     entry: {
-        "event-delegation": "./src/index.ts",
-        "event-delegation.min": "./src/index.ts",
+        "event-delegation": "./src/index.umd.ts",
+        "event-delegation.min": "./src/index.umd.ts",
     },
     output: {
         path: resolve(__dirname, 'umd'),
