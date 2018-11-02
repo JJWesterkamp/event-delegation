@@ -12,7 +12,7 @@ My take on an event-delegation implementation for browser UI events:
 **CDN**
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation@0.2.1/umd/event-delegation.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js"></script>
 ```
 
 **npm**

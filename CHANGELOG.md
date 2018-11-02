@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Added type parameters for annotating the expected type of delegator elements.
+
 ## 0.2.1
 
 - Fixed UMD bundle namespace

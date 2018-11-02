@@ -1,6 +1,6 @@
 {
   "name": "@jjwesterkamp/event-delegation",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Jeffrey Westerkamp",
   "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",
   "description": "Event-delegation implementation for browser UI events.",
