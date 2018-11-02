@@ -47,7 +47,6 @@ declare namespace EventDelegation {
         listenerOptions?: AddEventListenerOptions;
     }
 
-
     type DelegationEventListener<T extends HTMLElement> = (event: DelegationEvent<T>) => void;
 
     interface DelegationEvent<T extends HTMLElement> extends Event {
