@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1
+
+- Fixed UMD bundle namespace
+- Added CDN snippet to README
+
 ## 0.2.0
 
 - Add `delegator` property to events as an alternative to explicit this-binding
