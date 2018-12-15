@@ -1,7 +1,8 @@
-var webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { resolve } = require('path');
 
 module.exports = {
+    mode: "production",
     entry: {
         "event-delegation": "./src/index.umd.ts",
         "event-delegation.min": "./src/index.umd.ts",
@@ -13,13 +14,14 @@ module.exports = {
         libraryTarget: 'umd',
     },
 
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            include: /\.min\.js$/,
-            minimize: true,
-            sourceMap: true,
-        })
-    ],
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                test: /\.min\.js$/,
+                sourceMap: true,
+            }),
+        ],
+    },
 
     devtool: "source-map",
     resolve: {
@@ -30,7 +32,7 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                loaders: ["awesome-typescript-loader"],
+                loaders: ["ts-loader"],
                 exclude: /node_modules/,
             }
         ],
