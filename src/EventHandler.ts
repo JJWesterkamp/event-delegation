@@ -1,13 +1,11 @@
-import { IDelegationConfig } from "./private-interface";
 import { closestUntil } from "./utils/closestUntil";
 
 // ---------------------------------------------------------------------------
 // Interface imports
 // ---------------------------------------------------------------------------
 
-import PublicInterface from "../event-delegation";
-import ISubscription = PublicInterface.Subscription;
-import IDelegationEvent = PublicInterface.DelegationEvent;
+import { IDelegationConfig } from "./private-interface";
+import { IDelegationEvent, ISubscription } from "./public-interface";
 
 // ---------------------------------------------------------------------------
 // Implementation

@@ -7,12 +7,8 @@ import { isFunction, isString } from "./utils/index";
 // Interface imports
 // ---------------------------------------------------------------------------
 
-import PublicInterface from "../event-delegation.d";
 import { IDelegationConfig } from "./private-interface";
-
-import IStatic       = PublicInterface.Static;
-import IOptions      = PublicInterface.Options;
-import ISubscription = PublicInterface.Subscription;
+import { IOptions, IStatic, ISubscription } from "./public-interface";
 
 // ---------------------------------------------------------------------------
 // Interface exports & implementation
