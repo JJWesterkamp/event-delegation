@@ -34,6 +34,9 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/sinon": "^7.0.0",
     "@types/webpack": "^4.4.19",
     "@types/webpack-env": "^1.13.6",
     "babel-core": "^6.26.0",
