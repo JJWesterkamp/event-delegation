@@ -1,7 +1,7 @@
-import { InvalidArgumentError } from "./errors";
-import { IDelegationConfig } from "./private-interface";
-import { IOptions } from "./public-interface";
-import { isFunction, isString } from "./utils";
+import { InvalidArgumentError } from './errors';
+import { IDelegationConfig } from './private-interface';
+import { IOptions } from './public-interface';
+import { isFunction, isString } from './utils';
 
 export class DelegationConfigFactory {
 
@@ -14,11 +14,11 @@ export class DelegationConfigFactory {
         try {
             document.querySelector(result.selector);
         } catch (err) {
-            throw new InvalidArgumentError("options.selector is not a valid selector");
+            throw new InvalidArgumentError('options.selector is not a valid selector');
         }
 
         if ( ! isFunction(result.listener)) {
-            throw new InvalidArgumentError("options.listener must be a function");
+            throw new InvalidArgumentError('options.listener must be a function');
         }
 
         return result;

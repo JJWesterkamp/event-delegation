@@ -1,6 +1,6 @@
-import { DelegationConfigFactory } from "./DelegationConfigFactory";
-import { EventHandler } from "./EventHandler";
 import "./polyfill/element.matches";
+import {DelegationConfigFactory} from './DelegationConfigFactory';
+import {EventHandler} from './EventHandler';
 
 // ---------------------------------------------------------------------------
 // Interface imports

@@ -1,2 +1,2 @@
-export { InvalidArgumentError } from "./InvalidArgumentError";
-export { InvalidConfigurationError } from "./InvalidConfigurationError";
+export { InvalidArgumentError } from './InvalidArgumentError';
+export { InvalidConfigurationError } from './InvalidConfigurationError';

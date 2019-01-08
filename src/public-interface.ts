@@ -1,4 +1,5 @@
-import Public from "../event-delegation";
+// noinspection ES6UnusedImports
+import Public from '../event-delegation';
 
 export import IStatic = Public.Static;
 export import ISubscription = Public.Subscription;
