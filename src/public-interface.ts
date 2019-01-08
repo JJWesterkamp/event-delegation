@@ -2,7 +2,7 @@
 import Public from '../event-delegation';
 
 export import IStatic = Public.Static;
-export import ISubscription = Public.Subscription;
+export import IDelegationListener = Public.DelegationListener;
 export import IOptions = Public.Options;
-export import IDelegationEventListener = Public.DelegationEventListener;
+export import IDelegationListenerFn = Public.DelegationListenerFn;
 export import IDelegationEvent = Public.DelegationEvent;

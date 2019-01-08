@@ -1,29 +1,34 @@
-import { closestUntil } from "./utils/closestUntil";
+import { closestUntil } from './utils';
 
 // ---------------------------------------------------------------------------
 // Interface imports
 // ---------------------------------------------------------------------------
 
-import { IDelegationConfig } from "./private-interface";
-import { IDelegationEvent, ISubscription } from "./public-interface";
+import { IDelegationConfig } from './private-interface';
+import { IDelegationEvent, IDelegationListener } from './public-interface';
 
 // ---------------------------------------------------------------------------
 // Implementation
 // ---------------------------------------------------------------------------
 
-export class EventHandler<T extends HTMLElement> implements ISubscription<T> {
+export class EventHandler<T extends HTMLElement> implements IDelegationListener {
 
     protected handler: (event: Event) => void;
     protected isAttached: boolean = false;
     protected isDestroyed: boolean = false;
 
     constructor(protected config: IDelegationConfig<T>) {
-        this.createHandler();
+
+        this.handler = (event) => {
+            const delegator = this.findDelegator(event);
+            if (delegator) { this.callListener(event, delegator); }
+        };
+
         this.addListener();
     }
 
-    public currentTarget(): HTMLElement {
-        return this.config.currentTarget;
+    public root(): HTMLElement {
+        return this.config.root;
     }
 
     public remove(): void {
@@ -38,24 +43,17 @@ export class EventHandler<T extends HTMLElement> implements ISubscription<T> {
     // Construction
     // ---------------------------------------------------------------------------
 
-    protected createHandler(): void {
+    protected findDelegator(event: Event): T | null {
 
-        if (this.handler) {
-            return;
-        }
+        return closestUntil(
+            event.target as HTMLElement,
+            this.config.selector,
+            this.config.root,
+        ) as T | null;
+    }
 
-        this.handler = (event) => {
-
-            const delegator = closestUntil(
-                event.target as HTMLElement,
-                this.config.selector,
-                this.config.currentTarget,
-            ) as T | null;
-
-            if (delegator) {
-                this.config.listener.call(delegator, this.decorateEvent(event, delegator));
-            }
-        };
+    protected callListener(event: Event, delegator: T): void {
+        this.config.listener.call(delegator, this.decorateEvent(event, delegator));
     }
 
     protected decorateEvent(event: Event, delegator: T): IDelegationEvent<T> {
@@ -72,8 +70,8 @@ export class EventHandler<T extends HTMLElement> implements ISubscription<T> {
             return;
         }
 
-        this.config.currentTarget.addEventListener(
-            this.config.event,
+        this.config.root.addEventListener(
+            this.config.eventType,
             this.handler,
             this.config.listenerOptions,
         );
@@ -82,6 +80,6 @@ export class EventHandler<T extends HTMLElement> implements ISubscription<T> {
     }
 
     protected removeListener(): void {
-        this.config.currentTarget.removeEventListener(this.config.event, this.handler);
+        this.config.root.removeEventListener(this.config.eventType, this.handler);
     }
 }

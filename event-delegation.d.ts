@@ -7,47 +7,30 @@ export as namespace EventDelegation;
 declare namespace EventDelegation {
 
     interface Static {
-        create<T extends HTMLElement>(options: EventDelegation.Options<T>): EventDelegation.Subscription<T>;
+        create<T extends HTMLElement = HTMLElement>(options: EventDelegation.Options<T>): DelegationListener;
     }
 
-    interface Subscription<T extends HTMLElement> {
-
-        currentTarget(): HTMLElement;
-
+    interface DelegationListener {
+        root(): HTMLElement;
         remove(): void;
     }
 
-    interface Options<T extends HTMLElement> {
-
-        /**
-         * Optional. Can be either an HTMLElement reference or a CSS style selector for the delegatee element.
-         * If not given, document.body will be used as delegatee.
-         */
-        currentTarget?: HTMLElement | string;
-
-        /**
-         * Selector that matches against the delegating elements. E.g. "li" | ".item"
-         */
+    interface Options<DG extends HTMLElement = HTMLElement> {
+        root?: HTMLElement | string;
         selector: string;
-
-        /**
-         * This would be "click", "mouseenter", etc...
-         */
-        event: string;
-
-        /**
-         * The listener callback to invoke. If it is a regular function its call context will be the element
-         * that matched delegatorSelector.
-         */
-        listener: DelegationEventListener<T>;
-
-        /**
-         * Optionally provide the options to pass through to internal `addEventListener` calls
-         */
+        eventType: string;
+        listener: DelegationListenerFn<DG>;
         listenerOptions?: AddEventListenerOptions;
     }
 
-    interface DelegationEventListener<T extends HTMLElement> extends EventListener {
+    /**
+     * The listener callback to invoke whenever an event occurs. It provides 2 ways to get to the
+     * delegating element -- the 'delegator':
+     *
+     *  - Through `this` binding
+     *  - Through a property `delegator` on the event argument.
+     */
+    interface DelegationListenerFn<T extends HTMLElement> extends EventListener {
         (event: DelegationEvent<T>): void;
     }
 

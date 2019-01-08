@@ -8,7 +8,7 @@ export class DelegationConfigFactory {
     public fromOptions<T extends HTMLElement>(options: IOptions<T>): IDelegationConfig<T> {
 
         const result: IDelegationConfig<T> = Object.assign({}, options, {
-            currentTarget: this.normalizeCurrentTarget(options.currentTarget),
+            root: this.normalizeRoot(options.root),
         });
 
         try {
@@ -24,11 +24,12 @@ export class DelegationConfigFactory {
         return result;
     }
 
+    // noinspection JSMethodCanBeStatic
     /**
      *
      * @param {string|HTMLElement} [input]
      */
-    protected normalizeCurrentTarget(input?: HTMLElement | string): HTMLElement {
+    protected normalizeRoot(input?: HTMLElement | string): HTMLElement {
 
         if (input instanceof HTMLElement) {
             return input;
@@ -40,12 +41,7 @@ export class DelegationConfigFactory {
             return defaultElement;
         }
 
-        try {
-            const match = document.body.querySelector<HTMLElement>(input);
-            return match || defaultElement;
-        } catch (err) {
-            return defaultElement;
-        }
+        return document.body.querySelector<HTMLElement>(input) || defaultElement;
     }
 
 }

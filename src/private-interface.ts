@@ -1,9 +1,9 @@
-import { IDelegationEventListener } from "./public-interface";
+import { IDelegationListenerFn } from './public-interface';
 
 export interface IDelegationConfig<T extends HTMLElement> {
-    readonly currentTarget: HTMLElement;
+    readonly root: HTMLElement;
     readonly selector: string;
-    readonly event: string;
-    readonly listener: IDelegationEventListener<T>;
+    readonly eventType: string;
+    readonly listener: IDelegationListenerFn<T>;
     readonly listenerOptions?: AddEventListenerOptions;
 }
