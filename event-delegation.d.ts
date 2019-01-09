@@ -6,15 +6,6 @@ export as namespace EventDelegation;
 
 declare namespace EventDelegation {
 
-    interface Static {
-        create<T extends HTMLElement = HTMLElement>(options: EventDelegation.Options<T>): DelegationListener;
-    }
-
-    interface DelegationListener {
-        root(): HTMLElement;
-        remove(): void;
-    }
-
     interface Options<DG extends HTMLElement = HTMLElement> {
         root?: HTMLElement | string;
         selector: string;
@@ -24,17 +15,33 @@ declare namespace EventDelegation {
     }
 
     /**
-     * The listener callback to invoke whenever an event occurs. It provides 2 ways to get to the
+     * The listener callback to invoke whenever an event occurs. It is provided 2 ways to get the
      * delegating element -- the 'delegator':
      *
      *  - Through `this` binding
      *  - Through a property `delegator` on the event argument.
      */
-    interface DelegationListenerFn<T extends HTMLElement> extends EventListener {
-        (event: DelegationEvent<T>): void;
+    type DelegationListenerFn<DG extends HTMLElement = HTMLElement> = (this: DG, event: DelegationEvent<DG>) => void;
+
+    interface DelegationEvent<DG extends HTMLElement = HTMLElement> extends Event {
+        delegator: DG;
     }
 
-    interface DelegationEvent<T extends HTMLElement> extends Event {
-        delegator: T;
+    interface Static {
+        create<T extends HTMLElement = HTMLElement>(options: EventDelegation.Options<T>): DelegationListener;
+    }
+
+    interface Builder<DG extends HTMLElement = HTMLElement> {
+        setRoot(root: HTMLElement): Builder;
+        setListener(listener: DelegationListenerFn<DG>): Builder;
+        setEvent(event: string): Builder;
+        setSelector(selector: string): Builder;
+        setListenerOptions(options: AddEventListenerOptions): Builder;
+        build(): DelegationListener;
+    }
+
+    interface DelegationListener {
+        root(): HTMLElement;
+        remove(): void;
     }
 }

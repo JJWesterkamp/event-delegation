@@ -13,6 +13,7 @@ module.exports = function(config) {
         require('karma-webpack'),
     ];
 
+    // noinspection SpellCheckingInspection
     const options = {
         frameworks: ["mocha", "chai", "sinon"],
         files: [
