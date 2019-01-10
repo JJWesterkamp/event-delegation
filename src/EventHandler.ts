@@ -1,4 +1,4 @@
-import { closestUntil } from './utils';
+import { closestWithin } from './utils';
 
 // ---------------------------------------------------------------------------
 // Interface imports
@@ -11,7 +11,7 @@ import { IDelegationEvent, IDelegationListener } from './public-interface';
 // Implementation
 // ---------------------------------------------------------------------------
 
-export class EventHandler<T extends HTMLElement> implements IDelegationListener {
+export class EventHandler<T extends HTMLElement = HTMLElement> implements IDelegationListener {
 
     protected handler: (event: Event) => void;
     protected isAttached: boolean = false;
@@ -45,7 +45,7 @@ export class EventHandler<T extends HTMLElement> implements IDelegationListener 
 
     protected findDelegator(event: Event): T | null {
 
-        return closestUntil(
+        return closestWithin(
             event.target as HTMLElement,
             this.config.selector,
             this.config.root,

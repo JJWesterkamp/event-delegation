@@ -1,26 +1,30 @@
 /**
- * Queries up the DOM for given `selector`, starting from given `startNode`.
+ * Queries up the DOM for given `selector`, starting from given `leafElement`.
  * The first element found matching `selector` will be returned.
- * Querying will stop as soon as given `untilElement` is encountered.
+ * Querying will stop as soon as given `rootElement` is encountered.
  * If no matching element was found, `null` is returned.
  *
- * @param {HTMLElement} startElement    The innermost element in the DOM tree to start searching from.
+ * @param {HTMLElement} leafElement     The innermost element in the DOM tree to start searching from.
  * @param {string}      selector        The selector (CSS style) to match anchestor elements with.
- * @param {HTMLElement} untilElement    The element that acts as a scope for the query.
+ * @param {HTMLElement} rootElement     The element that acts as a scope for the query.
  *
  * Based on the MDN `closest` polyfill:
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
  */
-export function closestUntil(startElement: HTMLElement, selector: string, untilElement: HTMLElement = document.body): HTMLElement | null {
+export function closestWithin(
 
-    const html = document.documentElement;
+    leafElement: HTMLElement,
+    selector: string,
+    rootElement: HTMLElement = document.body,
 
-    if ( ! (html && html.contains(startElement))) {
+): HTMLElement | null {
+
+    if ( ! rootElement.contains(leafElement)) {
         return null;
     }
 
-    let current: HTMLElement = startElement;
+    let current: HTMLElement = leafElement;
 
     do {
         if (current.matches(selector)) {
@@ -31,7 +35,7 @@ export function closestUntil(startElement: HTMLElement, selector: string, untilE
 
     } while (
            current
-        && current !== untilElement
+        && current !== rootElement
         && current.nodeType === 1
     );
 
