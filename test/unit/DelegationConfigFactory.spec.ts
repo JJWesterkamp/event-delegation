@@ -14,11 +14,19 @@ describe('[UNIT] DelegationConfigFactory', () => {
             factory = new DelegationConfigFactory();
 
             options = {
+
+                selector: 'li',
                 eventType: 'click',
+
                 listener: (event: IDelegationEvent) => {
                     // ...
                 },
-                selector: 'li',
+
+                listenerOptions: {
+                    capture: false,
+                    once: false,
+                    passive: false,
+                },
             };
         });
 
@@ -45,7 +53,7 @@ describe('[UNIT] DelegationConfigFactory', () => {
         describe('[option] listenerOptions (this is just pass-through data for `EventTarget.addEventListener`)', () => {
 
             it('Should accept and set any value', () => {
-                
+                // ...
             });
         });
 

@@ -5,7 +5,7 @@
  * If no matching element was found, `null` is returned.
  *
  * @param {HTMLElement} leafElement     The innermost element in the DOM tree to start searching from.
- * @param {string}      selector        The selector (CSS style) to match anchestor elements with.
+ * @param {string}      selector        The selector (CSS style) to match ancestor elements with.
  * @param {HTMLElement} rootElement     The element that acts as a scope for the query.
  *
  * Based on the MDN `closest` polyfill:
@@ -36,7 +36,7 @@ export function closestWithin(
     } while (
            current
         && current !== rootElement
-        && current.nodeType === 1
+        && current.nodeType === Node.ELEMENT_NODE
     );
 
     return null;
