@@ -31,15 +31,6 @@ declare namespace EventDelegation {
         create<T extends HTMLElement = HTMLElement>(options: EventDelegation.Options<T>): DelegationListener;
     }
 
-    interface Builder<DG extends HTMLElement = HTMLElement> {
-        setRoot(root: HTMLElement): Builder;
-        setListener(listener: DelegationListenerFn<DG>): Builder;
-        setEvent(event: string): Builder;
-        setSelector(selector: string): Builder;
-        setListenerOptions(options: AddEventListenerOptions): Builder;
-        build(): DelegationListener;
-    }
-
     interface DelegationListener {
         root(): HTMLElement;
         remove(): void;
