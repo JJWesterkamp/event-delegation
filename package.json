@@ -28,7 +28,7 @@
     "lint": "run-p lint:**",
     "lint:source": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "lint:declaration": "tslint -c tslint.json '*.d.ts' --fix",
-    "prepublishOnly": "npm-run-all lint test:ci build",
+    "prepublishOnly": "git checkout master && npm-run-all lint test:ci build",
     "test": "karma start karma.conf.js",
     "test:ci": "karma start --single-run --no-auto-watch karma.conf.js"
   },
