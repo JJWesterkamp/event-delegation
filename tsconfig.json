@@ -12,7 +12,8 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "declaration": true,
-        "outDir": "cjs"
+        "outDir": "cjs",
+        "downlevelIteration": true
     },
     "include":[
         "src/**/*.ts"

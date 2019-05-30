@@ -28,11 +28,28 @@ declare namespace EventDelegation {
     }
 
     interface Static {
-        create<T extends HTMLElement = HTMLElement>(options: EventDelegation.Options<T>): DelegationListener;
+        create<DG extends HTMLElement = HTMLElement>(options: EventDelegation.Options<DG>): EventHandler;
     }
 
-    interface DelegationListener {
+    interface EventHandler {
+        isAttached(): boolean;
+        isDestroyed(): boolean;
         root(): HTMLElement;
+        event(): string;
+        selector(): string;
         remove(): void;
+    }
+
+    interface EventHandlerCollection {
+        count(): number;
+        roots(): HTMLElement[];
+        events(): string[];
+        removeAll(): void;
+        handlers(): EventHandler[];
+        filter(transformer: (handler: EventHandler) => boolean): EventHandlerCollection;
+        map<T>(transformer: (handler: EventHandler) => T): T[];
+        pickByEvent(event: string): EventHandlerCollection;
+        pickByRoot(root: HTMLElement): EventHandlerCollection;
+        pickByDelegator(selector: string): EventHandlerCollection;
     }
 }

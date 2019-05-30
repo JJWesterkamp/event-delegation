@@ -11,15 +11,7 @@ export class DelegationConfigFactory {
             root: this.normalizeRoot(options.root),
         });
 
-        try {
-            document.querySelector(result.selector);
-        } catch (err) {
-            throw new InvalidArgumentError('options.selector is not a valid selector');
-        }
-
-        if ( ! isFunction(result.listener)) {
-            throw new InvalidArgumentError('options.listener must be a function');
-        }
+        this.expectValidResult<T>(result);
 
         return result;
     }
@@ -44,4 +36,15 @@ export class DelegationConfigFactory {
         return document.body.querySelector<HTMLElement>(input) || defaultElement;
     }
 
+    protected expectValidResult<T extends HTMLElement>(result: IDelegationConfig<T>): void {
+        try {
+            document.querySelector(result.selector);
+        } catch (err) {
+            throw new InvalidArgumentError('options.selector is not a valid selector');
+        }
+
+        if ( ! isFunction(result.listener)) {
+            throw new InvalidArgumentError('options.listener must be a function');
+        }
+    }
 }

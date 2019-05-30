@@ -35,6 +35,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/jsdom": "^12.2.3",
     "@types/mocha": "^5.2.5",
     "@types/sinon": "^7.0.0",
     "@types/webpack": "^4.4.19",
@@ -44,6 +45,7 @@
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.2.0",
     "istanbul-instrumenter-loader": "^3.0.1",
+    "jsdom": "^15.1.0",
     "karma": "^3.1.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
