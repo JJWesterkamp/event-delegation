@@ -13,7 +13,8 @@
         "strictFunctionTypes": true,
         "declaration": true,
         "outDir": "cjs",
-        "downlevelIteration": true
+        "downlevelIteration": true,
+        "experimentalDecorators": true
     },
     "include":[
         "src/**/*.ts"
