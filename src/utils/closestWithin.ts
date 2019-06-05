@@ -1,3 +1,5 @@
+import '../polyfill/element.matches';
+
 /**
  * Queries up the DOM for given `selector`, starting from given `leafElement`.
  * The first element found matching `selector` will be returned.
