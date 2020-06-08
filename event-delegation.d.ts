@@ -6,11 +6,14 @@ export as namespace EventDelegation;
 
 declare namespace EventDelegation {
 
-    interface Options<DG extends HTMLElement = HTMLElement> {
+    /**
+     * The options object for an event handler instance.
+     */
+    interface Options<T extends HTMLElement = HTMLElement, U extends Event = Event> {
         root?: HTMLElement | string;
         selector: string;
         eventType: string;
-        listener: DelegationListenerFn<DG>;
+        listener: DelegationListenerFn<T, U>;
         listenerOptions?: AddEventListenerOptions;
     }
 
@@ -21,18 +24,32 @@ declare namespace EventDelegation {
      *  - Through `this` binding
      *  - Through a property `delegator` on the event argument.
      */
-    type DelegationListenerFn<DG extends HTMLElement = HTMLElement> = (this: DG, event: DelegationEvent<DG>) => void;
+    type DelegationListenerFn<T extends HTMLElement = HTMLElement, U extends Event = Event> = (this: T, event: DelegationEvent<T, U>) => void;
 
-    interface DelegationEvent<DG extends HTMLElement = HTMLElement> extends Event {
-        delegator: DG;
-    }
+    /**
+     * A delegation event; the default event with an additional property `delegator` to be able to reference the
+     * child element that dispatched the event within arrow function handlers.
+     */
+    type DelegationEvent<T extends HTMLElement = HTMLElement, U extends Event = Event> = U & {
+        delegator: T;
+    };
 
+    /**
+     * The static interface is currently only the `create` factory function.
+     */
     interface Static {
-        create<T extends HTMLElement = HTMLElement>(options: EventDelegation.Options<T>): DelegationListener;
+        create<T extends HTMLElement = HTMLElement, U extends Event = Event>(options: EventDelegation.Options<T, U>): EventHandler;
     }
 
-    interface DelegationListener {
+    /**
+     * The event handler instance interface.
+     */
+    interface EventHandler {
+        isAttached(): boolean;
+        isDestroyed(): boolean;
         root(): HTMLElement;
+        event(): string;
+        selector(): string;
         remove(): void;
     }
 }
