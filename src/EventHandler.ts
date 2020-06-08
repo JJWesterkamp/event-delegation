@@ -11,14 +11,9 @@ export class EventHandler implements IEventHandler {
     constructor(protected config: IDelegationConfig) {
 
         this.handler = (event) => {
-
             const delegator = this.findDelegator(event);
-
             if (delegator) {
-                this.config.listener.call(
-                    delegator,
-                    Object.assign(event, { delegator }),
-                );
+                this.config.listener.call(delegator, Object.assign(event, { delegator }));
             }
         };
 
@@ -58,7 +53,6 @@ export class EventHandler implements IEventHandler {
     // ---------------------------------------------------------------------------
 
     protected findDelegator(event: Event): HTMLElement | null {
-
         return closestWithin(
             event.target as HTMLElement,
             this.config.selector,
