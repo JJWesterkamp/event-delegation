@@ -46,6 +46,10 @@
   version "10.12.10"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.10.tgz#4fa76e6598b7de3f0cb6ec3abacc4f59e5b3a2ce"
 
+"@types/node@^14.0.11":
+  version "14.0.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.11.tgz#61d4886e2424da73b7b25547f59fdcb534c165a3"
+
 "@types/sinon@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-7.0.0.tgz#84e707e157ec17d3e4c2a137f41fc3f416c0551e"
@@ -64,9 +68,9 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/webpack-env@^1.13.6":
-  version "1.13.6"
-  resolved "http://registry.npmjs.org/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
+"@types/webpack-env@^1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.15.2.tgz#927997342bb9f4a5185a86e6579a0a18afc33b0a"
 
 "@types/webpack@^4.4.19":
   version "4.4.19"
@@ -5079,9 +5083,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.2.tgz#fe8101c46aa123f8353523ebdcf5730c2ae493e5"
+typescript@3.9.5:
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
 
 uglify-js@^3.0.0, uglify-js@^3.1.4:
   version "3.4.9"

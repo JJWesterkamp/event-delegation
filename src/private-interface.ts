@@ -1,4 +1,4 @@
-import { IEventHandler, IDelegationListenerFn } from './public-interface';
+import { IDelegationListenerFn, IEventHandler } from './public-interface';
 
 export interface IDelegationConfig<DG extends HTMLElement = HTMLElement> {
     readonly root: HTMLElement;
