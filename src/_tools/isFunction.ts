@@ -1,4 +1,6 @@
 /**
+ * Returns `true` if the given argument is a function, or `false` otherwise.
+ *
  * @param subject
  * @return {boolean}
  */

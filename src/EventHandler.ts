@@ -1,14 +1,13 @@
-import { IDelegationConfig } from './private-interface'
-import { IEventHandler } from './public-interface'
 import { closestWithin } from './_tools/closestWithin'
+import { DelegationConfig, EventHandler as EventHandlerInterface } from './_types'
 
-export class EventHandler implements IEventHandler {
+export class EventHandler<R extends Element> implements EventHandlerInterface<R> {
 
     protected handler: (event: Event) => void
     protected _isAttached: boolean = false
     protected _isDestroyed: boolean = false
 
-    constructor(protected config: IDelegationConfig) {
+    constructor(protected config: DelegationConfig<R>) {
 
         this.handler = (event) => {
             const delegator = this.findDelegator(event)
@@ -28,7 +27,7 @@ export class EventHandler implements IEventHandler {
         return this._isDestroyed
     }
 
-    public root(): HTMLElement {
+    public root(): R {
         return this.config.root
     }
 

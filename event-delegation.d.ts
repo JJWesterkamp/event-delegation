@@ -2,18 +2,16 @@ declare const EventDelegation: EventDelegation.Static;
 export default EventDelegation;
 export as namespace EventDelegation;
 
-// tslint:disable:interface-name
-
 declare namespace EventDelegation {
 
     /**
      * The options object for an event handler instance.
      */
-    interface Options<T extends HTMLElement = HTMLElement, U extends Event = Event> {
-        root?: HTMLElement | string;
+    interface Options<D extends Element = Element, U extends Event = Event> {
+        root?: Element | string;
         selector: string;
         eventType: string;
-        listener: DelegationListenerFn<T, U>;
+        listener: DelegationListenerFn<D, U>;
         listenerOptions?: AddEventListenerOptions;
     }
 

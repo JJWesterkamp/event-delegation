@@ -1,5 +1,3 @@
-import { InvalidArgumentError } from './errors';
-import { IDelegationConfig } from './private-interface';
 import { IOptions } from './public-interface';
 import { isString } from './_tools/isString'
 import { isFunction } from './_tools/isFunction'
@@ -7,7 +5,6 @@ import { isFunction } from './_tools/isFunction'
 export class DelegationConfigFactory {
 
     public fromOptions<T extends HTMLElement>(options: IOptions<T>): IDelegationConfig<T> {
-
         const result: IDelegationConfig<T> = Object.assign({}, options, {
             root: this.normalizeRoot(options.root),
         });
@@ -41,11 +38,11 @@ export class DelegationConfigFactory {
         try {
             document.querySelector(result.selector);
         } catch (err) {
-            throw new InvalidArgumentError('options.selector is not a valid selector');
+            throw new Error('options.selector is not a valid selector');
         }
 
         if ( ! isFunction(result.listener)) {
-            throw new InvalidArgumentError('options.listener must be a function');
+            throw new Error('options.listener must be a function');
         }
     }
 }
