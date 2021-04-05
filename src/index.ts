@@ -1,6 +1,5 @@
 import { DelegationConfigFactory } from './DelegationConfigFactory';
 import { EventHandler } from './EventHandler';
-import './polyfill/element.matches';
 import { IEventHandler, IOptions, IStatic } from './public-interface';
 
 const configFactory = new DelegationConfigFactory();
