@@ -1,5 +1,5 @@
-import { IDelegationConfig } from './private-interface';
-import { IEventHandler } from './public-interface';
+import { IDelegationConfig } from './private-interface'
+import { IEventHandler } from './public-interface'
 import { closestWithin } from './_tools/closestWithin'
 
 export class EventHandler implements IEventHandler {
