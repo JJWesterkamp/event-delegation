@@ -6,14 +6,10 @@
   "description": "Event-delegation implementation for browser UI events.",
   "keywords": [
     "DOM",
-    "Event",
+    "Events",
     "Delegation",
     "Event delegation",
-    "Javascript",
-    "Typescript",
-    "CommonJS",
-    "UMD",
-    "ES Modules"
+    "Typescript"
   ],
   "license": "MIT",
   "main": "./cjs/index.js",

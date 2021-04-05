@@ -33,7 +33,7 @@ export class DelegationConfigFactory {
             return defaultElement;
         }
 
-        return document.body.querySelector<HTMLElement>(input) || defaultElement;
+        return document.querySelector<HTMLElement>(input) || defaultElement;
     }
 
     protected expectValidResult<T extends HTMLElement>(result: IDelegationConfig<T>): void {

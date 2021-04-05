@@ -1,4 +1,3 @@
-// noinspection ES6UnusedImports
 import Public from '../event-delegation';
 
 export import IStatic = Public.Static;
