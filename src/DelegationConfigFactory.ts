@@ -1,7 +1,8 @@
 import { InvalidArgumentError } from './errors';
 import { IDelegationConfig } from './private-interface';
 import { IOptions } from './public-interface';
-import { isFunction, isString } from './utils';
+import { isString } from './_tools/isString'
+import { isFunction } from './_tools/isFunction'
 
 export class DelegationConfigFactory {
 
