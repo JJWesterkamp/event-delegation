@@ -1,4 +1,4 @@
-import { IDelegationListenerFn, IEventHandler } from './public-interface';
+import { IDelegationListenerFn } from './public-interface';
 
 export interface IDelegationConfig<DG extends HTMLElement = HTMLElement> {
     readonly root: HTMLElement;
@@ -6,11 +6,4 @@ export interface IDelegationConfig<DG extends HTMLElement = HTMLElement> {
     readonly eventType: string;
     readonly listener: IDelegationListenerFn<DG>;
     readonly listenerOptions?: AddEventListenerOptions;
-}
-
-export interface IDelegationBuilder {
-    roots(...roots: HTMLElement[]): this;
-    delegators(...selectors: string[]): this;
-    events(...types: string[]): this;
-    listen(listener: IDelegationListenerFn): IEventHandler;
 }
