@@ -42,8 +42,8 @@ export class EventHandler implements IEventHandler {
 
     public remove(): void {
         this.removeListener()
-        delete this.handler
-        delete this.config
+        // delete this.handler
+        // delete this.config
         this._isDestroyed = true
         this._isAttached = false
     }

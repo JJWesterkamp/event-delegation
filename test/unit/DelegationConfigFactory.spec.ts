@@ -1,4 +1,3 @@
-import { assert, expect } from 'chai';
 import { DelegationConfigFactory } from '../../src/DelegationConfigFactory';
 import { IDelegationEvent, IOptions } from '../../src/public-interface';
 
@@ -36,7 +35,7 @@ describe('[UNIT] DelegationConfigFactory', () => {
                 const config = factory.fromOptions(
                     Object.assign(options, { eventType: 'any string value' }),
                 );
-                expect(config.eventType).to.equal('any string value');
+                expect(config.eventType).toEqual('any string value');
             });
         });
 
@@ -46,7 +45,7 @@ describe('[UNIT] DelegationConfigFactory', () => {
                 expect(() => factory.fromOptions(
                     Object.assign(options, { listener: 'not a function' }),
                 ))
-                    .to.throw(Error);
+                    .toThrow(Error);
             });
         });
 
@@ -67,14 +66,14 @@ describe('[UNIT] DelegationConfigFactory', () => {
                 const config = factory.fromOptions(
                     Object.assign(options, { root: 'body' }),
                 );
-                expect(config.root).to.equal(document.body);
+                expect(config.root).toEqual(document.body);
             });
 
             it('Should throw an error if given a malformed CSS selector for root', () => {
                 expect(() => factory.fromOptions(
                     Object.assign(options, { root: '<<' }),
                 ))
-                    .to.throw(Error);
+                    .toThrow(Error);
             });
 
             it('Should accept an HTMLElement reference for root', () => {
@@ -83,13 +82,13 @@ describe('[UNIT] DelegationConfigFactory', () => {
                     Object.assign(options, { root }),
                 );
 
-                expect(config.root).to.equal(root);
+                expect(config.root).toEqual(root);
             });
 
             it('Should set root to `document.body` if not given a value', () => {
                 delete options.root;
                 const config = factory.fromOptions(options);
-                expect(config.root).to.equal(document.body);
+                expect(config.root).toEqual(document.body);
             });
         });
 
@@ -103,7 +102,7 @@ describe('[UNIT] DelegationConfigFactory', () => {
                 expect(() => factory.fromOptions(
                     Object.assign(options, { selector: '<<' }),
                 ))
-                    .to.throw(Error);
+                    .toThrow(Error);
             });
 
         });
