@@ -26,7 +26,7 @@ export interface EventHandler<R extends Element> {
     isAttached(): boolean
     isDestroyed(): boolean
     root(): R
-    event(): string
+    eventType(): string
     selector(): string
     remove(): void
 }

@@ -8,15 +8,20 @@ export class EventHandler<R extends Element> implements EventHandlerInterface<R>
     protected _isDestroyed: boolean = false
 
     constructor(protected config: DelegationConfig<R, any, any>) {
-
         this.handler = (event) => {
-            const delegator = this.findDelegator(event)
+            const delegator = closestWithin(event.target as HTMLElement, config.selector, config.root)
             if (delegator) {
-                this.config.listener.call(delegator, Object.assign(event, { delegator }))
+                config.listener.call(delegator, Object.assign(event, { delegator }))
             }
         }
 
-        this.addListener()
+        config.root.addEventListener(
+            this.config.eventType,
+            this.handler,
+            this.config.listenerOptions,
+        )
+
+        this._isAttached = true
     }
 
     public isAttached(): boolean {
@@ -35,51 +40,17 @@ export class EventHandler<R extends Element> implements EventHandlerInterface<R>
         return this.config.selector
     }
 
-    public event(): string {
+    public eventType(): string {
         return this.config.eventType
     }
 
     public remove(): void {
         this.removeListener()
-        // delete this.handler
-        // delete this.config
         this._isDestroyed = true
         this._isAttached = false
     }
 
-    // ---------------------------------------------------------------------------
-    // Construction
-    // ---------------------------------------------------------------------------
-
-    protected findDelegator(event: Event): HTMLElement | null {
-        return closestWithin(
-            event.target as HTMLElement,
-            this.config.selector,
-            this.config.root,
-        )
-    }
-
-    // ---------------------------------------------------------------------------
-    // Adding / removing the listener
-    // ---------------------------------------------------------------------------
-
-    protected addListener(): void {
-
-        if (this._isAttached || this._isDestroyed) {
-            return
-        }
-
-        this.config.root.addEventListener(
-            this.config.eventType,
-            this.handler,
-            this.config.listenerOptions,
-        )
-
-        this._isAttached = true
-    }
-
     protected removeListener(): void {
-
         if (this._isDestroyed) {
             return
         }
