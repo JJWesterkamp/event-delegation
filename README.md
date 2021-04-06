@@ -193,6 +193,8 @@ initialisation it takes either an element or a selector. In the case of an eleme
 an `EventHandler<R>` is returned:
 
 ```typescript
+declare const myRoot: HTMLFormElement
+
 // EventHandler<HTMLFormElement>
 const handler = EventDelegation
     .within(myRoot)
