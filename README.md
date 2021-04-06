@@ -1,6 +1,6 @@
 # event-delegation
 
-Solid flexible event delegation for browser DOM events.
+Event delegation for browser DOM events. Flexible, cross-browser compatible and Type-focused.
 
 [![npm version](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg)](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation)
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
