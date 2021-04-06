@@ -70,7 +70,7 @@ interface CreateParams<
     selector: string
     eventType: string
     listener: DelegationListener<D, E>
-    listenerOptions?: AddEventListenerOptions
+    listenerOptions?: boolean | AddEventListenerOptions
 }
 ```
 
@@ -129,15 +129,13 @@ The following table gives an overview of the different properties of `CreatePara
 | `selector`        | yes      | `string`                                                | Selector that matches against the delegating elements. E.g. `"li"` or `".item"` | N/A             |
 | `eventType`       | yes      | `string`                                                | The event type to listen for                                                    | N/A             |
 | `listener`        | yes      | `function`                                              | The event listener callback                                                     | N/A             |
-| `listenerOptions` | no       | [`AddEventListenerOptions`][mdn-event-listener-options] | Options object for the native event listener.                                   | N/A             |
+| `listenerOptions` | no       | `boolean` or [`AddEventListenerOptions`][mdn-event-listener-options] | Options object for the native event listener.                                   | N/A             |
 
 
 ### 2. Builder pattern initialisation
 
 As an alternative to the config-object flavour the package also provides the two methods `global` and `within` to initialise 
 an event handler through a builder-like pattern. It looks like this, using `global()` as the example:
-
-#### `EventDelegation.global()`
 
 ```typescript
 const handler = EventDelegation
@@ -174,7 +172,7 @@ const handler = EventDelegation
     .listen((e) => e.delegator.value = e.foo) // Works too!
 ```
 
-### EventDelegation.global()
+#### EventDelegation.global()
 ```typescript
 interface AskRoot {
     global(): AskEvent<HTMLElement>
@@ -185,7 +183,7 @@ The examples above used the `global()` method that attaches an event listener to
 The returned builder ultimately builds an `EventHandler<HTMLElement>` 
 where `HTMLElement` is the type of the root, `document.body`.
 
-### EventDelegation.within()
+#### EventDelegation.within()
 ```typescript
 interface AskRoot {
     within<R extends Element>(rootOrSelector: R | string): AskEvent<R>
@@ -207,13 +205,14 @@ const handler = EventDelegation
     .listen((e) => { /* ... */ })
 ```
 
-In the case of a selector you can provide an explicit type for the root. `within()` will also create one handler for
-the first element matching the given selector. See the earlier **note about roots**.
+In the case of a selector you can provide an explicit type for the root when working in Typescript. 
+`within()` will create, like EventDelegation.create(),  one single handler for the first element matching 
+the given selector. See the earlier **note about roots**.
 ```typescript
 // EventHandler<HTMLFormElement>
 const handler = EventDelegation
     .within<HTMLFormElement>('#my-form')
-    .events('change')
+    .events('click')
     .select('button')
     .listen((e) => { /* ... */ })
 ```
@@ -246,6 +245,46 @@ providing the input parameters of creation.
 
 `isDestroyed()` is the opposite of `isAttached()`, and returns `false` until the listener is removed.
 
+### Working in Javascript - a few limitations
+
+When working in Javascript you can't provide explicit type arguments for function calls as in some examples
+so far. Most typescript-savvy editors will still give (near) perfect type completion for all cases where the types are
+inferred, such as when using tag selectors and standard event names such as `'click'`. This is also true when passing
+existing element references if they have the correct type in advance. 
+
+In case of non-tag CSS selectors element types will most of the time default to `Element`. In the example below
+`x` will probably be considered an `Element`:
+
+```javascript
+// In some JS file...
+const handler = EventDelegation
+    .within('#my-form')
+    .events('click')
+    .select('button')
+    .listen((e) => { /* ... */ })
+
+const x = handler.root()
+```
+
+When using custom events, in Javascript the event types will by default be considered the base type `Event`. You can
+however append definitions for your custom event types to `WindowEventMap` in a declaration file:
+
+```typescript
+interface WindowEventMap {
+    'my:event': Event & { foo: string }
+}
+```
+
+Then, depending on your editor, you might be able to do this without warnings:
+
+```javascript
+EventDelegation
+    .global()
+    .events('my:event')
+    .select('.my-element')
+    .listen((e) => { console.log(e.foo.toUpperCase()) })
+```
+
 ## License
 
 The MIT License (MIT). See [license file] for more information.
@@ -256,5 +295,4 @@ The MIT License (MIT). See [license file] for more information.
 [AskSelector]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L89
 [AskListener]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L116
 [EventHandler]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L19
-
 [mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
