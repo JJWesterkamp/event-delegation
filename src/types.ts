@@ -36,7 +36,7 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
     readonly eventType: string
     readonly selector: string
     readonly listener: DelegationListener<D, E>
-    readonly listenerOptions?: AddEventListenerOptions
+    readonly listenerOptions?: boolean | AddEventListenerOptions
 }
 
 // ------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ export interface CreateParams<
     selector: string
     eventType: string
     listener: DelegationListener<D, E>
-    listenerOptions?: AddEventListenerOptions
+    listenerOptions?: boolean | AddEventListenerOptions
 }
 
 /**
