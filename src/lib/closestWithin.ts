@@ -17,6 +17,10 @@ export function closestWithin(leaf: HTMLElement, selector: string, root: Node = 
         return null
     }
 
+    if (typeof leaf.closest === 'function') {
+        return leaf.closest(selector)
+    }
+
     let current: HTMLElement | null = leaf
 
     do {
