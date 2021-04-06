@@ -20,7 +20,7 @@ export interface EventHandler<R extends Element> {
 	isAttached(): boolean;
 	isDestroyed(): boolean;
 	root(): R;
-	event(): string;
+	eventType(): string;
 	selector(): string;
 	remove(): void;
 }
@@ -33,7 +33,7 @@ export interface CreateParams<D extends Element = Element, E extends Event = Eve
 	selector: string;
 	eventType: string;
 	listener: DelegationListener<D, E>;
-	listenerOptions?: AddEventListenerOptions;
+	listenerOptions?: boolean | AddEventListenerOptions;
 }
 /**
  * Interface for the 'create from options' creation pattern.
@@ -47,18 +47,38 @@ export interface CreateFromObject {
  */
 export interface AskRoot {
 	/**
-	 * Start building an event-delegation handler for a specified root. Takes
-	 * either a CSS selector or an element to attach the handler to.
-	 * Returns the next step's interface providing signatures for getting the event type.
-	 *
-	 * @param rootOrSelector
-	 */
-	within<R extends Element>(rootOrSelector: R | string): AskEvent<R>;
-	/**
 	 * Start building an event-delegation handler for the (global) body element.
 	 * Returns the next step's interface providing signatures for getting the event type.
 	 */
 	global(): AskEvent<HTMLElement>;
+	/**
+	 * Start building an event-delegation handler for a specified root.
+	 *
+	 * Method overload that takes an Element instance as the root.
+	 * Returns the next step's interface providing signatures for getting the event type.
+	 */
+	within<R extends Element>(root: R): AskEvent<R>;
+	/**
+	 * Start building an event-delegation handler for a specified root.
+	 *
+	 * Method overload that recognizes HTMLElement tag-names and infers the delegator type from that.
+	 * Returns the next step's interface providing signatures for getting the event type.
+	 */
+	within<K extends keyof HTMLElementTagNameMap>(selector: K): AskEvent<HTMLElementTagNameMap[K]>;
+	/**
+	 * Start building an event-delegation handler for a specified root.
+	 *
+	 * Method overload that recognizes SVGElement tag-names and infers the root type from that.
+	 * Returns the next step's interface providing signatures for getting the event type.
+	 */
+	within<K extends keyof SVGElementTagNameMap>(selector: K): AskEvent<SVGElementTagNameMap[K]>;
+	/**
+	 * Start building an event-delegation handler for a specified root.
+	 *
+	 * method overload that allows to explicitly specify the root type.
+	 * query the root with. Returns the next step's interface providing signatures for getting the event type.
+	 */
+	within<R extends Element>(selector: string): AskEvent<R>;
 }
 /**
  * Method signatures for setting the event name and getting the event type
@@ -102,7 +122,7 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
 	 */
 	select<K extends keyof SVGElementTagNameMap>(selector: K): AskListener<R, E, SVGElementTagNameMap[K]>;
 	/**
-	 * Method overload that allows to explicitly specify the delegator type, which is recommended for all
+	 * Method overload that allows to explicitly specify the delegator type, which is useful for all
 	 * non-tag CSS selectors.
 	 * Returns the final step's interface for setting the event listener function and get the event-handler instance.
 	 *
@@ -126,7 +146,7 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
 	 */
 	listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>;
 }
-declare const EventDelegation: CreateFromObject & AskRoot;
+export declare const EventDelegation: CreateFromObject & AskRoot;
 export default EventDelegation;
 
 export as namespace EventDelegation;
