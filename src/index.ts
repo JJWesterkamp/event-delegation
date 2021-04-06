@@ -1,5 +1,5 @@
 import { EventHandler } from './EventHandler'
-import { AskEvent, AskRoot, CreateFromObject, CreateParams, } from './types'
+import { AskEvent, AskRoot, CreateFromObject, CreateParams } from './types'
 import { createBuilder } from './lib/createBuilder'
 import { normalizeRoot } from './lib/normalizeRoot'
 
@@ -29,4 +29,5 @@ const EventDelegation: CreateFromObject & AskRoot = {
     },
 }
 
+export { EventDelegation }
 export default EventDelegation
