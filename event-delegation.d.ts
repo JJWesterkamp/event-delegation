@@ -75,8 +75,8 @@ export interface AskRoot {
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 *
-	 * method overload that allows to explicitly specify the root type.
-	 * query the root with. Returns the next step's interface providing signatures for getting the event type.
+	 * method overload that allows to explicitly specify the root type for a non-tag CSS selector.
+	 * Returns the next step's interface providing signatures for getting the event type.
 	 */
 	within<R extends Element>(selector: string): AskEvent<R>;
 }
