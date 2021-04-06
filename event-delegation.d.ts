@@ -2,12 +2,13 @@ declare const EventDelegation: EventDelegation.Static;
 export default EventDelegation;
 export as namespace EventDelegation;
 
+// Todo: replace with auto-generated types
 declare namespace EventDelegation {
 
     /**
      * The options object for an event handler instance.
      */
-    interface Options<D extends Element = Element, U extends Event = Event> {
+    interface Options<D extends HTMLElement = HTMLElement, U extends Event = Event> {
         root?: Element | string;
         selector: string;
         eventType: string;

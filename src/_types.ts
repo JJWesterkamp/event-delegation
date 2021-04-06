@@ -1,3 +1,7 @@
+// ------------------------------------------------------------------------------
+//      Common types
+// ------------------------------------------------------------------------------
+
 export type DelegationListener<D extends Element, E extends Event> = (this: D, event: DelegationEvent<D, E>) => void
 
 /**
@@ -25,6 +29,10 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
     readonly listenerOptions?: AddEventListenerOptions
 }
 
+// ------------------------------------------------------------------------------
+//      Creation pattern: create from config object
+// ------------------------------------------------------------------------------
+
 export interface CreateParams<
     D extends Element = Element,
     E extends Event = Event,
@@ -37,10 +45,6 @@ export interface CreateParams<
     listenerOptions?: AddEventListenerOptions
 }
 
-export interface CreateParamsWithRoot extends CreateParams {
-
-}
-
 export interface CreateFromObject {
     create<
         E extends Event = Event,
@@ -50,7 +54,7 @@ export interface CreateFromObject {
 }
 
 // ------------------------------------------------------------------------------
-//      Builder steps
+//      Creation pattern: Build methods
 // ------------------------------------------------------------------------------
 
 export interface AskRoot {
@@ -60,15 +64,15 @@ export interface AskRoot {
 
 export interface AskEvent<R extends Element> {
     events<EKey extends keyof WindowEventMap>(event: EKey): AskSelector<R, WindowEventMap[EKey]>
-    events(event: string): AskSelector<R, Event>
+    events(event: string): AskSelector<R>
 }
 
-export interface AskSelector<R extends Element, E extends Event> {
+export interface AskSelector<R extends Element, E extends Event = Event> {
     select<K extends keyof HTMLElementTagNameMap>(selector: K): AskListener<R, E, HTMLElementTagNameMap[K]>
     select<K extends keyof SVGElementTagNameMap>(selector: K): AskListener<R, E, SVGElementTagNameMap[K]>
     select<D extends Element>(selector: string): AskListener<R, E, D>
 }
 
-export interface AskListener<R extends Element, E extends Event, D extends Element> {
+export interface AskListener<R extends Element, E extends Event = Event, D extends Element = Element> {
     listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>
 }

@@ -7,7 +7,7 @@ export class EventHandler<R extends Element> implements EventHandlerInterface<R>
     protected _isAttached: boolean = false
     protected _isDestroyed: boolean = false
 
-    constructor(protected config: DelegationConfig<R>) {
+    constructor(protected config: DelegationConfig<R, any, any>) {
 
         this.handler = (event) => {
             const delegator = this.findDelegator(event)

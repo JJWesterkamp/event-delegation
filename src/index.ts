@@ -1,7 +1,15 @@
 import { EventHandler } from './EventHandler'
-import { AskEvent, AskRoot, CreateFromObject, CreateParams, DelegationListener, EventHandler as EventHandlerInterface } from './_types'
 import { isString } from './_tools/isString'
 import { isNil } from './_tools/isNil'
+import {
+    AskEvent,
+    AskListener,
+    AskRoot,
+    AskSelector,
+    CreateFromObject,
+    CreateParams,
+    DelegationListener,
+} from './_types'
 
 function normalizeRoot<R extends Element>(rootOrSelector: string | R): R {
     if (isString(rootOrSelector)) {
@@ -20,12 +28,11 @@ function normalizeRoot<R extends Element>(rootOrSelector: string | R): R {
 
 const EventDelegation: CreateFromObject & AskRoot = {
 
-        create<
-            E extends Event = Event,
-            D extends Element = Element,
-            R extends Element = Element,
-            >(options: CreateParams<D, E>): EventHandlerInterface<R | Element> {
-        return new EventHandler({
+    create<E extends Event = Event,
+        D extends Element = Element,
+        R extends Element = Element,
+        >(options: CreateParams<D, E, R>) {
+        return new EventHandler<R | HTMLElement>({
             root: options.root ? normalizeRoot(options.root) : document.body,
             selector: options.selector,
             eventType: options.eventType,
@@ -46,8 +53,8 @@ const EventDelegation: CreateFromObject & AskRoot = {
 }
 
 const builder = <Root extends Element>(root: Root): AskEvent<Root> => ({
-    events: (eventType: string) => ({
-        select: (selector: string) => ({
+    events: (eventType: string): AskSelector<Root> => ({
+        select: (selector: string): AskListener<Root> => ({
             listen: (listener: DelegationListener<any, any>, listenerOptions?: AddEventListenerOptions) => new EventHandler({
                 root,
                 eventType,
