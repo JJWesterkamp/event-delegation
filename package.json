@@ -22,6 +22,7 @@
     "build:esm": "tsc -m es6 --outDir esm",
     "build:umd": "webpack",
     "build:declaration": "dts-bundle-generator -o event-delegation.d.ts src/index.ts --umd-module-name EventDelegation --no-banner",
+    "build:docs": "typedoc src/*",
     "prepublishOnly": "git checkout master && npm-run-all test build",
     "test": "jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls"

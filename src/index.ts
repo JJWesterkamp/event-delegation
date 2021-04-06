@@ -30,10 +30,3 @@ const EventDelegation: CreateFromObject & AskRoot = {
 }
 
 export default EventDelegation
-
-EventDelegation
-    .within<HTMLFormElement>('#my-form')
-    .events('click')
-    .select('button')
-    .listen((e) => e.delegator.disabled)
-

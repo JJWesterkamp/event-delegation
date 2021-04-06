@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@jjwesterkamp/event-delegation</title>
+	<meta name="description" content="Documentation for @jjwesterkamp/event-delegation">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@jjwesterkamp/event-delegation</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>@jjwesterkamp/event-delegation</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#event-delegation" id="event-delegation" style="color: inherit; text-decoration: none;">
+					<h1>event-delegation</h1>
+				</a>
+				<p>Solid flexible event delegation for browser DOM events.</p>
+				<p><a href="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation"><img src="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg" alt="npm version"></a>
+					<a href="https://travis-ci.com/JJWesterkamp/event-delegation"><img src="https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master" alt="Build Status"></a>
+				<a href="https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master" alt="Coverage Status"></a></p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p><strong>CDN</strong></p>
+				<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+</code></pre>
+				<p><strong>npm</strong></p>
+				<pre><code class="language-bash"><span style="color: #000000">$ npm install @jjwesterkamp/event-delegation --save</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p><strong>Import package</strong></p>
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">EventDelegation</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@jjwesterkamp/event-delegation&#039;</span><span style="color: #000000">;</span>
+</code></pre>
+				<p><strong>Setup options</strong></p>
+				<p>Create an options object for the event-delegation setup. The table below
+				shows the available configuration options:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>property</th>
+							<th>required</th>
+							<th>type</th>
+							<th>descripton</th>
+							<th>default</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>root</code></td>
+							<td>no</td>
+							<td><code>HTMLElement</code> or <code>string</code></td>
+							<td>Can be either an HTMLElement reference or a CSS style selector for the element.</td>
+							<td><code>document.body</code></td>
+						</tr>
+						<tr>
+							<td><code>selector</code></td>
+							<td>yes</td>
+							<td><code>string</code></td>
+							<td>Selector that matches against the delegating elements. E.g. <code>&quot;li&quot;</code> or <code>&quot;.item&quot;</code></td>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<td><code>eventType</code></td>
+							<td>yes</td>
+							<td><code>string</code></td>
+							<td>The event type to listen for</td>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<td><code>listener</code></td>
+							<td>yes</td>
+							<td><code>function</code></td>
+							<td>The event listener callback</td>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<td><code>listenerOptions</code></td>
+							<td>no</td>
+							<td><code>object</code></td>
+							<td>Options object for the native event listener. <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">MDN docs</a></td>
+							<td>N/A</td>
+						</tr>
+				</tbody></table>
+				<p>For example:</p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">options</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span>
+<span style="color: #000000">    </span><span style="color: #001080">root:</span><span style="color: #000000"> </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #001080">body</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #008000">// or alternatively a CSS selector:</span>
+<span style="color: #000000">    </span><span style="color: #001080">root:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;#root-element&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span>
+<span style="color: #000000">    </span><span style="color: #001080">selector:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;.item&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span>
+<span style="color: #000000">    </span><span style="color: #001080">eventType:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;click&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span>
+<span style="color: #000000">    </span><span style="color: #795E26">listener</span><span style="color: #000000">(</span><span style="color: #001080">event</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;item--clicked&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<p>Note: Inside <code>listener</code>, <code>this</code> is the element that matched <code>&quot;.item&quot;</code>. In order for this binding to work, <code>listener</code> must be a regular function - not an arrow function. In case you do want to use an arrow function the event argument has an additional property <code>delegator</code> as an alternative to the explicit this-binding:</p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">options</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// ...</span>
+<span style="color: #000000">    </span><span style="color: #795E26">listener</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">delegator</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;item--clicked&quot;</span><span style="color: #000000">),</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<p><strong>Create subscription with options</strong></p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">delegationListener</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">(</span><span style="color: #001080">options</span><span style="color: #000000">);</span>
+</code></pre>
+				<p><strong>Removing the listener</strong></p>
+				<p>The event listener can be removed by calling <code>remove</code> on the subscription object. This action will also destroy internal references rendering the subscription useless.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">delegationListener</span><span style="color: #000000">.</span><span style="color: #795E26">remove</span><span style="color: #000000">();</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/eventhandler.html">Event<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_closestwithin.html">lib/closest<wbr>Within</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_createbuilder.html">lib/create<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_isfunction.html">lib/is<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_isnil.html">lib/is<wbr>Nil</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_isstring.html">lib/is<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_matches.html">lib/matches</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_normalizeroot.html">lib/normalize<wbr>Root</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types.html">types</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
