@@ -74,22 +74,99 @@ export interface CreateFromObject {
 //      Creation pattern: Build methods
 // ------------------------------------------------------------------------------
 
+/**
+ * Part of the global namespace `EventDelegation`. Provides methods for starting
+ * initialisation of event handlers through the build methods pattern.
+ */
 export interface AskRoot {
+
+    /**
+     * Start building an event-delegation handler for a specified root. Takes
+     * either a CSS selector or an element to attach the handler to.
+     * Returns the next step's interface providing signatures for getting the event type.
+     *
+     * @param rootOrSelector
+     */
     within<R extends Element>(rootOrSelector: R | string): AskEvent<R>
+
+    /**
+     * Start building an event-delegation handler for the (global) body element.
+     * Returns the next step's interface providing signatures for getting the event type.
+     */
     global(): AskEvent<HTMLElement>
 }
 
+/**
+ * Method signatures for setting the event name and getting the event type
+ * for an event-delegation build process.
+ */
 export interface AskEvent<R extends Element> {
-    events<EKey extends keyof WindowEventMap>(event: EKey): AskSelector<R, WindowEventMap[EKey]>
-    events(eventType: string): AskSelector<R>
+
+    /**
+     * Method overload that infers the event instance type from the given event name.
+     * Returns the next step's interface providing signatures for getting the event type of
+     * the delegating elements.
+     *
+     * @param eventType
+     */
+    events<EKey extends keyof WindowEventMap>(eventType: EKey): AskSelector<R, WindowEventMap[EKey]>
+
+    /**
+     * Method overload that allows to explicitly specify the event instance type.
+     * Returns the next step's interface providing signatures for getting the event type of
+     * the delegating elements.
+     *
+     * @param eventType
+     */
+    events<E extends Event>(eventType: string): AskSelector<R, E>
 }
 
+/**
+ * Method signatures for setting the delegator selector and getting the type of delegating elements
+ * for an event-delegation build process.
+ */
 export interface AskSelector<R extends Element, E extends Event = Event> {
+
+    /**
+     * Method overload that recognizes HTMLElement tag-names and infers the delegator type from that.
+     * Returns the final step's interface for setting the event listener function and get the event-handler instance.
+     *
+     * @param selector
+     */
     select<K extends keyof HTMLElementTagNameMap>(selector: K): AskListener<R, E, HTMLElementTagNameMap[K]>
+
+    /**
+     * Method overload that recognizes SVGElement tag-names and infers the delegator type from that.
+     * Returns the final step's interface for setting the event listener function and get the event-handler instance.
+     *
+     * @param selector
+     */
     select<K extends keyof SVGElementTagNameMap>(selector: K): AskListener<R, E, SVGElementTagNameMap[K]>
+
+    /**
+     * Method overload that allows to explicitly specify the delegator type, which is recommended for all
+     * non-tag CSS selectors.
+     * Returns the final step's interface for setting the event listener function and get the event-handler instance.
+     *
+     * @param selector
+     */
     select<D extends Element>(selector: string): AskListener<R, E, D>
 }
 
+/**
+ * Method signatures for the final build step: setting the event listener function for an event-delegation build process.
+ */
 export interface AskListener<R extends Element, E extends Event = Event, D extends Element = Element> {
+
+    /**
+     * Method signatures for the final build step: setting the event listener function for an event-delegation build process.
+     * Uses the previously constructed types for delegator elements and event instances to provide full type completion
+     * inside listener callbacks.
+     *
+     * Returns the event-handler instance.
+     *
+     * @param listener
+     * @param listenerOptions
+     */
     listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>
 }

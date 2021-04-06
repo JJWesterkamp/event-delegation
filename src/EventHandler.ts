@@ -1,5 +1,5 @@
 import { closestWithin } from './lib/closestWithin'
-import { DelegationConfig, EventHandler as EventHandlerInterface } from './event-delegation.types'
+import { DelegationConfig, EventHandler as EventHandlerInterface } from './types'
 
 export class EventHandler<R extends Element> implements EventHandlerInterface<R> {
 
