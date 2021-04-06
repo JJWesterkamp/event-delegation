@@ -1,36 +1,13 @@
 import { EventHandler } from './EventHandler'
-import { isString } from './_tools/isString'
-import { isNil } from './_tools/isNil'
-import {
-    AskEvent,
-    AskListener,
-    AskRoot,
-    AskSelector,
-    CreateFromObject,
-    CreateParams,
-    DelegationListener,
-} from './_types'
-
-function normalizeRoot<R extends Element>(rootOrSelector: string | R): R {
-    if (isString(rootOrSelector)) {
-        const rootOrNull = document.querySelector<R>(rootOrSelector)
-
-        if (isNil(rootOrNull)) {
-            throw new Error(`Couldn't find any root element matching selector ${rootOrSelector}`)
-        }
-
-        return rootOrNull
-    }
-
-    return rootOrSelector
-}
-
+import { AskEvent, AskRoot, CreateFromObject, CreateParams, } from './event-delegation.types'
+import { createBuilder } from './lib/createBuilder'
+import { normalizeRoot } from './lib/normalizeRoot'
 
 const EventDelegation: CreateFromObject & AskRoot = {
-
-    create<E extends Event = Event,
+    create<
         D extends Element = Element,
-        R extends Element = Element,
+        E extends Event = Event,
+        R extends Element = Element
         >(options: CreateParams<D, E, R>) {
         return new EventHandler<R | HTMLElement>({
             root: options.root ? normalizeRoot(options.root) : document.body,
@@ -42,31 +19,19 @@ const EventDelegation: CreateFromObject & AskRoot = {
     },
 
     within<R extends Element>(rootOrSelector: string | R): AskEvent<R> {
-        return builder(
+        return createBuilder(
             normalizeRoot<R>(rootOrSelector)
         )
     },
 
-    global(): AskEvent<Element> {
-        return builder(document.body)
+    global(): AskEvent<HTMLElement> {
+        return createBuilder(document.body)
     },
 }
 
-const builder = <Root extends Element>(root: Root): AskEvent<Root> => ({
-    events: (eventType: string): AskSelector<Root> => ({
-        select: (selector: string): AskListener<Root> => ({
-            listen: (listener: DelegationListener<any, any>, listenerOptions?: AddEventListenerOptions) => new EventHandler({
-                root,
-                eventType,
-                selector,
-                listener,
-                listenerOptions,
-            })
-        })
-    })
-})
+export default EventDelegation
 
-const x = EventDelegation
+EventDelegation
     .within<HTMLFormElement>('#my-form')
     .events('click')
     .select('button')
