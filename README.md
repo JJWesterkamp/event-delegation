@@ -269,10 +269,10 @@ const x = handler.root()
 ```
 
 When using custom events, in Javascript the event types will by default be considered the base type `Event`. You can
-however append definitions for your custom event types to `WindowEventMap` in a declaration file:
+however append definitions for your custom event types to `GlobalEventHandlersEventMap` in a declaration file:
 
 ```typescript
-interface WindowEventMap {
+interface GlobalEventHandlersEventMap {
     'my:event': Event & { foo: string }
 }
 ```

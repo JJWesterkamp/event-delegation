@@ -331,8 +331,8 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">x</span><span style="color: #000000"> = </span><span style="color: #001080">handler</span><span style="color: #000000">.</span><span style="color: #795E26">root</span><span style="color: #000000">()</span>
 </code></pre>
 				<p>When using custom events, in Javascript the event types will by default be considered the base type <code>Event</code>. You can
-				however append definitions for your custom event types to <code>WindowEventMap</code> in a declaration file:</p>
-				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">WindowEventMap</span><span style="color: #000000"> {</span>
+				however append definitions for your custom event types to <code>GlobalEventHandlersEventMap</code> in a declaration file:</p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">GlobalEventHandlersEventMap</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #A31515">&#039;my:event&#039;</span><span style="color: #000000">: </span><span style="color: #267F99">Event</span><span style="color: #000000"> &amp; { </span><span style="color: #001080">foo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> }</span>
 <span style="color: #000000">}</span>
 </code></pre>

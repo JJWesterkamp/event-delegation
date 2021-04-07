@@ -101,7 +101,7 @@ export interface AskEvent<R extends Element> {
      *
      * @param eventType
      */
-    events<EKey extends keyof WindowEventMap>(eventType: EKey): AskSelector<R, WindowEventMap[EKey]>
+    events<EKey extends keyof GlobalEventHandlersEventMap>(eventType: EKey): AskSelector<R, GlobalEventHandlersEventMap[EKey]>
 
     /**
      * Method overload that allows to explicitly specify the event instance type.
