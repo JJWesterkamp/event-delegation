@@ -1,14 +1,6 @@
 import { matches } from "../../src/lib/matches"
 
 describe('lib/matches()', () => {
-
-    let element
-    let matchesSpy
-
-    beforeEach(() => {
-
-    })
-
     test('Throws an error if given a non-element', () => {
         expect(() => matches('not an element' as unknown as Element, '')).toThrow(Error)
     })
