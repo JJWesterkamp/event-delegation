@@ -7,7 +7,7 @@ jest.mock('../../src/EventHandler', () => ({
     EventHandler: jest.fn()
 }))
 
-describe('createBuilder()', () => {
+describe('lib/createBuilder()', () => {
     test('Passes all option values unaltered to the EventHandler constructor', () => {
         const root = document.createElement('div')
         const eventType = 'focus'
