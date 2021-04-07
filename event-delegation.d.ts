@@ -25,23 +25,6 @@ export interface EventHandler<R extends Element> {
 	remove(): void;
 }
 /**
- * The params object for creating an event through the
- * {@link CreateFromObject.create `EventDelegation.create()`} method.
- */
-export interface CreateParams<D extends Element = Element, E extends Event = Event, R extends Element = Element> {
-	root?: R | string;
-	selector: string;
-	eventType: string;
-	listener: DelegationListener<D, E>;
-	listenerOptions?: boolean | AddEventListenerOptions;
-}
-/**
- * Interface for the 'create from options' creation pattern.
- */
-export interface CreateFromObject {
-	create<D extends Element = Element, E extends Event = Event, R extends Element = Element>(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>;
-}
-/**
  * Part of the global namespace `EventDelegation`. Provides methods for starting
  * initialisation of event handlers through the build methods pattern.
  */
@@ -146,7 +129,24 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
 	 */
 	listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>;
 }
-export declare const EventDelegation: CreateFromObject & AskRoot;
+/**
+ * The params object for creating an event through the
+ * {@link CreateFromObject.create `EventDelegation.create()`} method.
+ */
+export interface CreateParams<D extends Element = Element, E extends Event = Event, R extends Element = Element> {
+	root?: R | string;
+	selector: string;
+	eventType: string;
+	listener: DelegationListener<D, E>;
+	listenerOptions?: boolean | AddEventListenerOptions;
+}
+/**
+ * Interface for the 'create from options' creation pattern.
+ */
+export interface CreateFromObject {
+	create<D extends Element = Element, E extends Event = Event, R extends Element = Element>(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>;
+}
+export declare const EventDelegation: AskRoot & CreateFromObject;
 export default EventDelegation;
 
 export as namespace EventDelegation;

@@ -40,37 +40,6 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
 }
 
 // ------------------------------------------------------------------------------
-//      Creation pattern: create from config object
-// ------------------------------------------------------------------------------
-
-/**
- * The params object for creating an event through the
- * {@link CreateFromObject.create `EventDelegation.create()`} method.
- */
-export interface CreateParams<
-    D extends Element = Element,
-    E extends Event = Event,
-    R extends Element = Element,
-    > {
-    root?: R | string
-    selector: string
-    eventType: string
-    listener: DelegationListener<D, E>
-    listenerOptions?: boolean | AddEventListenerOptions
-}
-
-/**
- * Interface for the 'create from options' creation pattern.
- */
-export interface CreateFromObject {
-    create<
-        D extends Element = Element,
-        E extends Event = Event,
-        R extends Element = Element,
-        >(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>
-}
-
-// ------------------------------------------------------------------------------
 //      Creation pattern: Build methods
 // ------------------------------------------------------------------------------
 
@@ -192,4 +161,35 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
      * @param listenerOptions
      */
     listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>
+}
+
+// ------------------------------------------------------------------------------
+//      Creation pattern: create from config object
+// ------------------------------------------------------------------------------
+
+/**
+ * The params object for creating an event through the
+ * {@link CreateFromObject.create `EventDelegation.create()`} method.
+ */
+export interface CreateParams<
+    D extends Element = Element,
+    E extends Event = Event,
+    R extends Element = Element,
+    > {
+    root?: R | string
+    selector: string
+    eventType: string
+    listener: DelegationListener<D, E>
+    listenerOptions?: boolean | AddEventListenerOptions
+}
+
+/**
+ * Interface for the 'create from options' creation pattern.
+ */
+export interface CreateFromObject {
+    create<
+        D extends Element = Element,
+        E extends Event = Event,
+        R extends Element = Element,
+        >(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>
 }

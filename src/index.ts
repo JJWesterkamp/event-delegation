@@ -3,7 +3,17 @@ import { AskEvent, AskRoot, CreateFromObject, CreateParams } from './types'
 import { createBuilder } from './lib/createBuilder'
 import { normalizeRoot } from './lib/normalizeRoot'
 
-const EventDelegation: CreateFromObject & AskRoot = {
+const EventDelegation: AskRoot & CreateFromObject = {
+    within<R extends Element>(rootOrSelector: string | R): AskEvent<R> {
+        return createBuilder(
+            normalizeRoot<R>(rootOrSelector)
+        )
+    },
+
+    global(): AskEvent<HTMLElement> {
+        return createBuilder(document.body)
+    },
+
     create<
         D extends Element = Element,
         E extends Event = Event,
@@ -16,16 +26,6 @@ const EventDelegation: CreateFromObject & AskRoot = {
             listener: options.listener,
             listenerOptions: options.listenerOptions,
         })
-    },
-
-    within<R extends Element>(rootOrSelector: string | R): AskEvent<R> {
-        return createBuilder(
-            normalizeRoot<R>(rootOrSelector)
-        )
-    },
-
-    global(): AskEvent<HTMLElement> {
-        return createBuilder(document.body)
     },
 }
 
