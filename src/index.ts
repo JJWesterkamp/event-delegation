@@ -29,5 +29,4 @@ const EventDelegation: AskRoot & CreateFromObject = {
     },
 }
 
-export { EventDelegation }
 export default EventDelegation

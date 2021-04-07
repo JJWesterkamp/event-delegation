@@ -28,14 +28,8 @@ $ npm install @jjwesterkamp/event-delegation --save
 
 ## Usage
 
-The package has both a default export and a named export `EventDelegation` which are both the same value.
-You can import with your preferred method:
-
 ```typescript
-// either
 import EventDelegation from '@jjwesterkamp/event-delegation'
-// or
-import { EventDelegation } from '@jjwesterkamp/event-delegation'
 ```
 
 This package comes with two distinct flavours of instantiating an event handler, represented
