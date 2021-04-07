@@ -65,6 +65,7 @@
 				<p><a href="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation"><img src="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg" alt="npm version"></a>
 					<a href="https://travis-ci.com/JJWesterkamp/event-delegation"><img src="https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master" alt="Build Status"></a>
 				<a href="https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master" alt="Coverage Status"></a></p>
+				<p><img src="https://user-images.githubusercontent.com/12270687/113784833-5b41d000-9736-11eb-8bb9-1f5a894dcc12.gif" alt="event-delegation-2"></p>
 				<blockquote>
 					<p>Note: this package is currently under heavy development, and this README does not reflect the latest
 						published version. See tag <a href="https://github.com/JJWesterkamp/event-delegation/tree/v0.4.4">0.4.4</a> for
@@ -82,12 +83,7 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<p>The package has both a default export and a named export <code>EventDelegation</code> which are both the same value.
-				You can import with your preferred method:</p>
-				<pre><code class="language-typescript"><span style="color: #008000">// either</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">EventDelegation</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@jjwesterkamp/event-delegation&#039;</span>
-<span style="color: #008000">// or</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">EventDelegation</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@jjwesterkamp/event-delegation&#039;</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">EventDelegation</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@jjwesterkamp/event-delegation&#039;</span>
 </code></pre>
 				<p>This package comes with two distinct flavours of instantiating an event handler, represented
 				by three main functions on the EventDelegation namespace object:</p>
@@ -115,8 +111,8 @@
 				<a href="#1-builder-pattern-initialisation" id="1-builder-pattern-initialisation" style="color: inherit; text-decoration: none;">
 					<h3>1. Builder pattern initialisation</h3>
 				</a>
-				<p>As an alternative to the config-object flavour the package also provides the two methods <code>global</code> and <code>within</code> to initialise
-				an event handler through a builder-like pattern. It looks like this, using <code>global()</code> as the example:</p>
+				<p>The package provides the two methods <code>global</code> and <code>within</code> to initialise an event handler through a builder-like pattern.
+				It looks like this, using <code>global()</code> as the example:</p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">global</span><span style="color: #000000">()</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">)</span>
@@ -142,7 +138,7 @@
 				and <code>event.delegator</code> (or <code>this</code>) is identified as <code>HTMLButtonElement</code> using the standard library of DOM types.</p>
 				<blockquote>
 					<p>The build process has the following 4 steps in this order, ultimately returning an <code>EventHandler</code> instance:</p>
-					<p><a href="https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L48"><code>AskRoot</code></a> =&gt; <a href="https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L67"><code>AskEvent</code></a> =&gt; <a href="https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L89"><code>AskSelector</code></a> =&gt; <a href="https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L116"><code>AskListener</code></a> =&gt; <a href="https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L19"><code>EventHandler</code></a></p>
+					<p><a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askroot.html"><code>AskRoot</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askevent.html"><code>AskEvent</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askselector.html"><code>AskSelector</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.asklistener.html"><code>AskListener</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.eventhandler.html"><code>EventHandler</code></a></p>
 				</blockquote>
 				<p>For custom events and non-tag CSS selectors there are additional overloads that allow for explicit type arguments:</p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">MyEvent</span><span style="color: #000000"> = </span><span style="color: #267F99">Event</span><span style="color: #000000"> &amp; { </span><span style="color: #001080">foo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> }</span>
@@ -212,9 +208,9 @@
 				<a href="#2-config-object-based-initialisation" id="2-config-object-based-initialisation" style="color: inherit; text-decoration: none;">
 					<h3>2. Config object based initialisation</h3>
 				</a>
-				<p>The config object initialisation was the initial way this package implemented event delegation, and remains
-					in the package for backwards compatibility, and for additional flexibility. The options object for creating
-				an event-handler in this way has the following shape:</p>
+				<p>As an alternative to the builder pattern flavour, you can start event delegation with a config-object kind of initialisation.
+					This was the initial way this package implemented event delegation. It will remain in the package for backwards
+				compatibility, and for additional flexibility. The options object for creating an event-handler in this way has the following shape:</p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">CreateParams</span><span style="color: #000000">&lt;</span>
 <span style="color: #000000">    </span><span style="color: #267F99">D</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Element</span><span style="color: #000000"> = </span><span style="color: #267F99">Element</span><span style="color: #000000">, </span>
 <span style="color: #000000">    </span><span style="color: #267F99">E</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Event</span><span style="color: #000000">   = </span><span style="color: #267F99">Event</span><span style="color: #000000">, </span>
@@ -248,7 +244,7 @@
 <span style="color: #000000">})</span>
 </code></pre>
 				<p>The following table gives an overview of the different properties of <code>CreateParams</code> and their function.
-					If the <code>root</code> is omitted from configuration, <code>document.body</code> is used as the root.<br>If the root is a selector, similarly to the builder pattern initialisation <strong>the first matching element</strong> is used
+					If the <code>root</code> is omitted from the options, <code>document.body</code> is used as the root.<br>If the root is a selector, similarly to the builder pattern initialisation <strong>the first matching element</strong> is used
 				as the root, See the earlier <strong>note about roots</strong>.</p>
 				<table>
 					<thead>

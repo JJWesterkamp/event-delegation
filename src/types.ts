@@ -66,7 +66,7 @@ export interface AskRoot {
     /**
      * Start building an event-delegation handler for a specified root.
      *
-     * Method overload that recognizes HTMLElement tag-names and infers the delegator type from that.
+     * Method overload that recognizes HTMLElement tag-names and infers the root type from that.
      * Returns the next step's interface providing signatures for getting the event type.
      */
     within<K extends keyof HTMLElementTagNameMap>(selector: K): AskEvent<HTMLElementTagNameMap[K]>

@@ -44,7 +44,7 @@ export interface AskRoot {
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 *
-	 * Method overload that recognizes HTMLElement tag-names and infers the delegator type from that.
+	 * Method overload that recognizes HTMLElement tag-names and infers the root type from that.
 	 * Returns the next step's interface providing signatures for getting the event type.
 	 */
 	within<K extends keyof HTMLElementTagNameMap>(selector: K): AskEvent<HTMLElementTagNameMap[K]>;
@@ -146,7 +146,7 @@ export interface CreateParams<D extends Element = Element, E extends Event = Eve
 export interface CreateFromObject {
 	create<D extends Element = Element, E extends Event = Event, R extends Element = Element>(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>;
 }
-export declare const EventDelegation: AskRoot & CreateFromObject;
+declare const EventDelegation: AskRoot & CreateFromObject;
 export default EventDelegation;
 
 export as namespace EventDelegation;
