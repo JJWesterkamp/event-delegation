@@ -292,9 +292,9 @@ EventDelegation
 The MIT License (MIT). See [license file] for more information.
 
 [license file]: https://github.com/JJWesterkamp/event-delegation/blob/master/LICENSE
-[AskRoot]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L48
-[AskEvent]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L67
-[AskSelector]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L89
-[AskListener]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L116
-[EventHandler]: https://github.com/JJWesterkamp/event-delegation/blob/develop/event-delegation.d.ts#L19
+[AskRoot]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.askroot.html
+[AskEvent]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.askevent.html
+[AskSelector]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.askselector.html
+[AskListener]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.asklistener.html
+[EventHandler]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.eventhandler.html
 [mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
