@@ -50,8 +50,8 @@ by three main functions on the EventDelegation namespace object:
    
 ### 1. Builder pattern initialisation
 
-As an alternative to the config-object flavour the package also provides the two methods `global` and `within` to initialise
-an event handler through a builder-like pattern. It looks like this, using `global()` as the example:
+The package provides the two methods `global` and `within` to initialise an event handler through a builder-like pattern. 
+It looks like this, using `global()` as the example:
 
 ```typescript
 const handler = EventDelegation
@@ -163,9 +163,9 @@ If the `root` is a selector, `within()` will create one single handler for the *
 
 ### 2. Config object based initialisation
 
-The config object initialisation was the initial way this package implemented event delegation, and remains
-in the package for backwards compatibility, and for additional flexibility. The options object for creating
-an event-handler in this way has the following shape:
+As an alternative to the builder pattern flavour, you can start event delegation with a config-object kind of initialisation.
+This was the initial way this package implemented event delegation. It will remain in the package for backwards 
+compatibility, and for additional flexibility. The options object for creating an event-handler in this way has the following shape:
 
 ```typescript
 interface CreateParams<
