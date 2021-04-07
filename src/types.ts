@@ -44,7 +44,7 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
 // ------------------------------------------------------------------------------
 
 /**
- * Part of the global namespace `EventDelegation`. Provides methods for starting
+ * Part of the package namespace `EventDelegation`. Provides methods for starting
  * initialisation of event handlers through the build methods pattern.
  */
 export interface AskRoot {
@@ -184,7 +184,7 @@ export interface CreateParams<
 }
 
 /**
- * Interface for the 'create from options' creation pattern.
+ * Part of the package namespace `EventDelegation`. Interface for the 'create from options' creation pattern.
  */
 export interface CreateFromObject {
     create<

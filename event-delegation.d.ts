@@ -25,7 +25,7 @@ export interface EventHandler<R extends Element> {
 	remove(): void;
 }
 /**
- * Part of the global namespace `EventDelegation`. Provides methods for starting
+ * Part of the package namespace `EventDelegation`. Provides methods for starting
  * initialisation of event handlers through the build methods pattern.
  */
 export interface AskRoot {
@@ -141,7 +141,7 @@ export interface CreateParams<D extends Element = Element, E extends Event = Eve
 	listenerOptions?: boolean | AddEventListenerOptions;
 }
 /**
- * Interface for the 'create from options' creation pattern.
+ * Part of the package namespace `EventDelegation`. Interface for the 'create from options' creation pattern.
  */
 export interface CreateFromObject {
 	create<D extends Element = Element, E extends Event = Event, R extends Element = Element>(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>;

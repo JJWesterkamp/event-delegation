@@ -105,6 +105,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#_isattached" class="tsd-kind-icon">_is<wbr>Attached</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#_isdestroyed" class="tsd-kind-icon">_is<wbr>Destroyed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#actuallisteneroptions" class="tsd-kind-icon">actual<wbr>Listener<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#config" class="tsd-kind-icon">config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#handler" class="tsd-kind-icon">handler</a></li>
 							</ul>
@@ -115,8 +116,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventhandler.eventhandler-1.html#eventtype" class="tsd-kind-icon">event<wbr>Type</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventhandler.eventhandler-1.html#isattached" class="tsd-kind-icon">is<wbr>Attached</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventhandler.eventhandler-1.html#isdestroyed" class="tsd-kind-icon">is<wbr>Destroyed</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#isoncelistener" class="tsd-kind-icon">is<wbr>Once<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventhandler.eventhandler-1.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="eventhandler.eventhandler-1.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventhandler.eventhandler-1.html#root" class="tsd-kind-icon">root</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventhandler.eventhandler-1.html#selector" class="tsd-kind-icon">selector</a></li>
 							</ul>
@@ -136,7 +137,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L8">EventHandler.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L11">EventHandler.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -164,7 +165,7 @@
 					<div class="tsd-signature tsd-kind-icon">_is<wbr>Attached<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L7">EventHandler.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L10">EventHandler.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,24 +175,34 @@
 					<div class="tsd-signature tsd-kind-icon">_is<wbr>Destroyed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L8">EventHandler.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L11">EventHandler.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="actuallisteneroptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> actual<wbr>Listener<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">actual<wbr>Listener<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AddEventListenerOptions</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L8">EventHandler.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="config" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> config</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> config</h3>
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../interfaces/types.delegationconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">DelegationConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="handler" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handler</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> handler</h3>
 					<div class="tsd-signature tsd-kind-icon">handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L6">EventHandler.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L7">EventHandler.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -230,7 +241,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/types.eventhandler.html">EventHandler</a>.<a href="../interfaces/types.eventhandler.html#eventtype">eventType</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L43">EventHandler.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L64">EventHandler.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -248,7 +259,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/types.eventhandler.html">EventHandler</a>.<a href="../interfaces/types.eventhandler.html#isattached">isAttached</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L27">EventHandler.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L48">EventHandler.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -266,7 +277,24 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/types.eventhandler.html">EventHandler</a>.<a href="../interfaces/types.eventhandler.html#isdestroyed">isDestroyed</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L31">EventHandler.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L52">EventHandler.ts:52</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="isoncelistener" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> is<wbr>Once<wbr>Listener</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Once<wbr>Listener<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L83">EventHandler.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -284,24 +312,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/types.eventhandler.html">EventHandler</a>.<a href="../interfaces/types.eventhandler.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L47">EventHandler.ts:47</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="removelistener" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> remove<wbr>Listener</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Listener<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L53">EventHandler.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L68">EventHandler.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -319,7 +330,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/types.eventhandler.html">EventHandler</a>.<a href="../interfaces/types.eventhandler.html#root">root</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L35">EventHandler.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L56">EventHandler.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
@@ -337,7 +348,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/types.eventhandler.html">EventHandler</a>.<a href="../interfaces/types.eventhandler.html#selector">selector</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/f86526e/src/EventHandler.ts#L39">EventHandler.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/d6dace6/src/EventHandler.ts#L60">EventHandler.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -401,6 +412,9 @@
 								<a href="eventhandler.eventhandler-1.html#_isdestroyed" class="tsd-kind-icon">_is<wbr>Destroyed</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="eventhandler.eventhandler-1.html#actuallisteneroptions" class="tsd-kind-icon">actual<wbr>Listener<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="eventhandler.eventhandler-1.html#config" class="tsd-kind-icon">config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
@@ -415,11 +429,11 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="eventhandler.eventhandler-1.html#isdestroyed" class="tsd-kind-icon">is<wbr>Destroyed</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="eventhandler.eventhandler-1.html#isoncelistener" class="tsd-kind-icon">is<wbr>Once<wbr>Listener</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="eventhandler.eventhandler-1.html#remove" class="tsd-kind-icon">remove</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="eventhandler.eventhandler-1.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="eventhandler.eventhandler-1.html#root" class="tsd-kind-icon">root</a>
