@@ -1,3 +1,4 @@
+import { isFunction } from './isFunction'
 import { matches } from './matches'
 
 /**
@@ -12,13 +13,21 @@ import { matches } from './matches'
  * @param selector The selector (CSS style) to match ancestor elements with.
  * @param root     The element that acts as a scope for the query.
  */
-export function closestWithin(leaf: HTMLElement, selector: string, root: Node = document.body): HTMLElement | null {
-    if (! root.contains(leaf)) {
-        return null
+export function closestWithin(leaf: HTMLElement, selector: string, root: Node): HTMLElement | null {
+
+    if (isFunction(leaf.closest)) {
+        const closest = leaf.closest<HTMLElement>(selector)
+
+        if (closest === null || ! root.contains(closest)) {
+            return null
+        }
+
+        return closest
     }
 
-    if (typeof leaf.closest === 'function') {
-        return leaf.closest(selector)
+
+    if (! root.contains(leaf)) {
+        return null
     }
 
     let current: HTMLElement | null = leaf
