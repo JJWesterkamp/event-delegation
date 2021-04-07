@@ -18,13 +18,13 @@ const EventDelegation: AskRoot & CreateFromObject = {
         D extends Element = Element,
         E extends Event = Event,
         R extends Element = Element
-        >(options: CreateParams<D, E, R>) {
+        >({ root, selector, eventType, listener, listenerOptions }: CreateParams<D, E, R>) {
         return new EventHandler<R | HTMLElement>({
-            root: options.root ? normalizeRoot(options.root) : document.body,
-            selector: options.selector,
-            eventType: options.eventType,
-            listener: options.listener,
-            listenerOptions: options.listenerOptions,
+            root: root ? normalizeRoot(root) : document.body,
+            selector,
+            eventType,
+            listener,
+            listenerOptions,
         })
     },
 }
