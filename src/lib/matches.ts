@@ -19,7 +19,7 @@ interface XBrowserElement extends Element {
  * @param element
  * @param selector
  */
-export function matches(element: XBrowserElement, selector: string) {
+export function matches(element: XBrowserElement, selector: string): boolean {
     if (! (element instanceof Element)) {
         throw new Error('cannot match a non-element against a selector')
     }
@@ -31,11 +31,14 @@ export function matches(element: XBrowserElement, selector: string) {
     if (isFunction(element.oMatchesSelector)) return element.oMatchesSelector(selector)
     if (isFunction(element.webkitMatchesSelector)) return element.webkitMatchesSelector(selector)
 
-    const matches = (element.document || element.ownerDocument).querySelectorAll(selector)
-    let i = matches.length
+    /* istanbul ignore next */
+    {
+        const matches = (element.document || element.ownerDocument).querySelectorAll(selector)
+        let i = matches.length
 
-    while (--i >= 0 && matches.item(i) !== element) {
+        while (--i >= 0 && matches.item(i) !== element) {
+        }
+
+        return i > -1
     }
-
-    return i > -1
 }
