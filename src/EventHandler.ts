@@ -1,24 +1,45 @@
 import { closestWithin } from './lib/closestWithin'
+import { isNil } from './lib/isNil'
 import { DelegationConfig, EventHandler as EventHandlerInterface } from './types'
 
 export class EventHandler<R extends Element> implements EventHandlerInterface<R> {
 
-    protected handler: (event: Event) => void
+    protected readonly handler: (event: Event) => void
+    protected readonly actualListenerOptions: boolean | Readonly<AddEventListenerOptions> | undefined
+
     protected _isAttached: boolean = false
     protected _isDestroyed: boolean = false
 
-    constructor(protected config: DelegationConfig<R, any, any>) {
+    constructor(protected readonly config: DelegationConfig<R, any, any>) {
+
+        // If config has an object for listenerOptions with { once: true }, create a surrogate
+        // listenerOptions object with { once: false } for the actual native listener.
+        // We want the listener to detach after one callback execution rather than after the first
+        // event. The first event(s) might not match the given selector, resulting in the listener
+        // callback to never run:
+        this.actualListenerOptions = this.isOnceListener()
+            ? Object.assign({}, config.listenerOptions, { once: false })
+            : config.listenerOptions
+
         this.handler = (event) => {
             const delegator = closestWithin(event.target as HTMLElement, config.selector, config.root)
-            if (delegator) {
-                config.listener.call(delegator, Object.assign(event, { delegator }))
+
+            if (isNil(delegator)) {
+                return
+            }
+
+            config.listener.call(delegator, Object.assign(event, { delegator }))
+
+            // If this is a { once: true } listener we'll manually remove the listener after the first matching event:
+            if (this.isOnceListener()) {
+                this.remove()
             }
         }
 
         config.root.addEventListener(
-            this.config.eventType,
+            config.eventType,
             this.handler,
-            this.config.listenerOptions,
+            this.actualListenerOptions,
         )
 
         this._isAttached = true
@@ -45,12 +66,6 @@ export class EventHandler<R extends Element> implements EventHandlerInterface<R>
     }
 
     public remove(): void {
-        this.removeListener()
-        this._isDestroyed = true
-        this._isAttached = false
-    }
-
-    protected removeListener(): void {
         if (this._isDestroyed) {
             return
         }
@@ -58,7 +73,15 @@ export class EventHandler<R extends Element> implements EventHandlerInterface<R>
         this.config.root.removeEventListener(
             this.config.eventType,
             this.handler,
-            this.config.listenerOptions,
+            this.actualListenerOptions,
         )
+
+        this._isDestroyed = true
+        this._isAttached = false
+    }
+
+    protected isOnceListener(): boolean {
+        return typeof this.config.listenerOptions === 'object'
+            && this.config.listenerOptions.once === true
     }
 }
