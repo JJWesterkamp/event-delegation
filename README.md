@@ -4,7 +4,7 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 
 [![npm version](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg)](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation)
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
-[![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
 
 ![event-delegation-2](https://user-images.githubusercontent.com/12270687/113784833-5b41d000-9736-11eb-8bb9-1f5a894dcc12.gif)
 
