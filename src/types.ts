@@ -42,9 +42,7 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
 }
 
 type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
-
-export interface EventDelegationEventMap extends  GlobalEventHandlersEventMap {
-}
+type EventMap = GlobalEventHandlersEventMap
 
 // ------------------------------------------------------------------------------
 //      Creation pattern: Build methods
@@ -122,7 +120,7 @@ export interface AskEvent<R extends Element> {
      *
      * @param eventType
      */
-    events<EKey extends keyof EventDelegationEventMap>(eventType: EKey): AskSelector<R, EventDelegationEventMap[EKey]>
+    events<EKey extends keyof EventMap>(eventType: EKey): AskSelector<R, EventMap[EKey]>
 
     /**
      * Method overload that allows to explicitly specify the event instance type.
@@ -182,35 +180,4 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
      * @param listenerOptions
      */
     listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>
-}
-
-// ------------------------------------------------------------------------------
-//      Creation pattern: create from config object
-// ------------------------------------------------------------------------------
-
-/**
- * The params object for creating an event through the
- * {@link CreateFromObject.create `EventDelegation.create()`} method.
- */
-export interface CreateParams<
-    D extends Element = Element,
-    E extends Event = Event,
-    R extends Element = Element,
-    > {
-    root?: R | string
-    selector: string
-    eventType: string
-    listener: DelegationListener<D, E>
-    listenerOptions?: boolean | AddEventListenerOptions
-}
-
-/**
- * Part of the package namespace `EventDelegation`. Interface for the 'create from options' creation pattern.
- */
-export interface CreateFromObject {
-    create<
-        D extends Element = Element,
-        E extends Event = Event,
-        R extends Element = Element,
-        >(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>
 }

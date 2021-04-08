@@ -64,7 +64,7 @@
 				<p>Event delegation for browser DOM events. Flexible, cross-browser compatible and Type-focused.</p>
 				<p><a href="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation"><img src="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg" alt="npm version"></a>
 					<a href="https://travis-ci.com/JJWesterkamp/event-delegation"><img src="https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master" alt="Build Status"></a>
-				<a href="https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master" alt="Coverage Status"></a></p>
+				<a href="https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#" alt="Coverage Status"></a></p>
 				<p><img src="https://user-images.githubusercontent.com/12270687/113784833-5b41d000-9736-11eb-8bb9-1f5a894dcc12.gif" alt="event-delegation-2"></p>
 				<blockquote>
 					<p>Note: this package is currently under heavy development, and this README does not reflect the latest
@@ -85,62 +85,54 @@
 				</a>
 				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">EventDelegation</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@jjwesterkamp/event-delegation&#039;</span>
 </code></pre>
-				<p>This package comes with two distinct flavours of instantiating an event handler, represented
-				by three main functions on the EventDelegation namespace object:</p>
+				<p>There are two main functions on the EventDelegation namespace object:</p>
 				<ul>
 					<li><code>EventDelegation.global()</code></li>
 					<li><code>EventDelegation.within(root)</code></li>
-					<li><code>EventDelegation.create(options)</code></li>
 				</ul>
-				<ol>
-					<li><p><strong>Builder pattern initialisation</strong></p>
-						<blockquote>
-							<p>Both <code>global()</code> and <code>within()</code> are used to start an event listener through a builder-pattern initialisation.</p>
-							<ul>
-								<li>The <code>global()</code> method is used to attach a global listener on the top-level <code>document.body</code> element.</li>
-								<li>The <code>within()</code> method is used to provide an alternative root element for the listener.</li>
-							</ul>
-						</blockquote>
-					</li>
-					<li><p><strong>Config object based initialisation</strong></p>
-						<blockquote>
-							<p>The <code>create()</code> method is used to start an event listener through config-object based initialisation.</p>
-						</blockquote>
-					</li>
-				</ol>
-				<a href="#1-builder-pattern-initialisation" id="1-builder-pattern-initialisation" style="color: inherit; text-decoration: none;">
-					<h3>1. Builder pattern initialisation</h3>
+				<p>Both methods are used to start an event listener through the same kind of builder-pattern.
+					The <code>global()</code> method is used to attach a global listener on the top-level <code>document.body</code> element.
+				The <code>within()</code> method is used to provide an alternative root element for the listener.</p>
+				<p>The build process has the following 4 steps in the following order, ultimately returning an <code>EventHandler</code> instance:</p>
+				<p><a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askroot.html"><code>AskRoot</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askevent.html"><code>AskEvent</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askselector.html"><code>AskSelector</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.asklistener.html"><code>AskListener</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.eventhandler.html"><code>EventHandler</code></a></p>
+				<blockquote>
+					<p>First, ask for a root, then an event name, then a descendant selector, and finally a listener callback.</p>
+				</blockquote>
+				<a href="#eventdelegationglobal" id="eventdelegationglobal" style="color: inherit; text-decoration: none;">
+					<h3>EventDelegation.global()</h3>
 				</a>
-				<p>The package provides the two methods <code>global</code> and <code>within</code> to initialise an event handler through a builder-like pattern.
-				It looks like this, using <code>global()</code> as the example:</p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">AskRoot</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">global</span><span style="color: #000000">(): </span><span style="color: #267F99">AskEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">&gt;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>The following examples use the <code>global()</code> method that attaches an event listener to <code>document.body</code> -- globally.
+				The returned builder ultimately creates an <code>EventHandler&lt;HTMLElement&gt;</code> where <code>HTMLElement</code> is the type of the root <code>document.body</code>.</p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">global</span><span style="color: #000000">()</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">(</span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">event</span><span style="color: #000000">) {</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (! </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">disabled</span><span style="color: #000000">) {</span>
-<span style="color: #000000">            </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">innerText</span><span style="color: #000000"> = </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">event</span><span style="color: #000000FF">.</span><span style="color: #001080">offsetX</span><span style="color: #0000FF">}</span><span style="color: #A31515">/</span><span style="color: #0000FF">${</span><span style="color: #001080">event</span><span style="color: #000000FF">.</span><span style="color: #001080">offsetY</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000"> </span><span style="color: #008000">// Works!</span>
-<span style="color: #000000">        }</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button--clicked&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    })</span>
 </code></pre>
-				<p>Inside the event listener callback, <code>this</code> is the element that matched <code>&quot;.item&quot;</code>. In order for <em>this-binding</em> to work, <code>listener</code> must be a
+				<p>Inside the event listener callback, <code>this</code> is the element that matched <code>&quot;button&quot;</code>. In order for <em>this-binding</em> to work, <code>listener</code> must be a
 					regular function. For cases where arrow functions are preferred, the event argument provides an additional property <code>delegator</code>
 				as an alternative:</p>
 				<pre><code class="language-javascript"><span style="color: #001080">EventDelegation</span>
 <span style="color: #000000">    </span><span style="color: #008000">// ...</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">((</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">delegator</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;item--clicked&#039;</span><span style="color: #000000">))</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">((</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">delegator</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button--clicked&#039;</span><span style="color: #000000">))</span>
 </code></pre>
-				<p>This pattern is convenient because it allows for automatic type completion of practically all required type information.
-					Each of the above steps are represented by interfaces with overloaded methods where necessary. Methods that take CSS
-					selectors will attempt to parse the selectors and infer the element type from them. The inferred types are then automatically
-				known in the <code>listen</code> step and the provided listener callback.</p>
+				<p>This builder pattern is convenient because it allows for automatic type completion of practically all required type information.
+					Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt
+					to parse the selectors and infer the element type from them. The inferred types are then automatically
+				known in the listener callback provided in the <code>.listen()</code> step.</p>
 				<p>In the above example the event type is automatically identified as <code>MouseEvent</code>, and <code>event.delegator</code> (or <code>this</code>) is
 				identified as <code>HTMLButtonElement</code>.</p>
-				<p>The build process has the following 4 steps in this order, ultimately returning an <code>EventHandler</code> instance:</p>
-				<p><a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askroot.html"><code>AskRoot</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askevent.html"><code>AskEvent</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.askselector.html"><code>AskSelector</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.asklistener.html"><code>AskListener</code></a> =&gt; <a href="https://jjwesterkamp.github.io/event-delegation/interfaces/types.eventhandler.html"><code>EventHandler</code></a></p>
 				<p>Thanks to the <strong>great</strong> package <a href="https://github.com/g-plane/typed-query-selector">typed-query-selector</a> you can even supply
-				complex CSS selectors and the type will automatically be inferred if the selectors are <strong>tag-qualified</strong> and <strong>valid</strong>:</p>
-				<pre><code class="language-typescript"><span style="color: #001080">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
+					complex CSS selectors and the type will automatically be inferred if the selectors are <strong>tag-qualified</strong> and <strong>valid</strong>.
+					Even grouping selectors are supported, hence in the example below <code>event.delegator</code> is the union type
+				<code>HTMLButtonElement | HTMLInputElement</code>:</p>
+				<pre><code class="language-typescript"><span style="color: #001080">EventDelegation</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">global</span><span style="color: #000000">()</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#my-div &gt; button.submit, fieldset input.submit&#039;</span><span style="color: #000000">)</span>
@@ -149,7 +141,7 @@
 <span style="color: #008000">// event is DelegationEvent&lt;HTMLButtonElement | HTMLInputElement, MouseEvent&gt;</span>
 </code></pre>
 				<p>The element types will default to <code>Element</code> for CSS selectors that are not tag-qualified or are invalid:</p>
-				<pre><code class="language-typescript"><span style="color: #001080">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
+				<pre><code class="language-typescript"><span style="color: #001080">EventDelegation</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">global</span><span style="color: #000000">()</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#my-div &gt; .submit, fieldset iput.submit&#039;</span><span style="color: #000000">)</span>
@@ -161,18 +153,8 @@
 
 <span style="color: #008000">// event is DelegationEvent&lt;Element, MouseEvent&gt;</span>
 </code></pre>
-				<a href="#eventdelegationglobal" id="eventdelegationglobal" style="color: inherit; text-decoration: none;">
-					<h4>EventDelegation.global()</h4>
-				</a>
-				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">AskRoot</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #795E26">global</span><span style="color: #000000">(): </span><span style="color: #267F99">AskEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">&gt;</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<p>The examples above used the <code>global()</code> method that attaches an event listener to <code>document.body</code> -- globally.
-					The returned builder ultimately builds an <code>EventHandler&lt;HTMLElement&gt;</code>
-				where <code>HTMLElement</code> is the type of the root, <code>document.body</code>.</p>
 				<a href="#eventdelegationwithin" id="eventdelegationwithin" style="color: inherit; text-decoration: none;">
-					<h4>EventDelegation.within()</h4>
+					<h3>EventDelegation.within()</h3>
 				</a>
 				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">AskRoot</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #795E26">within</span><span style="color: #000000">&lt;</span><span style="color: #267F99">R</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Element</span><span style="color: #000000">&gt;(</span><span style="color: #001080">root</span><span style="color: #000000">: </span><span style="color: #267F99">R</span><span style="color: #000000">): </span><span style="color: #267F99">AskEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">R</span><span style="color: #000000">&gt;</span>
@@ -201,7 +183,7 @@
 </code></pre>
 				<p>⚠️ <code>within()</code> will throw an error if no root was found or if the selector is invalid.</p>
 				<a href="#a-note-about-roots" id="a-note-about-roots" style="color: inherit; text-decoration: none;">
-					<h4>A note about roots</h4>
+					<h3>A note about roots</h3>
 				</a>
 				<p>If the <code>root</code> is a selector, <code>within()</code> will create one single handler for the <strong>first matching element</strong>.</p>
 				<blockquote>
@@ -211,94 +193,6 @@
 					multiple matching roots, and inconsistencies based on whether events&#39; <code>stopPropagation</code> methods have been called.</p>
 					<p>You could of course still map a list of elements to event-handlers yourself to circumvent this &#39;drawback&#39;.</p>
 				</blockquote>
-				<a href="#2-config-object-based-initialisation" id="2-config-object-based-initialisation" style="color: inherit; text-decoration: none;">
-					<h3>2. Config object based initialisation</h3>
-				</a>
-				<p>As an alternative to the builder pattern flavour, you can start event delegation with a config-object kind of initialisation.
-					This was the initial way this package implemented event delegation. It will remain in the package for backwards
-				compatibility, and for additional flexibility. The options object for creating an event-handler in this way has the following shape:</p>
-				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">CreateParams</span><span style="color: #000000">&lt;</span>
-<span style="color: #000000">    </span><span style="color: #267F99">D</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Element</span><span style="color: #000000"> = </span><span style="color: #267F99">Element</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #267F99">E</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Event</span><span style="color: #000000">   = </span><span style="color: #267F99">Event</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #267F99">R</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Element</span><span style="color: #000000"> = </span><span style="color: #267F99">Element</span>
-<span style="color: #000000">&gt; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">root</span><span style="color: #000000">?: </span><span style="color: #267F99">R</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span>
-<span style="color: #000000">    </span><span style="color: #001080">selector</span><span style="color: #000000">: </span><span style="color: #267F99">string</span>
-<span style="color: #000000">    </span><span style="color: #001080">eventType</span><span style="color: #000000">: </span><span style="color: #267F99">string</span>
-<span style="color: #000000">    </span><span style="color: #001080">listener</span><span style="color: #000000">: </span><span style="color: #267F99">DelegationListener</span><span style="color: #000000">&lt;</span><span style="color: #267F99">D</span><span style="color: #000000">, </span><span style="color: #267F99">E</span><span style="color: #000000">&gt;</span>
-<span style="color: #000000">    </span><span style="color: #001080">listenerOptions</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000"> | </span><span style="color: #267F99">AddEventListenerOptions</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<a href="#eventdelegationcreate" id="eventdelegationcreate" style="color: inherit; text-decoration: none;">
-					<h4>EventDelegation.create()</h4>
-				</a>
-				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">CreateFromObject</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">create</span><span style="color: #000000">&lt;</span>
-<span style="color: #000000">        </span><span style="color: #0070C1">D</span><span style="color: #000000"> </span><span style="color: #001080">extends</span><span style="color: #000000"> </span><span style="color: #001080">Element</span><span style="color: #000000"> = </span><span style="color: #001080">Element</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #0070C1">E</span><span style="color: #000000"> </span><span style="color: #001080">extends</span><span style="color: #000000"> </span><span style="color: #001080">Event</span><span style="color: #000000"> = </span><span style="color: #001080">Event</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #0070C1">R</span><span style="color: #000000"> </span><span style="color: #001080">extends</span><span style="color: #000000"> </span><span style="color: #001080">Element</span><span style="color: #000000"> = </span><span style="color: #001080">Element</span><span style="color: #000000">,</span>
-<span style="color: #000000">        &gt;(</span><span style="color: #001080">options</span><span style="color: #000000">: </span><span style="color: #267F99">CreateParams</span><span style="color: #000000">&lt;</span><span style="color: #267F99">D</span><span style="color: #000000">, </span><span style="color: #267F99">E</span><span style="color: #000000">, </span><span style="color: #267F99">R</span><span style="color: #000000">&gt;): </span><span style="color: #267F99">EventHandler</span><span style="color: #000000">&lt;</span><span style="color: #267F99">R</span><span style="color: #000000"> | </span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">&gt;</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<p>A <code>CreateParams</code>  object can be used to start listening for events with the <code>create</code> method:</p>
-				<pre><code class="language-typescript"><span style="color: #001080">EventDelegation</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">selector:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;.item&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">eventType:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #795E26">listener</span><span style="color: #000000">(</span><span style="color: #001080">event</span><span style="color: #000000">) {</span>
-<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;item--clicked&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">    },</span>
-<span style="color: #000000">})</span>
-</code></pre>
-				<p>The following table gives an overview of the different properties of <code>CreateParams</code> and their function.
-					If the <code>root</code> is omitted from the options, <code>document.body</code> is used as the root.
-					If the root is a selector, similarly to the builder pattern initialisation <strong>the first matching element</strong> is used
-				as the root, See the earlier <strong>note about roots</strong>.</p>
-				<table>
-					<thead>
-						<tr>
-							<th>property</th>
-							<th>required</th>
-							<th>type</th>
-							<th>description</th>
-							<th>default</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td><code>root</code></td>
-							<td>no</td>
-							<td><code>Element</code> or <code>string</code></td>
-							<td>Can be either an HTMLElement reference or a CSS style selector for the element.</td>
-							<td><code>document.body</code></td>
-						</tr>
-						<tr>
-							<td><code>selector</code></td>
-							<td>yes</td>
-							<td><code>string</code></td>
-							<td>Selector that matches against the delegating elements. E.g. <code>&quot;li&quot;</code> or <code>&quot;.item&quot;</code></td>
-							<td>N/A</td>
-						</tr>
-						<tr>
-							<td><code>eventType</code></td>
-							<td>yes</td>
-							<td><code>string</code></td>
-							<td>The event type to listen for</td>
-							<td>N/A</td>
-						</tr>
-						<tr>
-							<td><code>listener</code></td>
-							<td>yes</td>
-							<td><code>function</code></td>
-							<td>The event listener callback</td>
-							<td>N/A</td>
-						</tr>
-						<tr>
-							<td><code>listenerOptions</code></td>
-							<td>no</td>
-							<td><code>boolean</code> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"><code>AddEventListenerOptions</code></a></td>
-							<td>Options object for the native event listener.</td>
-							<td>N/A</td>
-						</tr>
-				</tbody></table>
 				<a href="#eventhandler" id="eventhandler" style="color: inherit; text-decoration: none;">
 					<h3>EventHandler</h3>
 				</a>
@@ -319,36 +213,58 @@
 				providing the input parameters of creation.</p>
 				<p><code>isAttached()</code> will tell whether the listener is active. It&#39;ll always return <code>true</code> until the listener is removed.</p>
 				<p><code>isDestroyed()</code> is the opposite of <code>isAttached()</code>, and returns <code>false</code> until the listener is removed.</p>
+				<a href="#selector-matching-failure--custom-selectors" id="selector-matching-failure--custom-selectors" style="color: inherit; text-decoration: none;">
+					<h3>Selector matching failure / custom selectors</h3>
+				</a>
+				<p>Methods that take CSS-style selectors might fail to successfully infer an element type for them at some point.
+					It might be an error in the selector syntax itself, but might also be a bug in this package. Another case where
+					the default selector matching fails are selectors custom web components. For all such cases all methods that take
+					selectors have one final signature overload as a last resort to not ruin your day. They take an explicit type argument
+				for the element type, and <em>any</em> string as their selector argument:</p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">within</span><span style="color: #000000">&lt;</span><span style="color: #267F99">CustomComponent</span><span style="color: #000000">&gt;(</span><span style="color: #A31515">&#039;custom-component&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">&lt;</span><span style="color: #267F99">CustomButton</span><span style="color: #000000">&gt;(</span><span style="color: #A31515">&#039;custom-button&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">((</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> { </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">foo</span><span style="color: #000000">) })</span>
+
+<span style="color: #008000">// event is DelegationEvent&lt;CustomButton, MouseEvent&gt;</span>
+<span style="color: #008000">// handler is EventHandler&lt;CustomComponent&gt;</span>
+</code></pre>
+				<a href="#using-custom-events" id="using-custom-events" style="color: inherit; text-decoration: none;">
+					<h3>Using custom events</h3>
+				</a>
+				<p>When using custom events the event types will by default be considered the base type <code>Event</code>. You can
+				however append definitions for your custom events to the <code>GlobalEventHandlersEventMap</code>:</p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">declare</span><span style="color: #000000"> </span><span style="color: #001080">global</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">GlobalEventHandlersEventMap</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #A31515">&#039;my:event&#039;</span><span style="color: #000000">: </span><span style="color: #267F99">Event</span><span style="color: #000000"> &amp; { </span><span style="color: #001080">foo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #001080">EventDelegation</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">global</span><span style="color: #000000">()</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;my:event&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;td&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">((</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> { </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">foo</span><span style="color: #000000">) })</span>
+
+<span style="color: #008000">// event is DelegationEvent&lt;HTMLTableDataCellElement, Event &amp; {foo: string}&gt;</span>
+</code></pre>
 				<a href="#working-in-javascript---a-few-limitations" id="working-in-javascript---a-few-limitations" style="color: inherit; text-decoration: none;">
 					<h3>Working in Javascript - a few limitations</h3>
 				</a>
-				<p>When working in Javascript you can&#39;t provide explicit type arguments for function calls as in some examples
-					so far. Most typescript-savvy editors will still give (near) perfect type completion for all cases where the types are
+				<p>When working in Javascript you can&#39;t provide explicit type arguments for function calls. Most typescript-savvy editors
+					will still give (near) perfect type completion for all cases where the types are
 					inferred, such as when using tag selectors and standard event names such as <code>&#39;click&#39;</code>. This is also true when passing
 				existing element references if they have the correct type in advance.</p>
-				<p>In case of non-tag CSS selectors element types will most of the time default to <code>Element</code>. In the example below
-				<code>x</code> will probably be considered an <code>Element</code>:</p>
-				<pre><code class="language-javascript"><span style="color: #008000">// In some JS file...</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">within</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#my-form&#039;</span><span style="color: #000000">)</span>
+				<p>In case of non-recognised CSS selectors element types will most of the time default to <code>Element</code>. In the example below
+				<code>x</code> will probably be considered an <code>Element</code>, as well as <code>e.delegator</code>:</p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">handler</span><span style="color: #000000"> = </span><span style="color: #001080">EventDelegation</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">within</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;custom-component&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;custom-button&#039;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">((</span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> { </span><span style="color: #008000">/* ... */</span><span style="color: #000000"> })</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">x</span><span style="color: #000000"> = </span><span style="color: #001080">handler</span><span style="color: #000000">.</span><span style="color: #795E26">root</span><span style="color: #000000">()</span>
-</code></pre>
-				<p>When using custom events, in Javascript the event types will by default be considered the base type <code>Event</code>. You can
-				however append definitions for your custom event types to <code>GlobalEventHandlersEventMap</code> in a declaration file:</p>
-				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">GlobalEventHandlersEventMap</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&#039;my:event&#039;</span><span style="color: #000000">: </span><span style="color: #267F99">Event</span><span style="color: #000000"> &amp; { </span><span style="color: #001080">foo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> }</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<p>Then, depending on your editor, you might be able to do this without warnings:</p>
-				<pre><code class="language-javascript"><span style="color: #001080">EventDelegation</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">global</span><span style="color: #000000">()</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">events</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;my:event&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;.my-element&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">listen</span><span style="color: #000000">((</span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> { </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">foo</span><span style="color: #000000">.</span><span style="color: #795E26">toUpperCase</span><span style="color: #000000">()) })</span>
 </code></pre>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>

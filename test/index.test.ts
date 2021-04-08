@@ -1,15 +1,11 @@
 import EventDelegation from '../src'
-import { EventHandler as _EventHandler } from '../src/EventHandler'
 import { normalizeRoot as _normalizeRoot } from '../src/lib/normalizeRoot'
 import { createBuilder as _createBuilder } from '../src/lib/createBuilder'
 
 const createBuilder = _createBuilder as jest.Mock
 const normalizeRoot = _normalizeRoot as jest.Mock
-const EventHandler = _EventHandler as jest.Mock
 
-jest.mock('../src/EventHandler', () => ({ EventHandler: jest.fn() }))
 jest.mock('../src/lib/createBuilder', () => ({ createBuilder: jest.fn() }))
-
 
 let fetchedRoot: HTMLElement
 
@@ -48,65 +44,6 @@ describe('index', () => {
             const root = document.createElement('div')
             EventDelegation.within(root)
             expect(createBuilder).toBeCalledWith(root)
-        })
-    })
-
-    describe('EventDelegation.create()', () => {
-        test('Passes all non-root option values unaltered to the EventHandler constructor', () => {
-
-            const root = document.createElement('div')
-            const eventType = 'focus'
-            const selector = 'input'
-            const listener = () => undefined
-            const listenerOptions = {}
-
-            EventDelegation.create({
-                root,
-                eventType,
-                selector,
-                listener,
-                listenerOptions,
-            })
-
-            expect(EventHandler).toBeCalledTimes(1)
-            expect(EventHandler).toBeCalledWith(expect.objectContaining({
-                root,
-                eventType,
-                selector,
-                listener,
-                listenerOptions
-            }))
-        })
-
-        test('Finds the first root element when a selector is given for root', () => {
-
-            EventDelegation.create({
-                root: '.some-root',
-                eventType: 'focus',
-                selector: 'input',
-                listener: () => undefined,
-                listenerOptions: {},
-            })
-
-
-            expect(normalizeRoot).toBeCalledTimes(1)
-            expect(normalizeRoot).toBeCalledWith('.some-root')
-            expect(EventHandler).toBeCalledWith(expect.objectContaining({
-                root: fetchedRoot,
-            }))
-        })
-
-        test('Uses document.body as root when a root is omitted', () => {
-            EventDelegation.create({
-                eventType: 'focus',
-                selector: 'input',
-                listener: () => undefined,
-                listenerOptions: {},
-            })
-
-            expect(EventHandler).toBeCalledWith(expect.objectContaining({
-                root: document.body,
-            }))
         })
     })
 })

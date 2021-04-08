@@ -32,26 +32,28 @@ $ npm install @jjwesterkamp/event-delegation --save
 import EventDelegation from '@jjwesterkamp/event-delegation'
 ```
 
-This package comes with two distinct flavours of instantiating an event handler, represented
-by three main functions on the EventDelegation namespace object:
+There are two main functions on the EventDelegation namespace object:
+
 - `EventDelegation.global()`
 - `EventDelegation.within(root)`
-- `EventDelegation.create(options)`
 
-1. **Builder pattern initialisation**
+Both methods are used to start an event listener through the same kind of builder-pattern.
+The `global()` method is used to attach a global listener on the top-level `document.body` element.
+The `within()` method is used to provide an alternative root element for the listener.
 
-    > Both `global()` and `within()` are used to start an event listener through a builder-pattern initialisation.
-    > - The `global()` method is used to attach a global listener on the top-level `document.body` element.
-    > - The `within()` method is used to provide an alternative root element for the listener.
+The build process has the following 4 steps in the following order, ultimately returning an `EventHandler` instance:
 
-2. **Config object based initialisation**
+[`AskRoot`][AskRoot] => [`AskEvent`][AskEvent] => [`AskSelector`][AskSelector] => [`AskListener`][AskListener] => [`EventHandler`][EventHandler]
+> First, ask for a root, then an event name, then a descendant selector, and finally a listener callback.
+### EventDelegation.global()
+```typescript
+interface AskRoot {
+    global(): AskEvent<HTMLElement>
+}
+```
 
-   > The `create()` method is used to start an event listener through config-object based initialisation.
-
-### 1. Builder pattern initialisation
-
-The package provides the two methods `global` and `within` to initialise an event handler through a builder-like pattern.
-It looks like this, using `global()` as the example:
+The following examples use the `global()` method that attaches an event listener to `document.body` -- globally.
+The returned builder ultimately creates an `EventHandler<HTMLElement>` where `HTMLElement` is the type of the root `document.body`.
 
 ```typescript
 const handler = EventDelegation
@@ -59,38 +61,35 @@ const handler = EventDelegation
     .events('click')
     .select('button')
     .listen(function(event) {
-        if (! this.disabled) {
-            this.innerText = `${event.offsetX}/${event.offsetY}` // Works!
-        }
+        this.classList.add('button--clicked')
     })
 ```
-Inside the event listener callback, `this` is the element that matched `".item"`. In order for _this-binding_ to work, `listener` must be a
+Inside the event listener callback, `this` is the element that matched `"button"`. In order for _this-binding_ to work, `listener` must be a
 regular function. For cases where arrow functions are preferred, the event argument provides an additional property `delegator`
 as an alternative:
 
 ```javascript
 EventDelegation
     // ...
-    .listen((event) => event.delegator.classList.add('item--clicked'))
+    .listen((event) => event.delegator.classList.add('button--clicked'))
 ```
 
-This pattern is convenient because it allows for automatic type completion of practically all required type information.
-Each of the above steps are represented by interfaces with overloaded methods where necessary. Methods that take CSS
-selectors will attempt to parse the selectors and infer the element type from them. The inferred types are then automatically
-known in the `listen` step and the provided listener callback.
+This builder pattern is convenient because it allows for automatic type completion of practically all required type information.
+Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt 
+to parse the selectors and infer the element type from them. The inferred types are then automatically
+known in the listener callback provided in the `.listen()` step.
 
 In the above example the event type is automatically identified as `MouseEvent`, and `event.delegator` (or `this`) is
 identified as `HTMLButtonElement`.
 
-The build process has the following 4 steps in this order, ultimately returning an `EventHandler` instance:
-
-[`AskRoot`][AskRoot] => [`AskEvent`][AskEvent] => [`AskSelector`][AskSelector] => [`AskListener`][AskListener] => [`EventHandler`][EventHandler]
 
 Thanks to the **great** package [typed-query-selector](https://github.com/g-plane/typed-query-selector) you can even supply
-complex CSS selectors and the type will automatically be inferred if the selectors are **tag-qualified** and **valid**:
+complex CSS selectors and the type will automatically be inferred if the selectors are **tag-qualified** and **valid**.
+Even grouping selectors are supported, hence in the example below `event.delegator` is the union type
+`HTMLButtonElement | HTMLInputElement`:
 
 ```typescript
-handler = EventDelegation
+EventDelegation
     .global()
     .events('click')
     .select('#my-div > button.submit, fieldset input.submit')
@@ -102,7 +101,7 @@ handler = EventDelegation
 The element types will default to `Element` for CSS selectors that are not tag-qualified or are invalid:
 
 ```typescript
-handler = EventDelegation
+EventDelegation
     .global()
     .events('click')
     .select('#my-div > .submit, fieldset iput.submit')
@@ -115,18 +114,7 @@ handler = EventDelegation
 // event is DelegationEvent<Element, MouseEvent>
 ```
 
-#### EventDelegation.global()
-```typescript
-interface AskRoot {
-    global(): AskEvent<HTMLElement>
-}
-```
-
-The examples above used the `global()` method that attaches an event listener to `document.body` -- globally.
-The returned builder ultimately builds an `EventHandler<HTMLElement>`
-where `HTMLElement` is the type of the root, `document.body`.
-
-#### EventDelegation.within()
+### EventDelegation.within()
 ```typescript
 interface AskRoot {
     within<R extends Element>(root: R): AskEvent<R>
@@ -162,7 +150,7 @@ const handler = EventDelegation
 
 ⚠️ `within()` will throw an error if no root was found or if the selector is invalid.
 
-#### A note about roots
+### A note about roots
 
 If the `root` is a selector, `within()` will create one single handler for the **first matching element**.
 
@@ -172,64 +160,6 @@ If the `root` is a selector, `within()` will create one single handler for the *
 > multiple matching roots, and inconsistencies based on whether events' `stopPropagation` methods have been called.
 >
 > You could of course still map a list of elements to event-handlers yourself to circumvent this 'drawback'.
-
-### 2. Config object based initialisation
-
-As an alternative to the builder pattern flavour, you can start event delegation with a config-object kind of initialisation.
-This was the initial way this package implemented event delegation. It will remain in the package for backwards
-compatibility, and for additional flexibility. The options object for creating an event-handler in this way has the following shape:
-
-```typescript
-interface CreateParams<
-    D extends Element = Element,
-    E extends Event   = Event,
-    R extends Element = Element
-> {
-    root?: R | string
-    selector: string
-    eventType: string
-    listener: DelegationListener<D, E>
-    listenerOptions?: boolean | AddEventListenerOptions
-}
-```
-
-#### EventDelegation.create()
-
-```typescript
-interface CreateFromObject {
-    create<
-        D extends Element = Element,
-        E extends Event = Event,
-        R extends Element = Element,
-        >(options: CreateParams<D, E, R>): EventHandler<R | HTMLElement>
-}
-```
-
-A `CreateParams`  object can be used to start listening for events with the `create` method:
-
-```typescript
-EventDelegation.create({
-    selector: '.item',
-    eventType: 'click',
-    listener(event) {
-        this.classList.add('item--clicked');
-    },
-})
-```
-
-The following table gives an overview of the different properties of `CreateParams` and their function.
-If the `root` is omitted from the options, `document.body` is used as the root.
-If the root is a selector, similarly to the builder pattern initialisation **the first matching element** is used
-as the root, See the earlier **note about roots**.
-
-| property          | required | type                                                    | description                                                                     | default         |
-|-------------------|----------|---------------------------------------------------------|---------------------------------------------------------------------------------|-----------------|
-| `root`            | no       | `Element` or `string`                                   | Can be either an HTMLElement reference or a CSS style selector for the element. | `document.body` |
-| `selector`        | yes      | `string`                                                | Selector that matches against the delegating elements. E.g. `"li"` or `".item"` | N/A             |
-| `eventType`       | yes      | `string`                                                | The event type to listen for                                                    | N/A             |
-| `listener`        | yes      | `function`                                              | The event listener callback                                                     | N/A             |
-| `listenerOptions` | no       | `boolean` or [`AddEventListenerOptions`][mdn-event-listener-options] | Options object for the native event listener.                                   | N/A             |
-
 
 ### EventHandler
 
@@ -259,44 +189,64 @@ providing the input parameters of creation.
 
 `isDestroyed()` is the opposite of `isAttached()`, and returns `false` until the listener is removed.
 
-### Working in Javascript - a few limitations
+### Selector matching failure / custom selectors
 
-When working in Javascript you can't provide explicit type arguments for function calls as in some examples
-so far. Most typescript-savvy editors will still give (near) perfect type completion for all cases where the types are
-inferred, such as when using tag selectors and standard event names such as `'click'`. This is also true when passing
-existing element references if they have the correct type in advance.
-
-In case of non-tag CSS selectors element types will most of the time default to `Element`. In the example below
-`x` will probably be considered an `Element`:
-
-```javascript
-// In some JS file...
-const handler = EventDelegation
-    .within('#my-form')
-    .events('click')
-    .select('button')
-    .listen((e) => { /* ... */ })
-
-const x = handler.root()
-```
-
-When using custom events, in Javascript the event types will by default be considered the base type `Event`. You can
-however append definitions for your custom event types to `GlobalEventHandlersEventMap` in a declaration file:
+Methods that take CSS-style selectors might fail to successfully infer an element type for them at some point. 
+It might be an error in the selector syntax itself, but might also be a bug in this package. Another case where 
+the default selector matching fails are selectors custom web components. For all such cases all methods that take 
+selectors have one final signature overload as a last resort to not ruin your day. They take an explicit type argument 
+for the element type, and _any_ string as their selector argument:
 
 ```typescript
-interface GlobalEventHandlersEventMap {
-    'my:event': Event & { foo: string }
-}
+const handler = EventDelegation
+    .within<CustomComponent>('custom-component')
+    .events('click')
+    .select<CustomButton>('custom-button')
+    .listen((event) => { console.log(event.foo) })
+
+// event is DelegationEvent<CustomButton, MouseEvent>
+// handler is EventHandler<CustomComponent>
 ```
 
-Then, depending on your editor, you might be able to do this without warnings:
+### Using custom events
 
-```javascript
+When using custom events the event types will by default be considered the base type `Event`. You can
+however append definitions for your custom events to the `GlobalEventHandlersEventMap`:
+
+```typescript
+declare global {
+    interface GlobalEventHandlersEventMap {
+        'my:event': Event & { foo: string }
+    }
+}
+
 EventDelegation
     .global()
     .events('my:event')
-    .select('.my-element')
-    .listen((e) => { console.log(e.foo.toUpperCase()) })
+    .select('td')
+    .listen((event) => { console.log(event.foo) })
+
+// event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}>
+```
+
+### Working in Javascript - a few limitations
+
+When working in Javascript you can't provide explicit type arguments for function calls. Most typescript-savvy editors 
+will still give (near) perfect type completion for all cases where the types are
+inferred, such as when using tag selectors and standard event names such as `'click'`. This is also true when passing
+existing element references if they have the correct type in advance.
+
+In case of non-recognised CSS selectors element types will most of the time default to `Element`. In the example below
+`x` will probably be considered an `Element`, as well as `e.delegator`:
+
+```javascript
+const handler = EventDelegation
+    .within('custom-component')
+    .events('click')
+    .select('custom-button')
+    .listen((e) => { /* ... */ })
+
+const x = handler.root()
 ```
 
 ## License
