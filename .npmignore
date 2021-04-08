@@ -9,3 +9,4 @@ tslint.json
 webpack.config.js
 karma.conf.js
 yarn.lock
+.scratch.*

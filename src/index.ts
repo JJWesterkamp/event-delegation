@@ -1,18 +1,14 @@
 import { EventHandler } from './EventHandler'
-import { AskEvent, AskRoot, CreateFromObject, CreateParams } from './types'
+import { AskRoot, CreateFromObject, CreateParams } from './types'
 import { createBuilder } from './lib/createBuilder'
 import { normalizeRoot } from './lib/normalizeRoot'
 
 const EventDelegation: AskRoot & CreateFromObject = {
-    within<R extends Element>(rootOrSelector: string | R): AskEvent<R> {
-        return createBuilder(
-            normalizeRoot<R>(rootOrSelector)
-        )
-    },
 
-    global(): AskEvent<HTMLElement> {
-        return createBuilder(document.body)
-    },
+    global: () => createBuilder(document.body),
+
+    within: (rootOrSelector: string | Element) => createBuilder(normalizeRoot(rootOrSelector)),
+
 
     create<
         D extends Element = Element,

@@ -4333,6 +4333,11 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
+typed-query-selector@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/typed-query-selector/-/typed-query-selector-2.4.1.tgz#81f74bad05091dcbfbbe96c3fa2e2465771894b4"
+  integrity sha512-X6fx0EywD73wsH/w0X2YMqx9wiW99vIhN9nptTP+uvNB5wk0U3t1zzq50IFgdtxbwFP8Ap3N7k7BL2vmKJf4+g==
+
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"

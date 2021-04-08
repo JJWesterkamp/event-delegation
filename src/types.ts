@@ -1,3 +1,5 @@
+import type { ParseSelector } from 'typed-query-selector/parser'
+
 // ------------------------------------------------------------------------------
 //      Common types
 // ------------------------------------------------------------------------------
@@ -39,53 +41,72 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
     readonly listenerOptions?: boolean | AddEventListenerOptions
 }
 
+type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
+
+export interface EventDelegationEventMap extends  GlobalEventHandlersEventMap {
+}
+
 // ------------------------------------------------------------------------------
 //      Creation pattern: Build methods
 // ------------------------------------------------------------------------------
 
 /**
  * Part of the package namespace `EventDelegation`. Provides methods for starting
- * initialisation of event handlers through the build methods pattern.
+ * initialisation of event handlers through the build methods pattern. All methods
+ * Return the next step's interface providing signatures for getting the event type.
  */
 export interface AskRoot {
 
+    // ------------------------------------------------------------------------------
+    //      EventDelegation.global()
+    // ------------------------------------------------------------------------------
+
     /**
      * Start building an event-delegation handler for the (global) body element.
-     * Returns the next step's interface providing signatures for getting the event type.
      */
     global(): AskEvent<HTMLElement>
+
+    // ------------------------------------------------------------------------------
+    //      EventDelegation.within()
+    // ------------------------------------------------------------------------------
 
     /**
      * Start building an event-delegation handler for a specified root.
      *
      * Method overload that takes an Element instance as the root.
-     * Returns the next step's interface providing signatures for getting the event type.
      */
     within<R extends Element>(root: R): AskEvent<R>
 
     /**
      * Start building an event-delegation handler for a specified root.
      *
-     * Method overload that recognizes HTMLElement tag-names and infers the root type from that.
-     * Returns the next step's interface providing signatures for getting the event type.
+     * Method overload that takes a CSS tag selector for the root. This provides autocompletion
+     * features when starting to type tag-qualified CSS selectors.
      */
-    within<K extends keyof HTMLElementTagNameMap>(selector: K): AskEvent<HTMLElementTagNameMap[K]>
+    within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K]>
 
     /**
      * Start building an event-delegation handler for a specified root.
      *
-     * Method overload that recognizes SVGElement tag-names and infers the root type from that.
-     * Returns the next step's interface providing signatures for getting the event type.
+     * Method overload that takes a CSS selector for the root. It wil attempt to parse the selector
+     * and infer the root element type from it.
      */
-    within<K extends keyof SVGElementTagNameMap>(selector: K): AskEvent<SVGElementTagNameMap[K]>
+    within<S extends string>(selector: S): AskEvent<ParseSelector<S>> | never
 
     /**
      * Start building an event-delegation handler for a specified root.
      *
-     * method overload that allows to explicitly specify the root type for a non-tag CSS selector.
-     * Returns the next step's interface providing signatures for getting the event type.
+     * Method overload that can be used when all else fails. If previous overloads
+     * failed to match, this one allows you to explicitly specify the expected root
+     * type for _any_ selector string.
+     *
+     * @param root
      */
-    within<R extends Element>(selector: string): AskEvent<R>
+    within<R extends Element>(root: string): AskEvent<R>
+
+    // ------------------------------------------------------------------------------
+    //      EventDelegation.withinMany()
+    // ------------------------------------------------------------------------------
 }
 
 /**
@@ -101,7 +122,7 @@ export interface AskEvent<R extends Element> {
      *
      * @param eventType
      */
-    events<EKey extends keyof GlobalEventHandlersEventMap>(eventType: EKey): AskSelector<R, GlobalEventHandlersEventMap[EKey]>
+    events<EKey extends keyof EventDelegationEventMap>(eventType: EKey): AskSelector<R, EventDelegationEventMap[EKey]>
 
     /**
      * Method overload that allows to explicitly specify the event instance type.
@@ -115,32 +136,32 @@ export interface AskEvent<R extends Element> {
 
 /**
  * Method signatures for setting the delegator selector and getting the type of delegating elements
- * for an event-delegation build process.
+ * for an event-delegation build process. All overloads Return the final step's interface for setting
+ * the event listener function and get the event-handler instance.
  */
 export interface AskSelector<R extends Element, E extends Event = Event> {
 
     /**
-     * Method overload that recognizes HTMLElement tag-names and infers the delegator type from that.
-     * Returns the final step's interface for setting the event listener function and get the event-handler instance.
+     * Takes the delegation selector.
      *
-     * @param selector
+     * Method overload that takes a CSS tag selector for the delegator elements. This provides autocompletion
+     * features when starting to type tag-qualified CSS selectors.
      */
-    select<K extends keyof HTMLElementTagNameMap>(selector: K): AskListener<R, E, HTMLElementTagNameMap[K]>
+    select<K extends keyof TagNameMap>(selector: K): AskListener<R, E, TagNameMap[K]>
 
     /**
-     * Method overload that recognizes SVGElement tag-names and infers the delegator type from that.
-     * Returns the final step's interface for setting the event listener function and get the event-handler instance.
+     * Takes the delegation selector.
      *
-     * @param selector
+     * The method wil attempt to parse the selector and infer the root element type from it.
      */
-    select<K extends keyof SVGElementTagNameMap>(selector: K): AskListener<R, E, SVGElementTagNameMap[K]>
+    select<S extends string>(selector: S): AskListener<R, E, ParseSelector<S>>
 
     /**
-     * Method overload that allows to explicitly specify the delegator type, which is useful for all
-     * non-tag CSS selectors.
-     * Returns the final step's interface for setting the event listener function and get the event-handler instance.
+     * Takes the delegation selector.
      *
-     * @param selector
+     * Method overload that can be used when all else fails. If previous overloads
+     * failed to match, this one allows you to explicitly specify the expected element
+     * type for _any_ selector string.
      */
     select<D extends Element>(selector: string): AskListener<R, E, D>
 }

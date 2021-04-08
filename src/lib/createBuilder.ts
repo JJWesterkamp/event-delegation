@@ -1,10 +1,10 @@
-import { AskEvent, AskListener, AskSelector, DelegationListener } from '../types'
+import { DelegationListener } from '../types'
 import { EventHandler } from '../EventHandler'
 
-export const createBuilder = <Root extends Element>(root: Root): AskEvent<Root> => ({
-    events: (eventType: string): AskSelector<Root> => ({
-        select: (selector: string): AskListener<Root> => ({
-            listen: (listener: DelegationListener<any, any>, listenerOptions?: AddEventListenerOptions) => new EventHandler({
+export const createBuilder = <R extends Element>(root: R) => ({
+    events: (eventType: string) => ({
+        select: (selector: string) => ({
+            listen: (listener: DelegationListener<any, any>, listenerOptions?: AddEventListenerOptions): EventHandler<R> => new EventHandler({
                 root,
                 eventType,
                 selector,
