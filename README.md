@@ -47,9 +47,8 @@ The build process has the following 4 steps in the following order, ultimately r
 > First, ask for a root, then an event name, then a descendant selector, and finally a listener callback.
 ### EventDelegation.global()
 ```typescript
-interface AskRoot {
-    global(): AskEvent<HTMLElement>
-}
+// Pseudo
+EventDelegation.global(): AskEvent<HTMLElement>
 ```
 
 The following examples use the `global()` method that attaches an event listener to `document.body` -- globally.
@@ -116,10 +115,8 @@ EventDelegation
 
 ### EventDelegation.within()
 ```typescript
-interface AskRoot {
-    within<R extends Element>(root: R): AskEvent<R>
-    within<S extends string>(selector: S): AskEvent<ParseSelector<S>> | never
-}
+// Pseudo
+EventDelegation.within(root: Element | string): AskEvent<T>
 ```
 
 Alternatively you can add event listeners to other elements with the `within`method. It takes either an element or a selector. In the case of an element its type is preserved and ultimately
