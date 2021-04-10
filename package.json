@@ -24,6 +24,8 @@
     "build:umd": "webpack",
     "build:declaration": "dts-bundle-generator -o event-delegation.d.ts src/index.ts --umd-module-name EventDelegation --no-banner",
     "build:docs": "typedoc src/*",
+    "bump": "npx yarn version --new-version",
+    "preversion": "npm run build:declaration && npm run build:docs && git reset && git add ./event-delegation.d.ts ./CHANGELOG.md ./README.md ./docs/*",
     "prepublishOnly": "git checkout master && npm-run-all test build",
     "test": "jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
