@@ -1,7 +1,14 @@
 const { resolve } = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     mode: 'production',
+    optimization: {
+        minimize: true,
+        minimizer: [new UglifyJsPlugin({
+          include: /\.min\.js$/
+        })]
+    },
     entry: {
         'event-delegation': './src/index.ts',
         'event-delegation.min': './src/index.ts',
@@ -9,7 +16,11 @@ module.exports = {
     output: {
         path: resolve(__dirname, 'umd'),
         filename: '[name].js',
-        library: 'EventDelegation',
+        library: {
+            name: 'EventDelegation',
+            type: 'var',
+            export: 'default',
+        },
         libraryTarget: 'umd',
     },
     devtool: 'source-map',
