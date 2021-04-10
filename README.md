@@ -8,15 +8,27 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 
 ![event-delegation-3](https://user-images.githubusercontent.com/12270687/114275186-d8fd2880-9a21-11eb-8764-c20b0ea99848.gif)
 
+## Quick links
+
+- [npm]
+- [jsDelivr][cdn]
+- [Github][gh]
+- [Changelog]
+- [API documentation][docs]
+
 ## Installation
 
 **CDN**
+
+You can find this package [on jsDelivr][cdn]. The minified UMD bundle is about 1.7KB (gzipped).
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js"></script>
 ```
 
 **npm**
+
+When installing with [npm][npm] and using webpack, the package will add about 1KB (gzipped) to your bundle.
 
 ```
 $ npm install @jjwesterkamp/event-delegation --save
@@ -265,3 +277,9 @@ The MIT License (MIT). See [license file] for more information.
 [AskListener]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.asklistener.html
 [EventHandler]: https://jjwesterkamp.github.io/event-delegation/interfaces/types.eventhandler.html
 [mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+
+[cdn]: https://www.jsdelivr.com/package/npm/@jjwesterkamp/event-delegation
+[npm]: https://www.npmjs.com/package/@jjwesterkamp/event-delegation
+[gh]: https://github.com/JJWesterkamp/event-delegation
+[changelog]: https://github.com/JJWesterkamp/event-delegation/blob/master/CHANGELOG.md
+[docs]: https://jjwesterkamp.github.io/event-delegation/
