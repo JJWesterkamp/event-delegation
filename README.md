@@ -230,6 +230,14 @@ EventDelegation
 // event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}>
 ```
 
+### Initialisation with listener option `once: true`
+
+If you give the listener-option `once: true` to addEventListener calls the listener will automatically be removed
+after being called once. Since with event delegation events are _filtered_ on the condition of a CSS-selector match
+against any ancestor of a respective event target, this package will actually replace `once: true` options with
+`once: false`. This prevents that an event-delegation initialisation turns into a no-op because of events that don't
+match. It will then remove the event listener manually after the first matching event occured.
+
 ### Working in Javascript - a few limitations
 
 When working in Javascript you can't provide explicit type arguments for function calls. Most typescript-savvy editors
