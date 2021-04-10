@@ -61,16 +61,11 @@
 				<a href="#event-delegation" id="event-delegation" style="color: inherit; text-decoration: none;">
 					<h1>event-delegation</h1>
 				</a>
-				<p>Event delegation for browser DOM events. Flexible, cross-browser compatible and Type-focused.</p>
+				<p>Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.</p>
 				<p><a href="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation"><img src="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg" alt="npm version"></a>
 					<a href="https://travis-ci.com/JJWesterkamp/event-delegation"><img src="https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master" alt="Build Status"></a>
 				<a href="https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#" alt="Coverage Status"></a></p>
 				<p><img src="https://user-images.githubusercontent.com/12270687/114275186-d8fd2880-9a21-11eb-8764-c20b0ea99848.gif" alt="event-delegation-3"></p>
-				<blockquote>
-					<p>Note: this package is currently under heavy development, and this README does not reflect the latest
-						published version. See tag <a href="https://github.com/JJWesterkamp/event-delegation/tree/v0.4.4">0.4.4</a> for
-					the current version.</p>
-				</blockquote>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
@@ -250,6 +245,14 @@
 
 <span style="color: #C2C3C5">// event is DelegationEvent&lt;HTMLTableDataCellElement, Event &amp; {foo: string}&gt;</span>
 </code></pre>
+				<a href="#initialisation-with-listener-option-once-true" id="initialisation-with-listener-option-once-true" style="color: inherit; text-decoration: none;">
+					<h3>Initialisation with listener option <code>once: true</code></h3>
+				</a>
+				<p>If you give the listener-option <code>once: true</code> to addEventListener calls the listener will automatically be removed
+					after being called once. Since with event delegation events are <em>filtered</em> on the condition of a CSS-selector match
+					against any ancestor of a respective event target, this package will actually replace <code>once: true</code> options with
+					<code>once: false</code>. This prevents that an event-delegation initialisation turns into a no-op because of events that don&#39;t
+				match. It will then remove the event listener manually after the first matching event occured.</p>
 				<a href="#working-in-javascript---a-few-limitations" id="working-in-javascript---a-few-limitations" style="color: inherit; text-decoration: none;">
 					<h3>Working in Javascript - a few limitations</h3>
 				</a>

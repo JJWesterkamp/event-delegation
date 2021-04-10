@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.0.0] (2021-04-10)
+
+### Breaking changes
+
+- Completely rebuilt the package with a better API and improved type inference.
+
 ## [0.4.4] (2019-06-08)
 
 ### Breaking changes
@@ -29,7 +35,7 @@
 - Added proper polyfill for `Element.prototype.matches()`
 
 ## [0.4.0] (2018-11-02)
- 
+
 ### Development
 
 - Added test suite
@@ -72,6 +78,7 @@
 - Initial version
 
 [Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.4...HEAD
+[1.0.0]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.4...v1.0.0
 [0.4.4]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.1...v0.4.2

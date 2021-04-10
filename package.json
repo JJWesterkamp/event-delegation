@@ -1,9 +1,9 @@
 {
   "name": "@jjwesterkamp/event-delegation",
-  "version": "0.4.4",
+  "version": "1.0.0",
   "author": "Jeffrey Westerkamp",
   "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",
-  "description": "Event delegation for browser DOM events. Flexible, cross-browser compatible and Type-focused.",
+  "description": "Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.",
   "keywords": [
     "DOM",
     "Events",

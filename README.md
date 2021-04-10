@@ -1,16 +1,12 @@
 # event-delegation
 
-Event delegation for browser DOM events. Flexible, cross-browser compatible and Type-focused.
+Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.
 
 [![npm version](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg)](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation)
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
 
 ![event-delegation-3](https://user-images.githubusercontent.com/12270687/114275186-d8fd2880-9a21-11eb-8764-c20b0ea99848.gif)
-
-> Note: this package is currently under heavy development, and this README does not reflect the latest
-> published version. See tag [0.4.4](https://github.com/JJWesterkamp/event-delegation/tree/v0.4.4) for
-> the current version.
 
 ## Installation
 
