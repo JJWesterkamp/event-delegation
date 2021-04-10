@@ -74,7 +74,7 @@ EventDelegation
 ```
 
 This builder pattern is convenient because it allows for automatic type completion of practically all required type information.
-Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt 
+Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt
 to parse the selectors and infer the element type from them. The inferred types are then automatically
 known in the listener callback provided in the `.listen()` step.
 
@@ -120,7 +120,7 @@ EventDelegation.within(root: Element | string): AskEvent<T>
 ```
 
 Alternatively you can add event listeners to other elements with the `within`method. It takes either an element or a selector. In the case of an element its type is preserved and ultimately
-an `EventHandler<R>` is returned:
+an `EventHandler<T>` is returned:
 
 ```typescript
 declare const myRoot: HTMLFormElement
@@ -152,11 +152,13 @@ const handler = EventDelegation
 If the `root` is a selector, `within()` will create one single handler for the **first matching element**.
 
 > ⚠️ Unlike some other event delegation packages, this package does not create multiple listeners for all matching
-> elements when the `root` is a selector. This is a design decision because such elements could be nested within
-> each other, resulting in very unpredictable behavior, including 'duplicated' handling of events that bubble through
-> multiple matching roots, and inconsistencies based on whether events' `stopPropagation` methods have been called.
+> elements when the `root` is a selector. This is a design decision. Because such elements could be nested within
+> each other, implicitly creating multiple listeners might result in very unpredictable behavior, including 'duplicated'
+> handling of events that bubble through multiple matching roots, and inconsistencies based on whether events'
+> `stopPropagation` methods have been called.
 >
-> You could of course still map a list of elements to event-handlers yourself to circumvent this 'drawback'.
+> I'm currently working on a distinct `withinMany()` function that allows to explicitly create multiple listeners
+> for many roots.
 
 ### EventHandler
 
@@ -188,10 +190,10 @@ providing the input parameters of creation.
 
 ### Selector matching failure / custom selectors
 
-Methods that take CSS-style selectors might fail to successfully infer an element type for them at some point. 
-It might be an error in the selector syntax itself, but might also be a bug in this package. Another case where 
-the default selector matching fails are selectors custom web components. For all such cases all methods that take 
-selectors have one final signature overload as a last resort to not ruin your day. They take an explicit type argument 
+Methods that take CSS-style selectors might fail to successfully infer an element type for them at some point.
+It might be an error in the selector syntax itself, but might also be a bug in this package. Another case where
+the default selector matching fails are selectors for custom web components. For such cases, all methods that take
+selectors have one final signature overload as a last resort to not ruin your day. They take an explicit type argument
 for the element type, and _any_ string as their selector argument:
 
 ```typescript
@@ -211,12 +213,14 @@ When using custom events the event types will by default be considered the base 
 however append definitions for your custom events to the `GlobalEventHandlersEventMap`:
 
 ```typescript
+// Add this to an existing or new .ts file
 declare global {
     interface GlobalEventHandlersEventMap {
         'my:event': Event & { foo: string }
     }
 }
 
+// Then either in TS or JS...
 EventDelegation
     .global()
     .events('my:event')
@@ -228,7 +232,7 @@ EventDelegation
 
 ### Working in Javascript - a few limitations
 
-When working in Javascript you can't provide explicit type arguments for function calls. Most typescript-savvy editors 
+When working in Javascript you can't provide explicit type arguments for function calls. Most typescript-savvy editors
 will still give (near) perfect type completion for all cases where the types are
 inferred, such as when using tag selectors and standard event names such as `'click'`. This is also true when passing
 existing element references if they have the correct type in advance.
