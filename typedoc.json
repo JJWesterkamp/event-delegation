@@ -1,4 +1,5 @@
 {
     "out": "docs",
-    "theme": "default"
+    "theme": "default",
+    "highlightTheme": "min-light"
 }
