@@ -6,7 +6,7 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
 
-![event-delegation-3](https://user-images.githubusercontent.com/12270687/114275186-d8fd2880-9a21-11eb-8764-c20b0ea99848.gif)
+<img src="https://user-images.githubusercontent.com/12270687/114304467-9bf16e80-9ad3-11eb-9da5-c0a3b48f3393.jpg" alt="EventDelegation type inference" width="700">
 
 ## Quick links
 
