@@ -11,14 +11,14 @@ describe('Type inference', () => {
     describe('EventDelegation.global()', () => {
         test('Type inference when giving a (grouping) selector', () => {
             const handler: EventHandler<HTMLElement> = EventDelegation
-            .global()
-            .events('mouseenter')
-            .select('tr, td')
-            .listen((event) => {
-                const E: MouseEvent = event
-                const D: HTMLTableRowElement | HTMLTableDataCellElement = event.delegator
-                const R: HTMLElement = event.currentTarget
-            })
+                .global()
+                .events('mouseenter')
+                .select('tr, td')
+                .listen((event) => {
+                    const E: MouseEvent = event
+                    const D: HTMLTableRowElement | HTMLTableDataCellElement = event.delegator
+                    const R: HTMLElement = event.currentTarget
+                })
         })
 
         test('Type inference of explicit type arguments', () => {
