@@ -9,17 +9,20 @@ import { ParseSelector } from 'typed-query-selector/parser';
  *
  * @typeParam D The element type for the delegation selector
  * @typeParam E The event instance type
+ * @typeParam R The type of the root element (or `event.currentTarget`)
  */
-export declare type DelegationListener<D extends Element, E extends Event> = (this: D, event: DelegationEvent<D, E>) => void;
+export declare type DelegationListener<D extends Element, E extends Event, R extends Element> = (this: D, event: DelegationEvent<D, E, R>) => void;
 /**
  * A delegation event the default event with an additional property `delegator` to be able to reference the
  * child element that dispatched the event within arrow function handlers.
  *
  * @typeParam D The element type for the delegation selector
  * @typeParam E The event instance type
+ * @typeParam R The type of the root element (or `event.currentTarget`)
  */
-export declare type DelegationEvent<D extends Element, E extends Event = Event> = E & {
-	delegator: D;
+export declare type DelegationEvent<D extends Element, E extends Event, R extends Element> = E & {
+	readonly delegator: D;
+	readonly currentTarget: R;
 };
 /**
  * The event handler instance interface.
@@ -168,7 +171,7 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
 	 * @param listener
 	 * @param listenerOptions
 	 */
-	listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>;
+	listen(listener: DelegationListener<D, E, R>, listenerOptions?: AddEventListenerOptions): EventHandler<R>;
 }
 declare const EventDelegation: AskRoot;
 export default EventDelegation;

@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Breaking changes
+
+- Added type inference for `event.currentTarget`
+
+  This is technically a breaking change because this feature required the types `DelegationListener` and `DelegationEvent`
+  to take an additional type argument for the root element type. However, if you never imported and used these types
+  explicitly this change should not affect you.
+
 ## [1.0.0] (2021-04-10)
 
 ### Breaking changes

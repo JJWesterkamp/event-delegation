@@ -13,8 +13,13 @@ import type { ParseSelector } from 'typed-query-selector/parser'
  *
  * @typeParam D The element type for the delegation selector
  * @typeParam E The event instance type
+ * @typeParam R The type of the root element (or `event.currentTarget`)
  */
-export type DelegationListener<D extends Element, E extends Event> = (this: D, event: DelegationEvent<D, E>) => void
+export type DelegationListener<
+    D extends Element,
+    E extends Event,
+    R extends Element
+    > = (this: D, event: DelegationEvent<D, E, R>) => void
 
 /**
  * A delegation event the default event with an additional property `delegator` to be able to reference the
@@ -22,9 +27,11 @@ export type DelegationListener<D extends Element, E extends Event> = (this: D, e
  *
  * @typeParam D The element type for the delegation selector
  * @typeParam E The event instance type
+ * @typeParam R The type of the root element (or `event.currentTarget`)
  */
-export type DelegationEvent<D extends Element, E extends Event = Event> = E & {
-    delegator: D
+export type DelegationEvent<D extends Element, E extends Event, R extends Element> = E & {
+    readonly delegator: D
+    readonly currentTarget: R
 }
 
 /**
@@ -43,12 +50,13 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
     readonly root: R
     readonly eventType: string
     readonly selector: string
-    readonly listener: DelegationListener<D, E>
+    readonly listener: DelegationListener<D, E, R>
     readonly listenerOptions?: boolean | AddEventListenerOptions
 }
 
 export type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
 export type EventMap = GlobalEventHandlersEventMap
+export type BuildMode = 'SINGLE' | 'MANY'
 
 // ------------------------------------------------------------------------------
 //      Creation pattern: Build methods
@@ -214,5 +222,5 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
      * @param listener
      * @param listenerOptions
      */
-    listen(listener: DelegationListener<D, E>, listenerOptions?: AddEventListenerOptions): EventHandler<R>
+    listen(listener: DelegationListener<D, E, R>, listenerOptions?: AddEventListenerOptions): EventHandler<R>
 }

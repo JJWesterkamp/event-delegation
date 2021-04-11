@@ -56,10 +56,10 @@ The build process has the following 4 steps in the following order, ultimately r
 ### EventDelegation.global()
 ```typescript
 // Pseudo
-EventDelegation.global(): AskEvent<HTMLElement>
+EventDelegation.global(): AskEvent
 ```
 
-The following examples use the `global()` method that attaches an event listener to `document.body` -- globally.
+The following examples use the `global()` method that attaches an event listener globally to `document.body`.
 The returned builder ultimately creates an `EventHandler<HTMLElement>` where `HTMLElement` is the type of the root `document.body`.
 
 ```typescript
@@ -102,8 +102,16 @@ EventDelegation
     .select('#my-div > button.submit, fieldset input.submit')
     .listen((event) => { /* ... */ })
 
-// event is DelegationEvent<HTMLButtonElement | HTMLInputElement, MouseEvent>
+// event is DelegationEvent<HTMLButtonElement | HTMLInputElement, MouseEvent, HTMLElement>
 ```
+
+> **[`DelegationEvent<D, E, R>`](https://jjwesterkamp.github.io/event-delegation/modules/types.html#delegationevent)**
+>
+> This is the actual type of events passed to the listener functions. It has the type parameters `D` for delegator, `E` for event and `R` for root.
+> In the above example this means that:
+> - `D` - `event.delegator` (and `this` in regular functions) is `HTMLButtonElement | HTMLInputElement`
+> - `E` - `event` extends `MouseEvent`
+> - `R` - `event.currentTarget` is `HTMLElement`
 
 The element types will default to `Element` for CSS selectors that are not tag-qualified or are invalid:
 
@@ -111,20 +119,20 @@ The element types will default to `Element` for CSS selectors that are not tag-q
 EventDelegation
     .global()
     .events('click')
-    .select('#my-div > .submit, fieldset iput.submit')
-    //       ^^^^^^^^^^^^^^^^^
-    //       not tag-qualified
-    //                          ^^^^^^^^^^^^^^^^^^^^
-    //                          invalid (iput)
+    .select('#my-div > .submit-button, fieldset iput.submit')
+    //       ^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^
+    //       not tag-qualified               invalid (iput)
     .listen((event) => { /* ... */ })
 
-// event is DelegationEvent<Element, MouseEvent>
+// event is DelegationEvent<Element, MouseEvent, HTMLElement>
 ```
+
+See the section **Selector matching failure / custom selectors** below for details about overriding these default types.
 
 ### EventDelegation.within()
 ```typescript
 // Pseudo
-EventDelegation.within(root: Element | string): AskEvent<T>
+EventDelegation.within(root: Element | string): AskEvent
 ```
 
 Alternatively you can add event listeners to other elements with the `within`method. It takes either an element or a selector. In the case of an element its type is preserved and ultimately
@@ -211,7 +219,7 @@ const handler = EventDelegation
     .select<CustomButton>('custom-button')
     .listen((event) => { console.log(event.foo) })
 
-// event is DelegationEvent<CustomButton, MouseEvent>
+// event is DelegationEvent<CustomButton, MouseEvent, CustomComponent>
 // handler is EventHandler<CustomComponent>
 ```
 
@@ -235,7 +243,7 @@ EventDelegation
     .select('td')
     .listen((event) => { console.log(event.foo) })
 
-// event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}>
+// event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}, HTMLElement>
 ```
 
 ### Initialisation with listener option `once: true`
