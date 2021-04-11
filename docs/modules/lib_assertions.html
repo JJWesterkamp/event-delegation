@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>lib/isString | @jjwesterkamp/event-delegation</title>
+	<title>lib/assertions | @jjwesterkamp/event-delegation</title>
 	<meta name="description" content="Documentation for @jjwesterkamp/event-delegation">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@jjwesterkamp/event-delegation</a>
 				</li>
 				<li>
-					<a href="lib_isstring.html">lib/isString</a>
+					<a href="lib_assertions.html">lib/assertions</a>
 				</li>
 			</ul>
-			<h1>Module lib/isString</h1>
+			<h1>Module lib/assertions</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,9 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="lib_isstring.html#isstring" class="tsd-kind-icon">is<wbr>String</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="lib_assertions.html#isfunction" class="tsd-kind-icon">is<wbr>Function</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="lib_assertions.html#isnil" class="tsd-kind-icon">is<wbr>Nil</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="lib_assertions.html#isstring" class="tsd-kind-icon">is<wbr>String</a></li>
 							</ul>
 						</section>
 					</div>
@@ -80,6 +82,52 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="isfunction" class="tsd-anchor"></a>
+					<h3>is<wbr>Function</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Function<span class="tsd-signature-symbol">(</span>subject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">subject</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/573f843/src/lib/assertions.ts#L9">lib/assertions.ts:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subject: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">subject</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Function</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="isnil" class="tsd-anchor"></a>
+					<h3>is<wbr>Nil</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Nil<span class="tsd-signature-symbol">(</span>subject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">subject</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/573f843/src/lib/assertions.ts#L1">lib/assertions.ts:1</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subject: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">subject</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="isstring" class="tsd-anchor"></a>
 					<h3>is<wbr>String</h3>
@@ -90,14 +138,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8eea350/src/lib/isString.ts#L7">lib/isString.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/573f843/src/lib/assertions.ts#L5">lib/assertions.ts:5</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns <code>true</code> if the given argument is a string, or <code>false</code> otherwise.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -122,6 +165,9 @@
 					<li class=" tsd-kind-module">
 						<a href="index.html">index</a>
 					</li>
+					<li class="current tsd-kind-module">
+						<a href="lib_assertions.html">lib/assertions</a>
+					</li>
 					<li class=" tsd-kind-module">
 						<a href="lib_closestwithin.html">lib/closest<wbr>Within</a>
 					</li>
@@ -132,29 +178,23 @@
 						<a href="lib_createcompositebuilder.html">lib/create<wbr>Composite<wbr>Builder</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="lib_isfunction.html">lib/is<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="lib_isnil.html">lib/is<wbr>Nil</a>
-					</li>
-					<li class="current tsd-kind-module">
-						<a href="lib_isstring.html">lib/is<wbr>String</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="lib_matches.html">lib/matches</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="lib_normalizeroot.html">lib/normalize<wbr>Root</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="types.html">types</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="lib_isstring.html#isstring" class="tsd-kind-icon">is<wbr>String</a>
+						<a href="lib_assertions.html#isfunction" class="tsd-kind-icon">is<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="lib_assertions.html#isnil" class="tsd-kind-icon">is<wbr>Nil</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="lib_assertions.html#isstring" class="tsd-kind-icon">is<wbr>String</a>
 					</li>
 				</ul>
 			</nav>
@@ -169,12 +209,6 @@
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>

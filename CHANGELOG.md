@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+## [2.0.3] (2021-04-11)
+
+### Internals
+
+- Cleaned up the types strategy
+
+  `event-delegation.d.ts` is now no longer generated from source files, making the package more lightweight
+  because type declarations are not duplicated anymore.
+
+- Bundled `lib/isFunction`, `lib/isString` and `lib/isNil` together in one file `lib/assertions`.
+
 ## [2.0.2] (2021-04-11)
 
 - Removed sourcemaps from CommonJS and ESM builds in npm releases.
@@ -106,7 +117,8 @@ No notable changes.
 
 - Initial version
 
-[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0-beta1...v2.0.0
