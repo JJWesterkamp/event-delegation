@@ -1,5 +1,10 @@
-import EventDelegation from '../src'
-import { EventHandler } from '../src/types'
+import { AskRoot, EventHandler } from '../src/types'
+
+const EventDelegation: AskRoot = {
+    global: () => ({ events: () => ({ select: () => ({ listen: () => undefined as any }) }) }),
+    within: () => ({ events: () => ({ select: () => ({ listen: () => undefined as any }) }) }),
+    withinMany: () => ({ events: () => ({ select: () => ({ listen: () => undefined as any }) }) }),
+}
 
 describe('Type inference', () => {
 
@@ -47,8 +52,7 @@ describe('Type inference', () => {
         })
 
         test('Type inference when giving a selector', () => {
-            try {
-                const handler: EventHandler<HTMLFieldSetElement> = EventDelegation
+            const handler: EventHandler<HTMLFieldSetElement> = EventDelegation
                 .within('fieldset.my-fieldset')
                 .events('click')
                 .select('input.my-input')
@@ -57,9 +61,6 @@ describe('Type inference', () => {
                     const D: HTMLInputElement = event.delegator
                     const R: HTMLFieldSetElement = event.currentTarget
                 })
-                } catch(e) {
-                    // Runtime can't find the root element, but that's OK. It should just compile.
-                }
         })
 
         test('Type inference of explicit type arguments', () => {
@@ -67,19 +68,15 @@ describe('Type inference', () => {
             interface CustomComponent extends HTMLElement { foo: 'bar' }
             interface CustomButton extends HTMLElement { baz: 42 }
 
-            try {
-                const handler: EventHandler<CustomComponent> = EventDelegation
-                    .within<CustomComponent>('custom-component')
-                    .events<MyEvent>('click')
-                    .select<CustomButton>('custom-button')
-                    .listen((event) => {
-                        const E: MyEvent = event
-                        const D: CustomButton = event.delegator
-                        const R: CustomComponent = event.currentTarget
-                    })
-            } catch(e) {
-                // Runtime can't find the root element, but that's OK. It should just compile.
-            }
+            const handler: EventHandler<CustomComponent> = EventDelegation
+                .within<CustomComponent>('custom-component')
+                .events<MyEvent>('click')
+                .select<CustomButton>('custom-button')
+                .listen((event) => {
+                    const E: MyEvent = event
+                    const D: CustomButton = event.delegator
+                    const R: CustomComponent = event.currentTarget
+                })
         })
     })
 
