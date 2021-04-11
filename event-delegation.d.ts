@@ -67,7 +67,7 @@ export interface AskRoot {
 	 * @typeParam K the HTML tag name literal type for the selector argument.
 	 *              This param is inferred from the selector argument.
 	 */
-	within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], "SINGLE">;
+	within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], "SINGLE"> | never;
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 *
@@ -90,7 +90,7 @@ export interface AskRoot {
 	 * @typeParam R The element type for the root element.
 	 *              This param can be explicitly given to override the default `Element` type.
 	 */
-	within<R extends Element>(root: string): AskEvent<R, "SINGLE">;
+	within<R extends Element>(root: string): AskEvent<R, "SINGLE"> | never;
 	/**
 	 * Start building an event-delegation handler for multiple specified roots.
 	 *

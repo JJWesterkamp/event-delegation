@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.0.0-beta1] (2021-04-11)
+
 ### Breaking changes
 
 - Added type inference for `event.currentTarget`
@@ -89,7 +91,8 @@
 
 - Initial version
 
-[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.4...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0-beta1...HEAD
+[2.0.0-beta1]: https://github.com/JJWesterkamp/event-delegation/compare/v1.0.0...v2.0.0-beta1
 [1.0.0]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.4...v1.0.0
 [0.4.4]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.2...v0.4.3
