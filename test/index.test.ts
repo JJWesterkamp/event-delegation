@@ -79,5 +79,29 @@ describe('index', () => {
                 elementC, // Mock implementation returns the element so we can compare
             ]))
         })
+
+        test('Queries the document when given a selector', () => {
+            const [elementA, elementB, elementC] = [
+                createDiv('element-a'),
+                createDiv('element-b'),
+                createDiv('element-c'),
+            ]
+
+            const spy = jest
+                .spyOn(document, 'querySelectorAll')
+                .mockImplementation(() => [elementA, elementB, elementC] as any)
+
+            EventDelegation.withinMany('.element-a, .element-b, .element-c') // just for show
+
+            expect(createBuilder).toBeCalledTimes(3)
+            expect(createBuilder).toHaveBeenNthCalledWith(1, elementA, expect.anything(), expect.anything())
+            expect(createBuilder).toHaveBeenNthCalledWith(2, elementB, expect.anything(), expect.anything())
+            expect(createBuilder).toHaveBeenNthCalledWith(3, elementC, expect.anything(), expect.anything())
+            expect(createCompositeBuilder).toBeCalledWith(expect.arrayContaining([
+                elementA, // Mock implementation returns the element so we can compare
+                elementB, // Mock implementation returns the element so we can compare
+                elementC, // Mock implementation returns the element so we can compare
+            ]))
+        })
     })
 })
