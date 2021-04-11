@@ -91,8 +91,9 @@ describe('index', () => {
                 .spyOn(document, 'querySelectorAll')
                 .mockImplementation(() => [elementA, elementB, elementC] as any)
 
-            EventDelegation.withinMany('.element-a, .element-b, .element-c') // just for show
+            EventDelegation.withinMany('.element-a, .element-b, .element-c')
 
+            expect(spy).toBeCalledWith('.element-a, .element-b, .element-c')
             expect(createBuilder).toBeCalledTimes(3)
             expect(createBuilder).toHaveBeenNthCalledWith(1, elementA, expect.anything(), expect.anything())
             expect(createBuilder).toHaveBeenNthCalledWith(2, elementB, expect.anything(), expect.anything())
