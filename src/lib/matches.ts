@@ -1,4 +1,4 @@
-import { isFunction } from './isFunction'
+import { isFunction } from './assertions'
 
 /**
  * An interface extension for `Element` based on the

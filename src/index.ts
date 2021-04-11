@@ -1,7 +1,7 @@
 import type { AskEvent, AskRoot } from '../event-delegation'
 import { createBuilder } from './lib/createBuilder'
 import { createCompositeBuilder } from './lib/createCompositeBuilder'
-import { isString } from './lib/isString'
+import { isString } from './lib/assertions'
 import { normalizeRoot } from './lib/normalizeRoot'
 
 const EventDelegation: AskRoot = {

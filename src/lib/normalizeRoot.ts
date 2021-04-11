@@ -1,5 +1,4 @@
-import { isString } from './isString'
-import { isNil } from './isNil'
+import { isNil, isString } from './assertions'
 
 export function normalizeRoot<R extends Element>(rootOrSelector: string | R): R | never {
     if (isString(rootOrSelector)) {

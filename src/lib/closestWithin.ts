@@ -1,4 +1,4 @@
-import { isFunction } from './isFunction'
+import { isFunction } from './assertions'
 import { matches } from './matches'
 
 /**
