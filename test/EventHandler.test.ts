@@ -14,7 +14,7 @@ describe('EventHandler', () => {
     const dispatchMatchingEvent = (times: number = 1): Event[] => {
         const events = []
 
-        while(times--) {
+        while (times--) {
             const event = new Event('click', { bubbles: true })
             matchingDescendant.dispatchEvent(event)
             events.push(event)
@@ -26,7 +26,7 @@ describe('EventHandler', () => {
     const dispatchNonMatchingEvent = (times: number = 1): Event[] => {
         const events = []
 
-        while(times--) {
+        while (times--) {
             const event = new Event('click', { bubbles: true })
             nonMatchingDescendant.dispatchEvent(event)
             events.push(event)

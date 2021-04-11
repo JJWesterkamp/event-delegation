@@ -17,10 +17,10 @@ describe('lib/closestWithin()', () => {
         test('Returns the closest matching element when found', () => {
             const closestElement = createDiv()
 
-            const closestSpy  = jest.fn().mockImplementation(() => closestElement)
+            const closestSpy = jest.fn().mockImplementation(() => closestElement)
             const containsSpy = jest.fn().mockImplementation(() => true)
 
-            leaf.closest  = closestSpy
+            leaf.closest = closestSpy
             root.contains = containsSpy
 
             const result = closestWithin(leaf, selector, root)
@@ -31,10 +31,10 @@ describe('lib/closestWithin()', () => {
         })
 
         test('Returns null if no closest element exists matching the selector', () => {
-            const closestSpy  = jest.fn().mockImplementation(() => null)
+            const closestSpy = jest.fn().mockImplementation(() => null)
             const containsSpy = jest.fn().mockImplementation(() => false)
 
-            leaf.closest  = closestSpy
+            leaf.closest = closestSpy
             root.contains = containsSpy
 
             const result = closestWithin(leaf, selector, root)
@@ -47,10 +47,10 @@ describe('lib/closestWithin()', () => {
         test('Returns null if the closest element exists outside of the root', () => {
             const closestElement = createDiv()
 
-            const closestSpy  = jest.fn().mockImplementation(() => closestElement)
+            const closestSpy = jest.fn().mockImplementation(() => closestElement)
             const containsSpy = jest.fn().mockImplementation(() => false)
 
-            leaf.closest  = closestSpy
+            leaf.closest = closestSpy
             root.contains = containsSpy
 
             const result = closestWithin(leaf, selector, root)
