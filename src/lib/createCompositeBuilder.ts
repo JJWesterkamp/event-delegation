@@ -1,4 +1,4 @@
-import { AskEvent, DelegationListener } from '../types'
+import type { AskEvent, DelegationListener } from '../../event-delegation'
 
 export const createCompositeBuilder = <R extends Element>(builders: AskEvent<R, 'SINGLE'>[]): AskEvent<R, 'MANY'> => ({
     events: (eventType: string) => ({

@@ -1,4 +1,4 @@
-import { AskEvent, DelegationListener } from '../types'
+import type { AskEvent, DelegationListener } from '../../event-delegation'
 import { EventHandler } from '../EventHandler'
 
 export const createBuilder = <R extends Element>(root: R): AskEvent<R, 'SINGLE'> => ({

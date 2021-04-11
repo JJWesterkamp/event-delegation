@@ -1,4 +1,4 @@
-import { AskRoot, EventHandler } from '../src/types'
+import type { AskRoot, EventHandler } from '../event-delegation'
 
 const EventDelegation: AskRoot = {
     global: () => ({ events: () => ({ select: () => ({ listen: () => undefined as any }) }) }),
