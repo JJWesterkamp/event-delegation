@@ -191,6 +191,10 @@ const handler = EventDelegation
 ```
 
 ### EventDelegation.withinMany()
+```typescript
+// Pseudo
+EventDelegation.withinMany(roots: Element[] | string): AskEvent
+```
 
 Finally you can add multiple listeners to many root elements at once. Similarly to `within()`, `withinMany()` takes either a selector or an array of root element references.
 

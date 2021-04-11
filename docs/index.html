@@ -213,6 +213,9 @@
 				<a href="#eventdelegationwithinmany" id="eventdelegationwithinmany" style="color: inherit; text-decoration: none;">
 					<h3>EventDelegation.withinMany()</h3>
 				</a>
+				<pre><code class="language-typescript"><span style="color: #C2C3C5">// Pseudo</span>
+<span style="color: #1976D2">EventDelegation</span><span style="color: #6F42C1">.withinMany</span><span style="color: #24292EFF">(roots: Element[] </span><span style="color: #D32F2F">|</span><span style="color: #24292EFF"> string): AskEvent</span>
+</code></pre>
 				<p>Finally you can add multiple listeners to many root elements at once. Similarly to <code>within()</code>, <code>withinMany()</code> takes either a selector or an array of root element references.</p>
 				<p><strong>Using selectors</strong></p>
 				<p>When passing a selector the element type is inferred from the given string if possible. The return value of the <code>listen()</code> call will be an array of <code>EventHandler&lt;T&gt;</code>&#39;s:</p>
