@@ -37,6 +37,7 @@ export interface EventHandler<R extends Element> {
 }
 export declare type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap;
 export declare type EventMap = GlobalEventHandlersEventMap;
+export declare type BuildMode = "SINGLE" | "MANY";
 /**
  * Part of the package namespace `EventDelegation`. Provides methods for starting
  * initialisation of event handlers through the build methods pattern. All methods
@@ -46,7 +47,7 @@ export interface AskRoot {
 	/**
 	 * Start building an event-delegation handler for the (global) body element.
 	 */
-	global(): AskEvent<HTMLElement>;
+	global(): AskEvent<HTMLElement, "SINGLE">;
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 * Method overload that takes an Element instance as the root.
@@ -55,7 +56,7 @@ export interface AskRoot {
 	 * @typeParam R The element type for the root element.
 	 *              This param is inferred from the selector argument.
 	 */
-	within<R extends Element>(root: R): AskEvent<R>;
+	within<R extends Element>(root: R): AskEvent<R, "SINGLE">;
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 *
@@ -66,7 +67,7 @@ export interface AskRoot {
 	 * @typeParam K the HTML tag name literal type for the selector argument.
 	 *              This param is inferred from the selector argument.
 	 */
-	within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K]>;
+	within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], "SINGLE">;
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 *
@@ -77,7 +78,7 @@ export interface AskRoot {
 	 * @typeParam S The CSS-style selector literal type for the selector argument.
 	 *              This param is inferred from the selector argument.
 	 */
-	within<S extends string>(selector: S): AskEvent<ParseSelector<S>> | never;
+	within<S extends string>(selector: S): AskEvent<ParseSelector<S>, "SINGLE"> | never;
 	/**
 	 * Start building an event-delegation handler for a specified root.
 	 *
@@ -89,13 +90,46 @@ export interface AskRoot {
 	 * @typeParam R The element type for the root element.
 	 *              This param can be explicitly given to override the default `Element` type.
 	 */
-	within<R extends Element>(root: string): AskEvent<R>;
+	within<R extends Element>(root: string): AskEvent<R, "SINGLE">;
+	/**
+	 * Start building an event-delegation handler for multiple specified roots.
+	 *
+	 * Method overload that takes Element instances as the roots.
+	 *
+	 * @param roots An array of root element references.
+	 * @typeParam R The element type for the root elements. Note that this may very well be a union type
+	 *              when an array with multiple root types is given. This param is inferred from the selector
+	 *              argument.
+	 */
+	withinMany<R extends Element>(roots: R[]): AskEvent<R, "MANY">;
+	/**
+	 * Start building an event-delegation handler for multiple specified roots.
+	 *
+	 * Method overload that takes a CSS tag selector for the roots. This provides autocompletion
+	 * features when starting to type tag-qualified CSS selectors.
+	 */
+	withinMany<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], "MANY">;
+	/**
+	 * Start building an event-delegation handler for multiple specified roots.
+	 *
+	 * Method overload that takes a CSS selector for the roots. It wil attempt to parse the selector
+	 * and infer the root elements' type from it.
+	 */
+	withinMany<S extends string>(selector: S): AskEvent<ParseSelector<S>, "MANY">;
+	/**
+	 * Start building an event-delegation handler for multiple specified roots.
+	 *
+	 * Method overload that can be used when all else fails. If previous overloads
+	 * failed to match, this one allows you to explicitly specify the expected
+	 * type for _any_ selector string.
+	 */
+	withinMany<R extends Element>(roots: string): AskEvent<R, "MANY">;
 }
 /**
  * Method signatures for setting the event name and getting the event type
  * for an event-delegation build process.
  */
-export interface AskEvent<R extends Element> {
+export interface AskEvent<R extends Element, Mode extends BuildMode> {
 	/**
 	 * Method overload that infers the event instance type from the given event name.
 	 * Returns the next step's interface providing signatures for getting the event type of
@@ -105,7 +139,7 @@ export interface AskEvent<R extends Element> {
 	 * @typeParam EKey The event name literal type that's used to infer the Event instance type.
 	 *            This param is inferred from the `eventType` argument.
 	 */
-	events<EKey extends keyof EventMap>(eventType: EKey): AskSelector<R, EventMap[EKey]>;
+	events<EKey extends keyof EventMap>(eventType: EKey): AskSelector<R, EventMap[EKey], Mode>;
 	/**
 	 * Method overload that allows to explicitly specify the event instance type.
 	 * Returns the next step's interface providing signatures for getting the event type of
@@ -115,14 +149,14 @@ export interface AskEvent<R extends Element> {
 	 * @typeParam E The Event instance type. This param can be explicitly given to override
 	 *              the default `Event` type.
 	 */
-	events<E extends Event>(eventType: string): AskSelector<R, E>;
+	events<E extends Event>(eventType: string): AskSelector<R, E, Mode>;
 }
 /**
  * Method signatures for setting the delegator selector and getting the type of delegating elements
  * for an event-delegation build process. All overloads Return the final step's interface for setting
  * the event listener function and get the event-handler instance.
  */
-export interface AskSelector<R extends Element, E extends Event = Event> {
+export interface AskSelector<R extends Element, E extends Event, Mode extends BuildMode> {
 	/**
 	 * Takes the delegation selector.
 	 *
@@ -133,7 +167,7 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
 	 * @typeParam K the HTML tag name literal type for the selector argument.
 	 *              This param is inferred from the selector argument.
 	 */
-	select<K extends keyof TagNameMap>(selector: K): AskListener<R, E, TagNameMap[K]>;
+	select<K extends keyof TagNameMap>(selector: K): AskListener<R, E, TagNameMap[K], Mode>;
 	/**
 	 * Takes the delegation selector.
 	 *
@@ -143,7 +177,7 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
 	 * @typeParam S The CSS-style selector literal type for the selector argument.
 	 *              This param is inferred from the selector argument.
 	 */
-	select<S extends string>(selector: S): AskListener<R, E, ParseSelector<S>>;
+	select<S extends string>(selector: S): AskListener<R, E, ParseSelector<S>, Mode>;
 	/**
 	 * Takes the delegation selector.
 	 *
@@ -155,12 +189,12 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
 	 * @typeParam D The element type for the delegator elements.
 	 *              This param can be explicitly given to override the default `Element` type.
 	 */
-	select<D extends Element>(selector: string): AskListener<R, E, D>;
+	select<D extends Element>(selector: string): AskListener<R, E, D, Mode>;
 }
 /**
  * Method signatures for the final build step: setting the event listener function for an event-delegation build process.
  */
-export interface AskListener<R extends Element, E extends Event = Event, D extends Element = Element> {
+export interface AskListener<R extends Element, E extends Event, D extends Element, Mode extends BuildMode> {
 	/**
 	 * Method signatures for the final build step: setting the event listener function for an event-delegation build process.
 	 * Uses the previously constructed types for delegator elements and event instances to provide full type completion
@@ -171,7 +205,7 @@ export interface AskListener<R extends Element, E extends Event = Event, D exten
 	 * @param listener
 	 * @param listenerOptions
 	 */
-	listen(listener: DelegationListener<D, E, R>, listenerOptions?: AddEventListenerOptions): EventHandler<R>;
+	listen(listener: DelegationListener<D, E, R>, listenerOptions?: AddEventListenerOptions): Mode extends "MANY" ? EventHandler<R>[] : Mode extends "SINGLE" ? EventHandler<R> : never;
 }
 declare const EventDelegation: AskRoot;
 export default EventDelegation;

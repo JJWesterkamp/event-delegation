@@ -18,10 +18,9 @@ describe('Type inference', () => {
 
         test('Type inference of explicit type arguments', () => {
             interface MyEvent extends Event { foo: string }
-            interface CustomComponent extends HTMLElement { foo: 'bar' }
             interface CustomButton extends HTMLElement { baz: 42 }
 
-            const global: EventHandler<HTMLElement> = EventDelegation
+            const handler: EventHandler<HTMLElement> = EventDelegation
                 .global()
                 .events<MyEvent>('click')
                 .select<CustomButton>('custom-button')
@@ -56,8 +55,8 @@ describe('Type inference', () => {
                 .listen((event) => {
                     const E: MouseEvent = event
                     const D: HTMLInputElement = event.delegator
-                        const R: HTMLFieldSetElement = event.currentTarget
-                    })
+                    const R: HTMLFieldSetElement = event.currentTarget
+                })
                 } catch(e) {
                     // Runtime can't find the root element, but that's OK. It should just compile.
                 }
@@ -69,7 +68,7 @@ describe('Type inference', () => {
             interface CustomButton extends HTMLElement { baz: 42 }
 
             try {
-                const within: EventHandler<CustomComponent> = EventDelegation
+                const handler: EventHandler<CustomComponent> = EventDelegation
                     .within<CustomComponent>('custom-component')
                     .events<MyEvent>('click')
                     .select<CustomButton>('custom-button')
@@ -81,6 +80,51 @@ describe('Type inference', () => {
             } catch(e) {
                 // Runtime can't find the root element, but that's OK. It should just compile.
             }
+        })
+    })
+
+    describe('EventDelegation.withinMany()', () => {
+        test('Type inference when giving element references', () => {
+            const myFieldset: HTMLFieldSetElement = document.createElement('fieldset')
+            const myForm: HTMLFormElement = document.createElement('form')
+
+            const handler: EventHandler<HTMLFieldSetElement | HTMLFormElement>[] = EventDelegation
+                .withinMany([myFieldset, myForm])
+                .events('keyup')
+                .select('input.my-input')
+                .listen((event) => {
+                    const E: KeyboardEvent = event
+                    const D: HTMLInputElement = event.delegator
+                    const R: HTMLFieldSetElement | HTMLFormElement = event.currentTarget
+                })
+        })
+
+        test('Type inference when giving a selector', () => {
+            const handler: EventHandler<HTMLFieldSetElement | HTMLFormElement>[] = EventDelegation
+                .withinMany('fieldset, form')
+                .events('click')
+                .select('input.my-input, textarea.my-textarea')
+                .listen((event) => {
+                    const E: MouseEvent = event
+                    const D: HTMLInputElement | HTMLTextAreaElement = event.delegator
+                    const R: HTMLFieldSetElement | HTMLFormElement = event.currentTarget
+                })
+        })
+
+        test('Type inference of explicit type arguments', () => {
+            interface MyEvent extends Event { foo: string }
+            interface CustomComponent extends HTMLElement { foo: 'bar' }
+            interface CustomButton extends HTMLElement { baz: 42 }
+
+            const handler: EventHandler<CustomComponent>[] = EventDelegation
+                .withinMany<CustomComponent>('custom-component')
+                .events<MyEvent>('click')
+                .select<CustomButton>('custom-button')
+                .listen((event) => {
+                    const E: MyEvent = event
+                    const D: CustomButton = event.delegator
+                    const R: CustomComponent = event.currentTarget
+                })
         })
     })
 })

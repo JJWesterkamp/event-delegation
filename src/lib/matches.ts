@@ -29,6 +29,7 @@ export function matches(element: XBrowserElement, selector: string): boolean {
     if (isFunction(element.mozMatchesSelector)) return element.mozMatchesSelector(selector)
     if (isFunction(element.msMatchesSelector)) return element.msMatchesSelector(selector)
     if (isFunction(element.oMatchesSelector)) return element.oMatchesSelector(selector)
+    /* istanbul ignore else */
     if (isFunction(element.webkitMatchesSelector)) return element.webkitMatchesSelector(selector)
 
     /* istanbul ignore next */
