@@ -488,6 +488,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@jjwesterkamp/typedoc-theme@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jjwesterkamp/typedoc-theme/-/typedoc-theme-1.0.0.tgz#2b3d5a7f439fa09c76cd7e4c6aa9ded4990a5f40"
+  integrity sha512-NidzO0VmC6TuYkqhbI9Q9jEl/aJqLYzxptzIQ0e8HDwFFpwm/Fv4/PHwHdVGBLgnuAifJ25KD/pwkti/bSHF+A==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.2.tgz#858f5c4b48d80778fde4b9d541f27edc0d56488b"

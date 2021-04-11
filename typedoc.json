@@ -1,5 +1,5 @@
 {
     "out": "docs",
-    "theme": "./docs-theme",
+    "theme": "./node_modules/@jjwesterkamp/typedoc-theme",
     "highlightTheme": "nord"
 }
