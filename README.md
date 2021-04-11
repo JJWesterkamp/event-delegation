@@ -53,7 +53,9 @@ The build process has the following 4 steps in the following order, ultimately r
 
 [`AskRoot`][AskRoot] => [`AskEvent`][AskEvent] => [`AskSelector`][AskSelector] => [`AskListener`][AskListener] => [`EventHandler`][EventHandler]
 > First, ask for a root, then an event name, then a descendant selector, and finally a listener callback.
+
 ### EventDelegation.global()
+
 ```typescript
 // Pseudo
 EventDelegation.global(): AskEvent
@@ -71,6 +73,9 @@ const handler = EventDelegation
         this.classList.add('button--clicked')
     })
 ```
+
+**Listener callbacks**
+
 Inside the event listener callback, `this` is the element that matched `"button"`. In order for _this-binding_ to work, `listener` must be a
 regular function. For cases where arrow functions are preferred, the event argument provides an additional property `delegator`
 as an alternative:
@@ -81,6 +86,8 @@ EventDelegation
     .listen((event) => event.delegator.classList.add('button--clicked'))
 ```
 
+**Type inference**
+
 This builder pattern is convenient because it allows for automatic type completion of practically all required type information.
 Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt
 to parse the selectors and infer the element type from them. The inferred types are then automatically
@@ -89,9 +96,10 @@ known in the listener callback provided in the `.listen()` step.
 In the above example the event type is automatically identified as `MouseEvent`, and `event.delegator` (or `this`) is
 identified as `HTMLButtonElement`.
 
+**Supports complex CSS selectors**
 
-Thanks to the **great** package [typed-query-selector](https://github.com/g-plane/typed-query-selector) you can even supply
-complex CSS selectors and the type will automatically be inferred if the selectors are **tag-qualified** and **valid**.
+Thanks to the great package [typed-query-selector](https://github.com/g-plane/typed-query-selector) you can even supply
+complex CSS selectors and the type will automatically be inferred if the selectors are _tag-qualified_ and _valid_.
 Even grouping selectors are supported, hence in the example below `event.delegator` is the union type
 `HTMLButtonElement | HTMLInputElement`:
 
@@ -105,15 +113,20 @@ EventDelegation
 // event is DelegationEvent<HTMLButtonElement | HTMLInputElement, MouseEvent, HTMLElement>
 ```
 
-> **[`DelegationEvent<D, E, R>`](https://jjwesterkamp.github.io/event-delegation/modules/types.html#delegationevent)**
->
-> This is the actual type of events passed to the listener functions. It has the type parameters `D` for delegator, `E` for event and `R` for root.
-> In the above example this means that:
-> - `D` - `event.delegator` (and `this` in regular functions) is `HTMLButtonElement | HTMLInputElement`
-> - `E` - `event` extends `MouseEvent`
-> - `R` - `event.currentTarget` is `HTMLElement`
+**Event instance types** 
 
-The element types will default to `Element` for CSS selectors that are not tag-qualified or are invalid:
+[`DelegationEvent<D, E, R>`](https://jjwesterkamp.github.io/event-delegation/modules/types.html#delegationevent) - This is the actual type of events passed to the listener functions. It has the type parameters `D` for delegator, `E` for event and `R` for root.
+In the above example this means that:
+
+- `D` - `event.delegator` (and `this` in regular functions) is `HTMLButtonElement | HTMLInputElement`
+- `E` - `event` is of type `MouseEvent`, the type of click events
+- `R` - `event.currentTarget` is of type `HTMLElement`, the type of the body element
+
+**Default types**
+
+The element types will default to `Element` for CSS selectors that are not tag-qualified or are invalid. 
+See the section **Selector matching failure / custom selectors** further down for details about overriding 
+these default types.
 
 ```typescript
 EventDelegation
@@ -127,16 +140,15 @@ EventDelegation
 // event is DelegationEvent<Element, MouseEvent, HTMLElement>
 ```
 
-See the section **Selector matching failure / custom selectors** below for details about overriding these default types.
-
 ### EventDelegation.within()
 ```typescript
 // Pseudo
 EventDelegation.within(root: Element | string): AskEvent
 ```
 
-Alternatively you can add event listeners to other elements with the `within`method. It takes either an element or a selector. In the case of an element its type is preserved and ultimately
-an `EventHandler<T>` is returned:
+Alternatively you can add event listeners to other elements with the `within`method. It takes either an 
+element or a selector. In the case of an element its type is preserved and ultimately an `EventHandler<T>` 
+is returned:
 
 ```typescript
 declare const myRoot: HTMLFormElement
@@ -149,7 +161,9 @@ const handler = EventDelegation
     .listen((event) => { /* ... */ })
 ```
 
-In the case of a selector the type is inferred from the given string just as with the `.select()` method:
+In the case of a selector the type is inferred from the given string just as with the `.select()` method.
+If the `root` is a selector, `within()` will create one single handler for the **first matching element**.
+It will throw an error if the selector is invalid or if no matching root element is found.
 
 ```typescript
 const handler = EventDelegation
@@ -161,20 +175,17 @@ const handler = EventDelegation
 // handler is EventHandler<HTMLFormElement>
 ```
 
-⚠️ `within()` will throw an error if no root was found or if the selector is invalid.
+**A note about roots**
 
-### A note about roots
-
-If the `root` is a selector, `within()` will create one single handler for the **first matching element**.
-
-> ⚠️ Unlike some other event delegation packages, this package does not create multiple listeners for all matching
+> **UPDATE** - I'm currently working on a distinct `withinMany()` function
+> ([see branch](https://github.com/JJWesterkamp/event-delegation/tree/feature/within-many)) 
+> that allows to explicitly opt-in to creation of multiple listeners for many roots.
+> 
+> Unlike some other event delegation packages, this package does not create multiple listeners for all matching
 > elements when the `root` is a selector. This is a design decision. Because such elements could be nested within
 > each other, implicitly creating multiple listeners might result in very unpredictable behavior, including 'duplicated'
 > handling of events that bubble through multiple matching roots, and inconsistencies based on whether events'
 > `stopPropagation` methods have been called.
->
-> I'm currently working on a distinct `withinMany()` function that allows to explicitly create multiple listeners
-> for many roots.
 
 ### EventHandler
 
@@ -229,17 +240,32 @@ When using custom events the event types will by default be considered the base 
 however append definitions for your custom events to the `GlobalEventHandlersEventMap`:
 
 ```typescript
-// Add this to an existing or new .ts file
+type MyEvent = Event & { foo: string }
+
 declare global {
     interface GlobalEventHandlersEventMap {
-        'my:event': Event & { foo: string }
+        'my:event': MyEvent
     }
 }
 
-// Then either in TS or JS...
 EventDelegation
     .global()
     .events('my:event')
+    .select('td')
+    .listen((event) => { console.log(event.foo) })
+
+// event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}, HTMLElement>
+```
+
+If you do not want to add declarations to the global event map you can alternatively just provide the event
+type as a type argument:
+
+```typescript
+type MyEvent = Event & { foo: string }
+
+EventDelegation
+    .global()
+    .events<MyEvent>('my:event')
     .select('td')
     .listen((event) => { console.log(event.foo) })
 
