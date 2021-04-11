@@ -1,22 +1,37 @@
-import { AskRoot } from './types'
-import { createBuilder, createCompositeBuilder } from './lib/createBuilder'
+import { AskEvent, AskRoot } from './types'
+import { createBuilder } from './lib/createBuilder'
+import { createCompositeBuilder } from './lib/createCompositeBuilder'
 import { isString } from './lib/isString'
 import { normalizeRoot } from './lib/normalizeRoot'
 
 const EventDelegation: AskRoot = {
 
-    global: () => createBuilder(document.body),
+    // ----------------------------------------------------------------------------------------
+    // Create a global delegated event listener.
+    // ----------------------------------------------------------------------------------------
 
-    within: (rootOrSelector: string | Element) => createBuilder(normalizeRoot(rootOrSelector)),
+    global(): AskEvent<HTMLElement, 'SINGLE'> {
+        return createBuilder(document.body)
+    },
 
-    withinMany: (rootsOrSelector: string | Element[]) => {
+    // ----------------------------------------------------------------------------------------
+    // Create one delegated event listener for a specified root element.
+    // ----------------------------------------------------------------------------------------
+
+    within(rootOrSelector: string | Element): AskEvent<any, 'SINGLE'> {
+        return createBuilder(normalizeRoot(rootOrSelector))
+    },
+
+    // ----------------------------------------------------------------------------------------
+    // Create many delegated event listeners for multiple specified root elements.
+    // ----------------------------------------------------------------------------------------
+
+    withinMany(rootsOrSelector: string | Element[]): AskEvent<any, 'MANY'> {
         const roots = isString(rootsOrSelector)
             ? Array.from(document.querySelectorAll(rootsOrSelector))
             : rootsOrSelector
 
-        return createCompositeBuilder(
-            roots.map(createBuilder)
-        )
+        return createCompositeBuilder(roots.map(createBuilder))
     },
 }
 
