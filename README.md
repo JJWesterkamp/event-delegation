@@ -244,7 +244,7 @@ const handlers = EventDelegation
 
 ### EventHandler
 
-All creation methods return an EventHandler instance, which has the following shape:
+All three creation methods return EventHandler instances, which has the following shape:
 
 ```typescript
 interface EventHandler<R extends Element> {
@@ -283,7 +283,7 @@ const handler = EventDelegation
     .within<CustomComponent>('custom-component')
     .events('click')
     .select<CustomButton>('custom-button')
-    .listen((event) => { console.log(event.foo) })
+    .listen((event) => { /* ... */ })
 
 // event is DelegationEvent<CustomButton, MouseEvent, CustomComponent>
 // handler is EventHandler<CustomComponent>
@@ -291,7 +291,7 @@ const handler = EventDelegation
 
 ### Using custom events
 
-When using custom events the event types will by default be considered the base type `Event`. You can
+When using custom event names the event types will by default be considered the base type `Event`. You can
 however append definitions for your custom events to the `GlobalEventHandlersEventMap`:
 
 ```typescript
@@ -307,9 +307,9 @@ EventDelegation
     .global()
     .events('my:event')
     .select('td')
-    .listen((event) => { console.log(event.foo) })
+    .listen((event) => { console.log(event.foo) }) // works
 
-// event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}, HTMLElement>
+// event is DelegationEvent<HTMLTableDataCellElement, MyEvent, HTMLElement>
 ```
 
 If you do not want to add declarations to the global event map you can alternatively just provide the event
@@ -322,9 +322,9 @@ EventDelegation
     .global()
     .events<MyEvent>('my:event')
     .select('td')
-    .listen((event) => { console.log(event.foo) })
+    .listen((event) => { console.log(event.foo) }) // works too
 
-// event is DelegationEvent<HTMLTableDataCellElement, Event & {foo: string}, HTMLElement>
+// event is DelegationEvent<HTMLTableDataCellElement, MyEvent, HTMLElement>
 ```
 
 ### Initialisation with listener option `once: true`
