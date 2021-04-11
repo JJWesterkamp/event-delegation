@@ -10,12 +10,18 @@ import type { ParseSelector } from 'typed-query-selector/parser'
  *
  *  - Through `this` binding
  *  - Through a property `delegator` on the event argument.
+ *
+ * @typeParam D The element type for the delegation selector
+ * @typeParam E The event instance type
  */
 export type DelegationListener<D extends Element, E extends Event> = (this: D, event: DelegationEvent<D, E>) => void
 
 /**
  * A delegation event the default event with an additional property `delegator` to be able to reference the
  * child element that dispatched the event within arrow function handlers.
+ *
+ * @typeParam D The element type for the delegation selector
+ * @typeParam E The event instance type
  */
 export type DelegationEvent<D extends Element, E extends Event = Event> = E & {
     delegator: D
@@ -41,8 +47,8 @@ export interface DelegationConfig<R extends Element, E extends Event = Event, D 
     readonly listenerOptions?: boolean | AddEventListenerOptions
 }
 
-type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
-type EventMap = GlobalEventHandlersEventMap
+export type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
+export type EventMap = GlobalEventHandlersEventMap
 
 // ------------------------------------------------------------------------------
 //      Creation pattern: Build methods
@@ -70,8 +76,11 @@ export interface AskRoot {
 
     /**
      * Start building an event-delegation handler for a specified root.
-     *
      * Method overload that takes an Element instance as the root.
+     *
+     * @param root A root element reference.
+     * @typeParam R The element type for the root element.
+     *              This param is inferred from the selector argument.
      */
     within<R extends Element>(root: R): AskEvent<R>
 
@@ -80,6 +89,10 @@ export interface AskRoot {
      *
      * Method overload that takes a CSS tag selector for the root. This provides autocompletion
      * features when starting to type tag-qualified CSS selectors.
+     *
+     * @param selector An HTML (or SVG) tag selector.
+     * @typeParam K the HTML tag name literal type for the selector argument.
+     *              This param is inferred from the selector argument.
      */
     within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K]>
 
@@ -88,6 +101,10 @@ export interface AskRoot {
      *
      * Method overload that takes a CSS selector for the root. It wil attempt to parse the selector
      * and infer the root element type from it.
+     *
+     * @param selector A tag-qualified CSS-style selector to parse.
+     * @typeParam S The CSS-style selector literal type for the selector argument.
+     *              This param is inferred from the selector argument.
      */
     within<S extends string>(selector: S): AskEvent<ParseSelector<S>> | never
 
@@ -98,7 +115,9 @@ export interface AskRoot {
      * failed to match, this one allows you to explicitly specify the expected root
      * type for _any_ selector string.
      *
-     * @param root
+     * @param root Any CSS selector that is expected to select the root element type.
+     * @typeParam R The element type for the root element.
+     *              This param can be explicitly given to override the default `Element` type.
      */
     within<R extends Element>(root: string): AskEvent<R>
 
@@ -118,7 +137,9 @@ export interface AskEvent<R extends Element> {
      * Returns the next step's interface providing signatures for getting the event type of
      * the delegating elements.
      *
-     * @param eventType
+     * @param eventType The event name of events to listen to.
+     * @typeParam EKey The event name literal type that's used to infer the Event instance type.
+     *            This param is inferred from the `eventType` argument.
      */
     events<EKey extends keyof EventMap>(eventType: EKey): AskSelector<R, EventMap[EKey]>
 
@@ -127,7 +148,9 @@ export interface AskEvent<R extends Element> {
      * Returns the next step's interface providing signatures for getting the event type of
      * the delegating elements.
      *
-     * @param eventType
+     * @param eventType The event name of events to listen to.
+     * @typeParam E The Event instance type. This param can be explicitly given to override
+     *              the default `Event` type.
      */
     events<E extends Event>(eventType: string): AskSelector<R, E>
 }
@@ -144,6 +167,10 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
      *
      * Method overload that takes a CSS tag selector for the delegator elements. This provides autocompletion
      * features when starting to type tag-qualified CSS selectors.
+     *
+     * @param selector An HTML (or SVG) tag selector.
+     * @typeParam K the HTML tag name literal type for the selector argument.
+     *              This param is inferred from the selector argument.
      */
     select<K extends keyof TagNameMap>(selector: K): AskListener<R, E, TagNameMap[K]>
 
@@ -151,6 +178,10 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
      * Takes the delegation selector.
      *
      * The method wil attempt to parse the selector and infer the root element type from it.
+     *
+     * @param selector A tag-qualified CSS-style selector to parse.
+     * @typeParam S The CSS-style selector literal type for the selector argument.
+     *              This param is inferred from the selector argument.
      */
     select<S extends string>(selector: S): AskListener<R, E, ParseSelector<S>>
 
@@ -160,6 +191,10 @@ export interface AskSelector<R extends Element, E extends Event = Event> {
      * Method overload that can be used when all else fails. If previous overloads
      * failed to match, this one allows you to explicitly specify the expected element
      * type for _any_ selector string.
+     *
+     * @param selector Any CSS selector that is expected to select the delegator element type.
+     * @typeParam D The element type for the delegator elements.
+     *              This param can be explicitly given to override the default `Element` type.
      */
     select<D extends Element>(selector: string): AskListener<R, E, D>
 }

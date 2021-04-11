@@ -118,7 +118,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/bec0118/src/types.ts#L123">types.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c9dea1/src/types.ts#L144">types.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -132,6 +132,10 @@
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>EKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">GlobalEventHandlersEventMap</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The event name literal type that&#39;s used to infer the Event instance type.
+										This param is inferred from the <code>eventType</code> argument.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -139,6 +143,7 @@
 								<li>
 									<h5>eventType: <span class="tsd-signature-type">EKey</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>The event name of events to listen to.</p>
 									</div>
 								</li>
 							</ul>
@@ -147,7 +152,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/bec0118/src/types.ts#L132">types.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c9dea1/src/types.ts#L155">types.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,6 +166,10 @@
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Event</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The Event instance type. This param can be explicitly given to override
+										the default <code>Event</code> type.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -168,6 +177,7 @@
 								<li>
 									<h5>eventType: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>The event name of events to listen to.</p>
 									</div>
 								</li>
 							</ul>
@@ -250,6 +260,12 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="../modules/types.html#delegationlistener" class="tsd-kind-icon">Delegation<wbr>Listener</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/types.html#eventmap" class="tsd-kind-icon">Event<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/types.html#tagnamemap" class="tsd-kind-icon">Tag<wbr>Name<wbr>Map</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -263,6 +279,7 @@
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
