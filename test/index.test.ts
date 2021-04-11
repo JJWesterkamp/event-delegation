@@ -74,9 +74,9 @@ describe('index', () => {
 
             expect(createCompositeBuilder).toBeCalledTimes(1)
             expect(createCompositeBuilder).toBeCalledWith(expect.arrayContaining([
-                elementA,
-                elementB,
-                elementC,
+                elementA, // Mock implementation returns the element so we can compare
+                elementB, // Mock implementation returns the element so we can compare
+                elementC, // Mock implementation returns the element so we can compare
             ]))
         })
     })
