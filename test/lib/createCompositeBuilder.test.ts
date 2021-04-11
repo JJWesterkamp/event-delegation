@@ -1,8 +1,7 @@
-import { createCompositeBuilder } from "../../src/lib/createCompositeBuilder"
-
-import { EventHandler as _EventHandler } from '../../src/EventHandler'
 import { createBuilder } from '../../src/lib/createBuilder'
-import { createDiv } from "../helpers"
+import { createCompositeBuilder } from '../../src/lib/createCompositeBuilder'
+import { createDiv } from '../helpers'
+import { EventHandler as _EventHandler } from '../../src/EventHandler'
 
 const EventHandler = _EventHandler as jest.Mock
 

@@ -1,8 +1,8 @@
 import EventDelegation from '../src'
 import { createBuilder as _createBuilder } from '../src/lib/createBuilder'
 import { createCompositeBuilder as _createCompositeBuilder } from '../src/lib/createCompositeBuilder'
-import { normalizeRoot as _normalizeRoot } from '../src/lib/normalizeRoot'
 import { createDiv } from './helpers'
+import { normalizeRoot as _normalizeRoot } from '../src/lib/normalizeRoot'
 
 const createBuilder = _createBuilder as jest.Mock
 const createCompositeBuilder = _createCompositeBuilder as jest.Mock

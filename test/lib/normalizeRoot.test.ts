@@ -1,4 +1,4 @@
-import { normalizeRoot } from "../../src/lib/normalizeRoot"
+import { normalizeRoot } from '../../src/lib/normalizeRoot'
 
 describe('lib/normalizeRoot()', () => {
 

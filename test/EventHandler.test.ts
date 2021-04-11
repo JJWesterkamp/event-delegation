@@ -1,4 +1,4 @@
-import { EventHandler } from '../src/EventHandler';
+import { EventHandler } from '../src/EventHandler'
 
 describe('EventHandler', () => {
 
@@ -15,7 +15,7 @@ describe('EventHandler', () => {
         const events = []
 
         while(times--) {
-            const event = new Event('click', { bubbles: true });
+            const event = new Event('click', { bubbles: true })
             matchingDescendant.dispatchEvent(event)
             events.push(event)
         }
@@ -27,7 +27,7 @@ describe('EventHandler', () => {
         const events = []
 
         while(times--) {
-            const event = new Event('click', { bubbles: true });
+            const event = new Event('click', { bubbles: true })
             nonMatchingDescendant.dispatchEvent(event)
             events.push(event)
         }
@@ -245,4 +245,4 @@ describe('EventHandler', () => {
         handler.remove()
         expect(removeSpy).toBeCalledTimes(1)
     })
-});
+})

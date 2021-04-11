@@ -1,4 +1,4 @@
-import { matches } from "../../src/lib/matches"
+import { matches } from '../../src/lib/matches'
 
 describe('lib/matches()', () => {
     test('Throws an error if given a non-element', () => {
