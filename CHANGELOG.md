@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [2.0.1] (2021-04-11)
+
+### Fixed
+
+- Removed documentation folder from npm distributions.
+
 ## [2.0.0] (2021-04-11)
 
 No notable changes.
@@ -95,7 +101,8 @@ No notable changes.
 
 - Initial version
 
-[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0-beta1...v2.0.0
 [2.0.0-beta1]: https://github.com/JJWesterkamp/event-delegation/compare/v1.0.0...v2.0.0-beta1
 [1.0.0]: https://github.com/JJWesterkamp/event-delegation/compare/v0.4.4...v1.0.0
