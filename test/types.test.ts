@@ -18,7 +18,6 @@ describe('Type inference', () => {
 
         test('Type inference of explicit type arguments', () => {
             interface MyEvent extends Event { foo: string }
-            interface CustomComponent extends HTMLElement { foo: 'bar' }
             interface CustomButton extends HTMLElement { baz: 42 }
 
             const handler: EventHandler<HTMLElement> = EventDelegation
@@ -56,8 +55,8 @@ describe('Type inference', () => {
                 .listen((event) => {
                     const E: MouseEvent = event
                     const D: HTMLInputElement = event.delegator
-                        const R: HTMLFieldSetElement = event.currentTarget
-                    })
+                    const R: HTMLFieldSetElement = event.currentTarget
+                })
                 } catch(e) {
                     // Runtime can't find the root element, but that's OK. It should just compile.
                 }
