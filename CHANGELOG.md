@@ -2,11 +2,14 @@
 
 ## [Unreleased]
 
+- Removed sourcemaps from CommonJS and ESM builds in npm releases.
+- Removed remaining unnecessary files from npm releases
+
 ## [2.0.1] (2021-04-11)
 
 ### Fixed
 
-- Removed documentation folder from npm distributions.
+- Removed documentation folder from npm releases.
 
 ## [2.0.0] (2021-04-11)
 
