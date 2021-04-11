@@ -3,11 +3,10 @@ docs
 src
 test
 coverage
-_config.yml
 .*
 tsconfig.json
 tslint.json
 webpack.config.js
-karma.conf.js
+jest.config.js
 yarn.lock
 .scratch.*
