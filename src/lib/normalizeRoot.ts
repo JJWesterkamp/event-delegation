@@ -1,7 +1,7 @@
 import { isString } from './isString'
 import { isNil } from './isNil'
 
-export function normalizeRoot<R extends Element>(rootOrSelector: string | R): R {
+export function normalizeRoot<R extends Element>(rootOrSelector: string | R): R | never {
     if (isString(rootOrSelector)) {
         const rootOrNull = document.querySelector<R>(rootOrSelector)
 

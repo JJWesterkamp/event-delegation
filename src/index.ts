@@ -18,7 +18,7 @@ const EventDelegation: AskRoot = {
     // Create one delegated event listener for a specified root element.
     // ----------------------------------------------------------------------------------------
 
-    within(rootOrSelector: string | Element): AskEvent<any, 'SINGLE'> {
+    within(rootOrSelector: string | Element): AskEvent<any, 'SINGLE'> | never {
         return createBuilder(normalizeRoot(rootOrSelector))
     },
 
