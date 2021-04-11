@@ -40,16 +40,25 @@ $ npm install @jjwesterkamp/event-delegation --save
 import EventDelegation from '@jjwesterkamp/event-delegation'
 ```
 
-There are two main functions on the EventDelegation namespace object:
+There are three main functions on the EventDelegation namespace object. All methods are used to start an event listener
+through the same kind of builder-pattern.
 
-- `EventDelegation.global()`
-- `EventDelegation.within(root)`
+1. [`EventDelegation.global()`](#eventdelegationglobal)
 
-Both methods are used to start an event listener through the same kind of builder-pattern.
-The `global()` method is used to attach a global listener on the top-level `document.body` element.
-The `within()` method is used to provide an alternative root element for the listener.
+    The `global()` method is used to attach a global listener on the top-level `document.body` element.
 
-The build process has the following 4 steps in the following order, ultimately returning an `EventHandler` instance:
+2. [`EventDelegation.within(root)`](#eventdelegationwithin)
+
+    The `within()` method is used to provide one alternative root element for the listener.
+
+3. [`EventDelegation.withinMany(roots)`](#eventdelegationwithinmany)
+
+    The `withinMany()` method is used to provide multiple alternative roots for creating many listeners at once.
+
+---
+
+The build process has the following 4 steps in the following order, ultimately returning one single or multiple
+`EventHandler` instances, depending on the called method:
 
 [`AskRoot`][AskRoot] => [`AskEvent`][AskEvent] => [`AskSelector`][AskSelector] => [`AskListener`][AskListener] => [`EventHandler`][EventHandler]
 > First, ask for a root, then an event name, then a descendant selector, and finally a listener callback.
@@ -113,7 +122,7 @@ EventDelegation
 // event is DelegationEvent<HTMLButtonElement | HTMLInputElement, MouseEvent, HTMLElement>
 ```
 
-**Event instance types** 
+**Event instance types**
 
 [`DelegationEvent<D, E, R>`](https://jjwesterkamp.github.io/event-delegation/modules/types.html#delegationevent) - This is the actual type of events passed to the listener functions. It has the type parameters `D` for delegator, `E` for event and `R` for root.
 In the above example this means that:
@@ -124,8 +133,8 @@ In the above example this means that:
 
 **Default types**
 
-The element types will default to `Element` for CSS selectors that are not tag-qualified or are invalid. 
-See the section **Selector matching failure / custom selectors** further down for details about overriding 
+The element types will default to `Element` for CSS selectors that are not tag-qualified or are invalid.
+See the section **Selector matching failure / custom selectors** further down for details about overriding
 these default types.
 
 ```typescript
@@ -146,8 +155,12 @@ EventDelegation
 EventDelegation.within(root: Element | string): AskEvent
 ```
 
-Alternatively you can add event listeners to other elements with the `within`method. It takes either an 
-element or a selector. In the case of an element its type is preserved and ultimately an `EventHandler<T>` 
+Alternatively you can add event listeners to other elements with the `within`method. It takes either an
+element or a selector.
+
+**Using elements**
+
+In the case of an element its type is preserved and ultimately an `EventHandler<T>`
 is returned:
 
 ```typescript
@@ -160,6 +173,8 @@ const handler = EventDelegation
     .select('button')
     .listen((event) => { /* ... */ })
 ```
+
+**Using selectors**
 
 In the case of a selector the type is inferred from the given string just as with the `.select()` method.
 If the `root` is a selector, `within()` will create one single handler for the **first matching element**.
@@ -175,17 +190,57 @@ const handler = EventDelegation
 // handler is EventHandler<HTMLFormElement>
 ```
 
-**A note about roots**
+### EventDelegation.withinMany()
 
-> **UPDATE** - I'm currently working on a distinct `withinMany()` function
-> ([see branch](https://github.com/JJWesterkamp/event-delegation/tree/feature/within-many)) 
-> that allows to explicitly opt-in to creation of multiple listeners for many roots.
-> 
-> Unlike some other event delegation packages, this package does not create multiple listeners for all matching
-> elements when the `root` is a selector. This is a design decision. Because such elements could be nested within
-> each other, implicitly creating multiple listeners might result in very unpredictable behavior, including 'duplicated'
-> handling of events that bubble through multiple matching roots, and inconsistencies based on whether events'
-> `stopPropagation` methods have been called.
+Finally you can add multiple listeners to many root elements at once. Similarly to `within()`, `withinMany()` takes either a selector or an array of root element references.
+
+**Using selectors**
+
+When passing a selector the element type is inferred from the given string if possible. The return value of the `listen()` call will be an array of `EventHandler<T>`'s:
+
+```typescript
+const handlers = EventDelegation
+    .withinMany('form.my-form')
+    .events('click')
+    .select('button')
+    .listen((event) => { /* ... */ })
+
+// event.currentTarget is HTMLFormElement
+// handlers is EventHandler<HTMLFormElement>[]
+```
+
+It also copes with complex selectors and grouping selectors that target more than one element type:
+
+```typescript
+const handlers = EventDelegation
+    .withinMany('form.my-form, #article fieldset')
+    .events('click')
+    .select('button')
+    .listen((event) => { /* ... */ })
+
+// event.currentTarget is HTMLFormElement | HTMLFieldSetElement
+// handlers is EventHandler<HTMLFormElement | HTMLFieldSetElement>[]
+```
+
+**Using elements**
+
+Just as with `within()` you can pass `withinMany()` element references. It takes an array of elements,
+and will carry their types along to give full knowledge about the possible types of `event.currentTarget`
+and the created event handlers:
+
+```typescript
+declare const myForm: HTMLFormElement
+declare const myFieldset: HTMLFieldSetElement
+
+const handlers = EventDelegation
+    .withinMany([myForm, myFieldset])
+    .events('click')
+    .select('button')
+    .listen((event) => { /* ... */ })
+
+// event.currentTarget is HTMLFormElement | HTMLFieldSetElement
+// handlers is EventHandler<HTMLFormElement | HTMLFieldSetElement>[]
+```
 
 ### EventHandler
 
