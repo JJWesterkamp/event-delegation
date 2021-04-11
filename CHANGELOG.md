@@ -10,6 +10,10 @@
   to take an additional type argument for the root element type. However, if you never imported and used these types
   explicitly this change should not affect you.
 
+### Added
+
+- Method `EventDelegation.withinMany()` to explicitly create multiple listeners at once.
+
 ## [1.0.0] (2021-04-10)
 
 ### Breaking changes
