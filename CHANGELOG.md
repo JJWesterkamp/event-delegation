@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.0.4] (2021-04-12)
+
 ### Fixed
 
 - Allow `boolean` type for listenerOptions.
@@ -125,7 +127,8 @@ No notable changes.
 
 - Initial version
 
-[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.0...v2.0.1

@@ -1,6 +1,6 @@
 {
   "name": "@jjwesterkamp/event-delegation",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "Jeffrey Westerkamp",
   "repository": "git+https://github.com/JJWesterkamp/event-delegation.git",
   "homepage": "https://jjwesterkamp.github.io/event-delegation",
