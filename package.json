@@ -23,7 +23,7 @@
     "build:cjs": "tsc --sourceMap false",
     "build:esm": "tsc -m es6 --outDir esm --sourceMap false",
     "build:umd": "webpack",
-    "docs": "typedoc event-delegation.d.ts src/*",
+    "docs": "typedoc event-delegation.d.ts",
     "bump": "npx yarn version --new-version",
     "preversion": "npm run docs && git reset && git add ./CHANGELOG.md ./README.md ./docs/*",
     "prepublishOnly": "git checkout master && npm run test && npm run build",

@@ -55,10 +55,7 @@
 					<a href="../modules.html">@jjwesterkamp/event-delegation</a>
 				</li>
 				<li>
-					<a href="../modules/event_delegation.html">event-delegation</a>
-				</li>
-				<li>
-					<a href="event_delegation.askroot.html">AskRoot</a>
+					<a href="askroot.html">AskRoot</a>
 				</li>
 			</ul>
 			<h1>Interface AskRoot</h1>
@@ -71,10 +68,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Part of the package namespace <code>EventDelegation</code>. Provides methods for starting
-							initialisation of event handlers through the build methods pattern. All methods
-						Return the next step&#39;s interface providing signatures for getting the event type.</p>
+						<p>Represents the package&#39;s main namespace <code>EventDelegation</code>. Provides methods for setting the
+						event-delegation root element(s)</p>
 					</div>
+					<p><strong><code>AskRoot</code></strong> =&gt; <a href="askevent.html"><code>AskEvent</code></a> =&gt; <a href="askselector.html"><code>AskSelector</code></a> =&gt; <a href="asklistener.html"><code>AskListener</code></a> builds <a href="eventhandler.html"><code>EventHandler</code></a></p>
+					<blockquote>
+						<p>All methods / overloads return the <a href="askevent.html"><code>AskEvent</code></a> interface.</p>
+					</blockquote>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -92,9 +92,9 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.askroot.html#global" class="tsd-kind-icon">global</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="event_delegation.askroot.html#within" class="tsd-kind-icon">within</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="event_delegation.askroot.html#withinmany" class="tsd-kind-icon">within<wbr>Many</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="askroot.html#global" class="tsd-kind-icon">global</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="askroot.html#within" class="tsd-kind-icon">within</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="askroot.html#withinmany" class="tsd-kind-icon">within<wbr>Many</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,21 +106,29 @@
 					<a name="global" class="tsd-anchor"></a>
 					<h3>global</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">global<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">global<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L75">event-delegation.d.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L93">event-delegation.d.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Start building an event-delegation handler for the (global) body element.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">global</span><span style="color: #D8DEE9FF">()</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -128,23 +136,33 @@
 					<a name="within" class="tsd-anchor"></a>
 					<h3>within</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">within&lt;R&gt;<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">within&lt;K&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/event_delegation.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">within&lt;S&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">within&lt;R&gt;<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within&lt;R&gt;<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within&lt;K&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within&lt;S&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within&lt;R&gt;<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L89">event-delegation.d.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L117">event-delegation.d.ts:117</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Start building an event-delegation handler for a specified root.
-									Method overload that takes an Element instance as the root.</p>
+									<p>Start building an event-delegation handler for a specified root.</p>
 								</div>
+								<p>Method overload that takes an Element instance as the root.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #81A1C1">declare</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">const</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">myRoot</span><span style="color: #81A1C1">:</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">HTMLElement</span>
+
+<span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #D8DEE9FF">(</span><span style="color: #D8DEE9">myRoot</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -165,12 +183,12 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L101">event-delegation.d.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L136">event-delegation.d.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,6 +197,14 @@
 								</div>
 								<p>Method overload that takes a CSS tag selector for the root. This provides autocompletion
 								features when starting to type tag-qualified CSS selectors.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">form</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -199,12 +225,12 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/event_delegation.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L113">event-delegation.d.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L155">event-delegation.d.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -213,6 +239,14 @@
 								</div>
 								<p>Method overload that takes a CSS selector for the root. It wil attempt to parse the selector
 								and infer the root element type from it.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">#main form.my-form</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -233,12 +267,12 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L126">event-delegation.d.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L175">event-delegation.d.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -248,6 +282,14 @@
 								<p>Method overload that can be used when all else fails. If previous overloads
 									failed to match, this one allows you to explicitly specify the expected root
 								type for <em>any</em> selector string.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #ECEFF4">&lt;</span><span style="color: #8FBCBB">CustomComponent</span><span style="color: #ECEFF4">&gt;</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">custom-component</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -268,7 +310,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -276,16 +318,16 @@
 					<a name="withinmany" class="tsd-anchor"></a>
 					<h3>within<wbr>Many</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;R&gt;<span class="tsd-signature-symbol">(</span>roots<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;K&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/event_delegation.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;S&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;R&gt;<span class="tsd-signature-symbol">(</span>roots<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;R&gt;<span class="tsd-signature-symbol">(</span>roots<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;K&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;S&gt;<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">within<wbr>Many&lt;R&gt;<span class="tsd-signature-symbol">(</span>roots<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L142">event-delegation.d.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L201">event-delegation.d.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,6 +335,17 @@
 									<p>Start building an event-delegation handler for multiple specified roots.</p>
 								</div>
 								<p>Method overload that takes Element instances as the roots.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #81A1C1">declare</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">const</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">rootA</span><span style="color: #81A1C1">:</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">HTMLElement</span>
+<span style="color: #81A1C1">declare</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">const</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">rootB</span><span style="color: #81A1C1">:</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">HTMLFormElement</span>
+
+<span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #D8DEE9FF">([</span><span style="color: #D8DEE9">rootA</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">rootB</span><span style="color: #D8DEE9FF">])</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -314,12 +367,12 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L150">event-delegation.d.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L220">event-delegation.d.ts:220</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -328,25 +381,40 @@
 								</div>
 								<p>Method overload that takes a CSS tag selector for the roots. This provides autocompletion
 								features when starting to type tag-qualified CSS selectors.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">form</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;symbol&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;object&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;a&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;abbr&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;address&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;applet&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;area&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;article&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;aside&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;audio&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;b&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;base&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;basefont&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;bdi&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;bdo&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;blockquote&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;body&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;br&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;button&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;canvas&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;caption&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;cite&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;code&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;col&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;colgroup&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;data&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;datalist&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dd&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;del&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;details&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dfn&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dialog&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dir&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;div&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dl&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dt&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;em&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;embed&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fieldset&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;figcaption&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;figure&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;font&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;footer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;form&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;frame&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;frameset&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;h1&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;h2&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;h3&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;h4&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;h5&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;h6&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;head&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;header&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hgroup&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hr&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;html&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;i&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;iframe&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;img&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;input&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ins&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;kbd&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;label&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;legend&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;li&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;link&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;main&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;map&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;mark&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;marquee&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;menu&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;meta&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;meter&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;nav&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;noscript&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ol&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;optgroup&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;option&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;output&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;p&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;param&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;picture&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pre&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;progress&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;q&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rp&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rt&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ruby&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;s&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;samp&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;script&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;section&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;select&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;slot&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;small&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;source&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;span&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;strong&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;style&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sub&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;summary&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sup&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;table&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;tbody&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;td&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;template&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;textarea&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;tfoot&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;th&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;thead&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;time&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;title&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;tr&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;track&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;u&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ul&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;var&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;video&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wbr&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;circle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;clipPath&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;defs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;desc&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ellipse&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feBlend&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feColorMatrix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feComponentTransfer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feComposite&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feConvolveMatrix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feDiffuseLighting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feDisplacementMap&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feDistantLight&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feFlood&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feFuncA&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feFuncB&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feFuncG&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feFuncR&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feGaussianBlur&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feImage&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feMerge&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feMergeNode&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feMorphology&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feOffset&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fePointLight&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feSpecularLighting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feSpotLight&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feTile&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;feTurbulence&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;foreignObject&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;g&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;image&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;line&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;linearGradient&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;marker&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;mask&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;metadata&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;path&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pattern&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;polygon&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;polyline&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;radialGradient&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rect&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stop&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;svg&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;switch&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;text&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;textPath&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;tspan&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;use&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;view&quot;</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>the HTML tag name literal type for the selector argument.
+										This param is inferred from the selector argument.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>selector: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An HTML (or SVG) tag selector.</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/event_delegation.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#tagnamemap" class="tsd-signature-type" data-tsd-kind="Type alias">TagNameMap</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L158">event-delegation.d.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L239">event-delegation.d.ts:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,25 +423,40 @@
 								</div>
 								<p>Method overload that takes a CSS selector for the roots. It wil attempt to parse the selector
 								and infer the root elements&#39; type from it.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">#main form.my-form</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>S<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The CSS-style selector literal type for the selector argument.
+										This param is inferred from the selector argument.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>selector: <span class="tsd-signature-type">S</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A tag-qualified CSS-style selector to parse.</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ParseSelector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L167">event-delegation.d.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L259">event-delegation.d.ts:259</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,11 +466,23 @@
 								<p>Method overload that can be used when all else fails. If previous overloads
 									failed to match, this one allows you to explicitly specify the expected
 								type for <em>any</em> selector string.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #D8DEE9">EventDelegation</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #ECEFF4">&lt;</span><span style="color: #8FBCBB">CustomComponent</span><span style="color: #ECEFF4">&gt;</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">custom-component</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">// ...</span>
+</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The element type for the root element.
+										This param can be explicitly given to override the default <code>Element</code> type.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -396,7 +491,7 @@
 									<h5>roots: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="event_delegation.askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="askevent.html" class="tsd-signature-type" data-tsd-kind="Interface">AskEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -406,120 +501,79 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Modules</a>
-					</li>
-					<li class="current tsd-kind-module">
-						<a href="../modules/event_delegation.html">event-<wbr>delegation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src.html">src</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_eventhandler.html">src/<wbr>Event<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_assertions.html">src/lib/assertions</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_closestwithin.html">src/lib/closest<wbr>Within</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_createbuilder.html">src/lib/create<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_createcompositebuilder.html">src/lib/create<wbr>Composite<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_matches.html">src/lib/matches</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_normalizeroot.html">src/lib/normalize<wbr>Root</a>
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.askevent.html" class="tsd-kind-icon">Ask<wbr>Event</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="askevent.html" class="tsd-kind-icon">Ask<wbr>Event</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.asklistener.html" class="tsd-kind-icon">Ask<wbr>Listener</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="asklistener.html" class="tsd-kind-icon">Ask<wbr>Listener</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="event_delegation.askroot.html" class="tsd-kind-icon">Ask<wbr>Root</a>
+					<li class="current tsd-kind-interface">
+						<a href="askroot.html" class="tsd-kind-icon">Ask<wbr>Root</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.askroot.html#global" class="tsd-kind-icon">global</a>
+								<a href="askroot.html#global" class="tsd-kind-icon">global</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="event_delegation.askroot.html#within" class="tsd-kind-icon">within</a>
+								<a href="askroot.html#within" class="tsd-kind-icon">within</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="event_delegation.askroot.html#withinmany" class="tsd-kind-icon">within<wbr>Many</a>
+								<a href="askroot.html#withinmany" class="tsd-kind-icon">within<wbr>Many</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.askselector.html" class="tsd-kind-icon">Ask<wbr>Selector</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="askselector.html" class="tsd-kind-icon">Ask<wbr>Selector</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.delegationconfig.html" class="tsd-kind-icon">Delegation<wbr>Config</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="delegationconfig.html" class="tsd-kind-icon">Delegation<wbr>Config</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/event_delegation.html#delegationevent" class="tsd-kind-icon">Delegation<wbr>Event</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#delegationevent" class="tsd-kind-icon">Delegation<wbr>Event</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/event_delegation.html#delegationlistener" class="tsd-kind-icon">Delegation<wbr>Listener</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#delegationlistener" class="tsd-kind-icon">Delegation<wbr>Listener</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#eventmap" class="tsd-kind-icon">Event<wbr>Map</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#eventmap" class="tsd-kind-icon">Event<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#tagnamemap" class="tsd-kind-icon">Tag<wbr>Name<wbr>Map</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#tagnamemap" class="tsd-kind-icon">Tag<wbr>Name<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#default" class="tsd-kind-icon">default</a>
+					<li class=" tsd-kind-variable">
+						<a href="../modules.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 </body>

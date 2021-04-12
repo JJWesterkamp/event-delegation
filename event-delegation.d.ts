@@ -32,16 +32,29 @@ export type DelegationEvent<D extends Element, E extends Event, R extends Elemen
 
 /**
  * The event handler instance interface.
+ *
+ * [[`AskRoot`]] => [[`AskEvent`]] => [[`AskSelector`]] => [[`AskListener`]] builds **`EventHandler`**
+ *
+ * @typeParam R The type of the root element to which the event listener is attached.
  */
 export interface EventHandler<R extends Element> {
+    /** Tells whether this handler is currently attached, ie. the listener is active. */
     isAttached(): boolean
+    /** Tells whether the listener for this instance has been removed previously. */
     isDestroyed(): boolean
+    /** Returns the root element - the element to which the event listener is attached. */
     root(): R
+    /** Tells what events this instance is listening for. */
     eventType(): string
+    /** Returns the CSS selector that is used to match against descendant elements. */
     selector(): string
+    /** Removes the event listener for this instance. */
     remove(): void
 }
 
+/**
+ * Internally used configuration type for EventHandler construction.
+ */
 export interface DelegationConfig<R extends Element, E extends Event = Event, D extends Element = Element> {
     readonly root: R
     readonly eventType: string
@@ -54,14 +67,12 @@ export type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
 export type EventMap   = GlobalEventHandlersEventMap
 export type BuildMode  = 'SINGLE' | 'MANY'
 
-// ------------------------------------------------------------------------------
-//      Creation pattern: Build methods
-// ------------------------------------------------------------------------------
-
 /**
- * Part of the package namespace `EventDelegation`. Provides methods for starting
- * initialisation of event handlers through the build methods pattern. All methods
- * Return the next step's interface providing signatures for getting the event type.
+ * Represents the package's main namespace `EventDelegation`. Provides methods for setting the
+ * event-delegation root element(s)
+ *
+ * **`AskRoot`** => [[`AskEvent`]] => [[`AskSelector`]] => [[`AskListener`]] builds [[`EventHandler`]]
+ * > All methods / overloads return the [[`AskEvent`]] interface.
  */
 export interface AskRoot {
 
@@ -71,6 +82,13 @@ export interface AskRoot {
 
     /**
      * Start building an event-delegation handler for the (global) body element.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .global()
+     *     // ...
+     * ```
      */
     global(): AskEvent<HTMLElement, 'SINGLE'>
 
@@ -80,11 +98,21 @@ export interface AskRoot {
 
     /**
      * Start building an event-delegation handler for a specified root.
+     *
      * Method overload that takes an Element instance as the root.
      *
      * @param root A root element reference.
      * @typeParam R The element type for the root element.
      *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * declare const myRoot: HTMLElement
+     *
+     * EventDelegation
+     *     .within(myRoot)
+     *     // ...
+     * ```
      */
     within<R extends Element>(root: R): AskEvent<R, 'SINGLE'>
 
@@ -97,6 +125,13 @@ export interface AskRoot {
      * @param selector An HTML (or SVG) tag selector.
      * @typeParam K the HTML tag name literal type for the selector argument.
      *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .within('form')
+     *     // ...
+     * ```
      */
     within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], 'SINGLE'> | never
 
@@ -109,6 +144,13 @@ export interface AskRoot {
      * @param selector A tag-qualified CSS-style selector to parse.
      * @typeParam S The CSS-style selector literal type for the selector argument.
      *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .within('#main form.my-form')
+     *     // ...
+     * ```
      */
     within<S extends string>(selector: S): AskEvent<ParseSelector<S>, 'SINGLE'> | never
 
@@ -122,6 +164,13 @@ export interface AskRoot {
      * @param root Any CSS selector that is expected to select the root element type.
      * @typeParam R The element type for the root element.
      *              This param can be explicitly given to override the default `Element` type.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .within<CustomComponent>('custom-component')
+     *     // ...
+     * ```
      */
     within<R extends Element>(root: string): AskEvent<R, 'SINGLE'> | never
 
@@ -138,6 +187,16 @@ export interface AskRoot {
      * @typeParam R The element type for the root elements. Note that this may very well be a union type
      *              when an array with multiple root types is given. This param is inferred from the selector
      *              argument.
+     *
+     * @example
+     * ```typescript
+     * declare const rootA: HTMLElement
+     * declare const rootB: HTMLFormElement
+     *
+     * EventDelegation
+     *     .withinMany([rootA, rootB])
+     *     // ...
+     * ```
      */
     withinMany<R extends Element>(roots: R[]): AskEvent<R, 'MANY'>
 
@@ -146,6 +205,17 @@ export interface AskRoot {
      *
      * Method overload that takes a CSS tag selector for the roots. This provides autocompletion
      * features when starting to type tag-qualified CSS selectors.
+     *
+     * @param selector An HTML (or SVG) tag selector.
+     * @typeParam K the HTML tag name literal type for the selector argument.
+     *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .withinMany('form')
+     *     // ...
+     * ```
      */
     withinMany<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], 'MANY'>
 
@@ -154,6 +224,17 @@ export interface AskRoot {
      *
      * Method overload that takes a CSS selector for the roots. It wil attempt to parse the selector
      * and infer the root elements' type from it.
+     *
+     * @param selector A tag-qualified CSS-style selector to parse.
+     * @typeParam S The CSS-style selector literal type for the selector argument.
+     *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .withinMany('#main form.my-form')
+     *     // ...
+     * ```
      */
     withinMany<S extends string>(selector: S): AskEvent<ParseSelector<S>, 'MANY'>
 
@@ -163,43 +244,67 @@ export interface AskRoot {
      * Method overload that can be used when all else fails. If previous overloads
      * failed to match, this one allows you to explicitly specify the expected
      * type for _any_ selector string.
+     *
+     * @param root Any CSS selector that is expected to select the root element type.
+     * @typeParam R The element type for the root element.
+     *              This param can be explicitly given to override the default `Element` type.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .withinMany<CustomComponent>('custom-component')
+     *     // ...
+     * ```
      */
     withinMany<R extends Element>(roots: string): AskEvent<R, 'MANY'>
 }
 
 /**
- * Method signatures for setting the event name and getting the event type
- * for an event-delegation build process.
+ * Method signatures that set the event name and instance type.
+ *
+ * [[`AskRoot`]] => **`AskEvent`** => [[`AskSelector`]] => [[`AskListener`]] builds [[`EventHandler`]]
+ * > All overloads return the [[`AskSelector`]] interface.
  */
 export interface AskEvent<R extends Element, Mode extends BuildMode> {
 
     /**
      * Method overload that infers the event instance type from the given event name.
-     * Returns the next step's interface providing signatures for getting the event type of
-     * the delegating elements.
      *
      * @param eventType The event name of events to listen to.
      * @typeParam EKey The event name literal type that's used to infer the Event instance type.
      *            This param is inferred from the `eventType` argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .global()
+     *     .events('click')
+     * ```
      */
     events<EKey extends keyof EventMap>(eventType: EKey): AskSelector<R, EventMap[EKey], Mode>
 
     /**
      * Method overload that allows to explicitly specify the event instance type.
-     * Returns the next step's interface providing signatures for getting the event type of
-     * the delegating elements.
      *
      * @param eventType The event name of events to listen to.
      * @typeParam E The Event instance type. This param can be explicitly given to override
      *              the default `Event` type.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .global()
+     *     .events<CustomEvent>('my:event')
+     * ```
      */
     events<E extends Event>(eventType: string): AskSelector<R, E, Mode>
 }
 
 /**
- * Method signatures for setting the delegator selector and getting the type of delegating elements
- * for an event-delegation build process. All overloads Return the final step's interface for setting
- * the event listener function and get the event-handler instance.
+ * Method signatures for setting the delegator selector and instance type of delegating elements.
+ *
+ * [[`AskRoot`]] => [[`AskEvent`]] => **`AskSelector`** => [[`AskListener`]] builds [[`EventHandler`]]
+ * > All overloads return the [[`AskListener`]] interface
  */
 export interface AskSelector<R extends Element, E extends Event, Mode extends BuildMode> {
 
@@ -212,6 +317,14 @@ export interface AskSelector<R extends Element, E extends Event, Mode extends Bu
      * @param selector An HTML (or SVG) tag selector.
      * @typeParam K the HTML tag name literal type for the selector argument.
      *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .global()
+     *     .events('click')
+     *     .select('button')
+     * ```
      */
     select<K extends keyof TagNameMap>(selector: K): AskListener<R, E, TagNameMap[K], Mode>
 
@@ -223,6 +336,14 @@ export interface AskSelector<R extends Element, E extends Event, Mode extends Bu
      * @param selector A tag-qualified CSS-style selector to parse.
      * @typeParam S The CSS-style selector literal type for the selector argument.
      *              This param is inferred from the selector argument.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .global()
+     *     .events('click')
+     *     .select('form button.my-button[aria-disabled="false"]')
+     * ```
      */
     select<S extends string>(selector: S): AskListener<R, E, ParseSelector<S>, Mode>
 
@@ -236,28 +357,61 @@ export interface AskSelector<R extends Element, E extends Event, Mode extends Bu
      * @param selector Any CSS selector that is expected to select the delegator element type.
      * @typeParam D The element type for the delegator elements.
      *              This param can be explicitly given to override the default `Element` type.
+     *
+     * @example
+     * ```typescript
+     * EventDelegation
+     *     .global()
+     *     .events('click')
+     *     .select<CustomButton>('custom-button')
+     * ```
      */
     select<D extends Element>(selector: string): AskListener<R, E, D, Mode>
 }
 
 /**
- * Method signatures for the final build step: setting the event listener function for an event-delegation build process.
+ * Method signatures that set the event listener function and return event handlers.
+ *
+ * [[`AskRoot`]] => [[`AskEvent`]] => [[`AskSelector`]] => **`AskListener`** builds [[`EventHandler`]]
+ * > Returns one or many [[`EventHandler`]] instances.
  */
 export interface AskListener<R extends Element, E extends Event, D extends Element, Mode extends BuildMode> {
 
     /**
-     * Method signatures for the final build step: setting the event listener function for an event-delegation build process.
-     * Uses the previously constructed types for delegator elements and event instances to provide full type completion
+     * Takes the event listener function for an event-delegation build process. Uses the previously
+     * constructed types for delegator elements and event instances to provide full type completion
      * inside listener callbacks.
      *
-     * Returns the event-handler instance.
+     * returns one {@link EventHandler `EventHandler`} instance when the build started with either
+     * {@link AskRoot.global `EventDelegation.global()`} or {@link AskRoot.within `EventDelegation.within()`},
+     * or an array of EventHandler instances when the build started with
+     * {@link AskRoot.withinMany `EventDelegation.withinMany()`}.
      *
      * @param listener
      * @param listenerOptions
+     * @example
+     * ```typescript
+     * // Returns either one handler
+     * const oneHandler: EventHandler<HTMLElement> = EventDelegation
+     *     .global()
+     *     .events('click')
+     *     .select('button')
+     *     .listen((e) => e.delegator.disabled = true)
+     *
+     * // or many handlers
+     * const manyHandlers: EventHandler<HTMLFormElement>[] = EventDelegation
+     *     .withinMany('form')
+     *     .events('click')
+     *     .select('button')
+     *     .listen((e) => e.delegator.disabled = true)
+     * ```
      */
-    listen(listener: DelegationListener<D, E, R>, listenerOptions?: AddEventListenerOptions): Mode extends 'MANY' ? EventHandler<R>[] :
-                                                                                              Mode extends 'SINGLE' ? EventHandler<R> :
-                                                                                              never
+    listen(
+        listener: DelegationListener<D, E, R>,
+        listenerOptions?: boolean | AddEventListenerOptions,
+    ): Mode extends 'MANY' ? EventHandler<R>[] :
+       Mode extends 'SINGLE' ? EventHandler<R> :
+       never
 }
 
 declare const EventDelegation: AskRoot

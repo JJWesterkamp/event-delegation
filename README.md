@@ -364,11 +364,11 @@ const x = handler.root()
 The MIT License (MIT). See [license file] for more information.
 
 [license file]: https://github.com/JJWesterkamp/event-delegation/blob/master/LICENSE
-[AskRoot]: https://jjwesterkamp.github.io/event-delegation/interfaces/event_delegation.askroot.html
-[AskSelector]: https://jjwesterkamp.github.io/event-delegation/interfaces/event_delegation.askselector.html
-[AskEvent]: https://jjwesterkamp.github.io/event-delegation/interfaces/event_delegation.askevent.html
-[AskListener]: https://jjwesterkamp.github.io/event-delegation/interfaces/event_delegation.asklistener.html
-[EventHandler]: https://jjwesterkamp.github.io/event-delegation/interfaces/event_delegation.eventhandler.html
+[AskRoot]: https://jjwesterkamp.github.io/event-delegation/interfaces/askroot.html
+[AskSelector]: https://jjwesterkamp.github.io/event-delegation/interfaces/askselector.html
+[AskEvent]: https://jjwesterkamp.github.io/event-delegation/interfaces/askevent.html
+[AskListener]: https://jjwesterkamp.github.io/event-delegation/interfaces/asklistener.html
+[EventHandler]: https://jjwesterkamp.github.io/event-delegation/interfaces/eventhandler.html
 [mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
 [cdn]: https://www.jsdelivr.com/package/npm/@jjwesterkamp/event-delegation

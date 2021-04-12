@@ -55,10 +55,7 @@
 					<a href="../modules.html">@jjwesterkamp/event-delegation</a>
 				</li>
 				<li>
-					<a href="../modules/event_delegation.html">event-delegation</a>
-				</li>
-				<li>
-					<a href="event_delegation.eventhandler.html">EventHandler</a>
+					<a href="eventhandler.html">EventHandler</a>
 				</li>
 			</ul>
 			<h1>Interface EventHandler&lt;R&gt;</h1>
@@ -73,6 +70,7 @@
 					<div class="lead">
 						<p>The event handler instance interface.</p>
 					</div>
+					<p><a href="askroot.html"><code>AskRoot</code></a> =&gt; <a href="askevent.html"><code>AskEvent</code></a> =&gt; <a href="askselector.html"><code>AskSelector</code></a> =&gt; <a href="asklistener.html"><code>AskListener</code></a> builds <strong><code>EventHandler</code></strong></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -80,6 +78,11 @@
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The type of the root element to which the event listener is attached.</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -91,12 +94,6 @@
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/src_eventhandler.eventhandler.html" class="tsd-signature-type" data-tsd-kind="Class">EventHandler</a></li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -104,12 +101,12 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.eventhandler.html#eventtype" class="tsd-kind-icon">event<wbr>Type</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.eventhandler.html#isattached" class="tsd-kind-icon">is<wbr>Attached</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.eventhandler.html#isdestroyed" class="tsd-kind-icon">is<wbr>Destroyed</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.eventhandler.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.eventhandler.html#root" class="tsd-kind-icon">root</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="event_delegation.eventhandler.html#selector" class="tsd-kind-icon">selector</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="eventhandler.html#eventtype" class="tsd-kind-icon">event<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="eventhandler.html#isattached" class="tsd-kind-icon">is<wbr>Attached</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="eventhandler.html#isdestroyed" class="tsd-kind-icon">is<wbr>Destroyed</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="eventhandler.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="eventhandler.html#root" class="tsd-kind-icon">root</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="eventhandler.html#selector" class="tsd-kind-icon">selector</a></li>
 							</ul>
 						</section>
 					</div>
@@ -127,9 +124,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L40">event-delegation.d.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L48">event-delegation.d.ts:48</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tells what events this instance is listening for.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -144,9 +146,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L37">event-delegation.d.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L42">event-delegation.d.ts:42</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tells whether this handler is currently attached, ie. the listener is active.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -161,9 +168,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L38">event-delegation.d.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L44">event-delegation.d.ts:44</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tells whether the listener for this instance has been removed previously.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -178,9 +190,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L42">event-delegation.d.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L52">event-delegation.d.ts:52</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the event listener for this instance.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -195,9 +212,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L39">event-delegation.d.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L46">event-delegation.d.ts:46</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the root element - the element to which the event listener is attached.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
 						</li>
 					</ul>
@@ -212,9 +234,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/0f23c77/event-delegation.d.ts#L41">event-delegation.d.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/02dbff7/event-delegation.d.ts#L50">event-delegation.d.ts:50</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the CSS selector that is used to match against descendant elements.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -225,129 +252,88 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Modules</a>
-					</li>
-					<li class="current tsd-kind-module">
-						<a href="../modules/event_delegation.html">event-<wbr>delegation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src.html">src</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_eventhandler.html">src/<wbr>Event<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_assertions.html">src/lib/assertions</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_closestwithin.html">src/lib/closest<wbr>Within</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_createbuilder.html">src/lib/create<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_createcompositebuilder.html">src/lib/create<wbr>Composite<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_matches.html">src/lib/matches</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/src_lib_normalizeroot.html">src/lib/normalize<wbr>Root</a>
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.askevent.html" class="tsd-kind-icon">Ask<wbr>Event</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="askevent.html" class="tsd-kind-icon">Ask<wbr>Event</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.asklistener.html" class="tsd-kind-icon">Ask<wbr>Listener</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="asklistener.html" class="tsd-kind-icon">Ask<wbr>Listener</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="event_delegation.askroot.html" class="tsd-kind-icon">Ask<wbr>Root</a>
+					<li class=" tsd-kind-interface">
+						<a href="askroot.html" class="tsd-kind-icon">Ask<wbr>Root</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.askselector.html" class="tsd-kind-icon">Ask<wbr>Selector</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="askselector.html" class="tsd-kind-icon">Ask<wbr>Selector</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.delegationconfig.html" class="tsd-kind-icon">Delegation<wbr>Config</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="delegationconfig.html" class="tsd-kind-icon">Delegation<wbr>Config</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="event_delegation.eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.eventhandler.html#eventtype" class="tsd-kind-icon">event<wbr>Type</a>
+								<a href="eventhandler.html#eventtype" class="tsd-kind-icon">event<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.eventhandler.html#isattached" class="tsd-kind-icon">is<wbr>Attached</a>
+								<a href="eventhandler.html#isattached" class="tsd-kind-icon">is<wbr>Attached</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.eventhandler.html#isdestroyed" class="tsd-kind-icon">is<wbr>Destroyed</a>
+								<a href="eventhandler.html#isdestroyed" class="tsd-kind-icon">is<wbr>Destroyed</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.eventhandler.html#remove" class="tsd-kind-icon">remove</a>
+								<a href="eventhandler.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.eventhandler.html#root" class="tsd-kind-icon">root</a>
+								<a href="eventhandler.html#root" class="tsd-kind-icon">root</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="event_delegation.eventhandler.html#selector" class="tsd-kind-icon">selector</a>
+								<a href="eventhandler.html#selector" class="tsd-kind-icon">selector</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/event_delegation.html#delegationevent" class="tsd-kind-icon">Delegation<wbr>Event</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#delegationevent" class="tsd-kind-icon">Delegation<wbr>Event</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/event_delegation.html#delegationlistener" class="tsd-kind-icon">Delegation<wbr>Listener</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#delegationlistener" class="tsd-kind-icon">Delegation<wbr>Listener</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#eventmap" class="tsd-kind-icon">Event<wbr>Map</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#eventmap" class="tsd-kind-icon">Event<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#tagnamemap" class="tsd-kind-icon">Tag<wbr>Name<wbr>Map</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#tagnamemap" class="tsd-kind-icon">Tag<wbr>Name<wbr>Map</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="../modules/event_delegation.html#default" class="tsd-kind-icon">default</a>
+					<li class=" tsd-kind-variable">
+						<a href="../modules.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 </body>

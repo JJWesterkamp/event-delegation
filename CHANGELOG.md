@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Allow `boolean` type for listenerOptions.
+
+### Other
+
+- Updated documentation, fixed some broken links in README.
+
 ## [2.0.3] (2021-04-11)
 
 ### Internals
