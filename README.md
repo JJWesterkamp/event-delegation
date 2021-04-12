@@ -1,3 +1,5 @@
+
+
 # event-delegation
 
 Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.
@@ -6,8 +8,12 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#1)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
 
-<img src="https://user-images.githubusercontent.com/12270687/114304467-9bf16e80-9ad3-11eb-9da5-c0a3b48f3393.jpg" alt="EventDelegation type inference" width="700">
+<br>
 
+![carbon](https://user-images.githubusercontent.com/12270687/114447455-b9f1c880-9bd2-11eb-9222-c5f5be14655c.png)
+
+> Featuring full type inference of the event type, the delegating descendants and the event's currentTarget.
+> 
 ## Quick links
 
 - [npm]
