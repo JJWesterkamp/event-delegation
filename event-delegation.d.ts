@@ -5,7 +5,7 @@ import type { ParseSelector } from 'typed-query-selector/parser'
  * delegating element -- the 'delegator':
  *
  *  - Through `this` binding
- *  - Through a property `delegator` on the event argument.
+ *  - Through the property {@link DelegationEvent.delegator `delegator`} on the event argument.
  *
  * @typeParam D The element type for the delegation selector
  * @typeParam E The event instance type
@@ -18,8 +18,8 @@ export type DelegationListener<
     > = (this: D, event: DelegationEvent<D, E, R>) => void
 
 /**
- * A delegation event the default event with an additional property `delegator` to be able to reference the
- * child element that dispatched the event within arrow function handlers.
+ * A delegation event. The inferred event instance type with an additional property `delegator` referencing the
+ * descendant element that matched the delegation selector.
  *
  * @typeParam D The element type for the delegation selector
  * @typeParam E The event instance type
@@ -33,7 +33,7 @@ export type DelegationEvent<D extends Element, E extends Event, R extends Elemen
 /**
  * The event handler instance interface.
  *
- * [[`AskRoot`]] => [[`AskEvent`]] => [[`AskSelector`]] => [[`AskListener`]] builds **`EventHandler`**
+ * {@link AskRoot `AskRoot`} => {@link AskEvent `AskEvent`} => {@link AskSelector `AskSelector`} => {@link AskListener `AskListener`} builds **`EventHandler`**
  *
  * @typeParam R The type of the root element to which the event listener is attached.
  */
@@ -67,12 +67,16 @@ export type TagNameMap = HTMLElementTagNameMap & SVGElementTagNameMap
 export type EventMap   = GlobalEventHandlersEventMap
 export type BuildMode  = 'SINGLE' | 'MANY'
 
+export type Build<M extends BuildMode, R extends Element> = M extends 'MANY' ? EventHandler<R>[] :
+                                                            M extends 'SINGLE' ? EventHandler<R> :
+                                                            never
+
 /**
  * Represents the package's main namespace `EventDelegation`. Provides methods for setting the
  * event-delegation root element(s)
  *
- * **`AskRoot`** => [[`AskEvent`]] => [[`AskSelector`]] => [[`AskListener`]] builds [[`EventHandler`]]
- * > All methods / overloads return the [[`AskEvent`]] interface.
+ * **`AskRoot`** => {@link AskEvent `AskEvent`} => {@link AskSelector `AskSelector`} => {@link AskListener `AskListener`} builds {@link EventHandler `EventHandler`}
+ * > All methods / overloads return the {@link AskEvent `AskEvent`} interface.
  */
 export interface AskRoot {
 
@@ -87,7 +91,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .global()
-     *     // ...
      * ```
      */
     global(): AskEvent<HTMLElement, 'SINGLE'>
@@ -111,7 +114,6 @@ export interface AskRoot {
      *
      * EventDelegation
      *     .within(myRoot)
-     *     // ...
      * ```
      */
     within<R extends Element>(root: R): AskEvent<R, 'SINGLE'>
@@ -130,7 +132,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .within('form')
-     *     // ...
      * ```
      */
     within<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], 'SINGLE'> | never
@@ -149,7 +150,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .within('#main form.my-form')
-     *     // ...
      * ```
      */
     within<S extends string>(selector: S): AskEvent<ParseSelector<S>, 'SINGLE'> | never
@@ -169,7 +169,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .within<CustomComponent>('custom-component')
-     *     // ...
      * ```
      */
     within<R extends Element>(root: string): AskEvent<R, 'SINGLE'> | never
@@ -195,7 +194,6 @@ export interface AskRoot {
      *
      * EventDelegation
      *     .withinMany([rootA, rootB])
-     *     // ...
      * ```
      */
     withinMany<R extends Element>(roots: R[]): AskEvent<R, 'MANY'>
@@ -214,7 +212,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .withinMany('form')
-     *     // ...
      * ```
      */
     withinMany<K extends keyof TagNameMap>(selector: K): AskEvent<TagNameMap[K], 'MANY'>
@@ -233,7 +230,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .withinMany('#main form.my-form')
-     *     // ...
      * ```
      */
     withinMany<S extends string>(selector: S): AskEvent<ParseSelector<S>, 'MANY'>
@@ -253,7 +249,6 @@ export interface AskRoot {
      * ```typescript
      * EventDelegation
      *     .withinMany<CustomComponent>('custom-component')
-     *     // ...
      * ```
      */
     withinMany<R extends Element>(roots: string): AskEvent<R, 'MANY'>
@@ -262,8 +257,8 @@ export interface AskRoot {
 /**
  * Method signatures that set the event name and instance type.
  *
- * [[`AskRoot`]] => **`AskEvent`** => [[`AskSelector`]] => [[`AskListener`]] builds [[`EventHandler`]]
- * > All overloads return the [[`AskSelector`]] interface.
+ * {@link AskRoot `AskRoot`} => **`AskEvent`** => {@link AskSelector `AskSelector`} => {@link AskListener `AskListener`} builds {@link EventHandler `EventHandler`}
+ * > All overloads return the {@link AskSelector `AskSelector`} interface.
  */
 export interface AskEvent<R extends Element, Mode extends BuildMode> {
 
@@ -301,10 +296,10 @@ export interface AskEvent<R extends Element, Mode extends BuildMode> {
 }
 
 /**
- * Method signatures for setting the delegator selector and instance type of delegating elements.
+ * Method signatures that set the delegator selector and instance type of delegating elements.
  *
- * [[`AskRoot`]] => [[`AskEvent`]] => **`AskSelector`** => [[`AskListener`]] builds [[`EventHandler`]]
- * > All overloads return the [[`AskListener`]] interface
+ * {@link AskRoot `AskRoot`} => {@link AskEvent `AskEvent`} => **`AskSelector`** => {@link AskListener `AskListener`} builds {@link EventHandler `EventHandler`}
+ * > All overloads return the {@link AskListener `AskListener`} interface
  */
 export interface AskSelector<R extends Element, E extends Event, Mode extends BuildMode> {
 
@@ -372,20 +367,19 @@ export interface AskSelector<R extends Element, E extends Event, Mode extends Bu
 /**
  * Method signatures that set the event listener function and return event handlers.
  *
- * [[`AskRoot`]] => [[`AskEvent`]] => [[`AskSelector`]] => **`AskListener`** builds [[`EventHandler`]]
- * > Returns one or many [[`EventHandler`]] instances.
+ * {@link AskRoot `AskRoot`} => {@link AskEvent `AskEvent`} => {@link AskSelector `AskSelector`} => **`AskListener`** builds {@link EventHandler `EventHandler`}
+ * > Returns one or many {@link EventHandler `EventHandler`} instances.
  */
 export interface AskListener<R extends Element, E extends Event, D extends Element, Mode extends BuildMode> {
 
     /**
-     * Takes the event listener function for an event-delegation build process. Uses the previously
-     * constructed types for delegator elements and event instances to provide full type completion
-     * inside listener callbacks.
+     * Takes the event listener function. Uses the previously constructed types for delegator elements
+     * and event instances to provide full type inference inside listener callbacks.
      *
      * returns one {@link EventHandler `EventHandler`} instance when the build started with either
-     * {@link AskRoot.global `EventDelegation.global()`} or {@link AskRoot.within `EventDelegation.within()`},
+     * {@link AskRoot.global `global()`} or {@link AskRoot.within `within()`},
      * or an array of EventHandler instances when the build started with
-     * {@link AskRoot.withinMany `EventDelegation.withinMany()`}.
+     * {@link AskRoot.withinMany `withinMany()`}.
      *
      * @param listener
      * @param listenerOptions
@@ -406,12 +400,7 @@ export interface AskListener<R extends Element, E extends Event, D extends Eleme
      *     .listen((e) => e.delegator.disabled = true)
      * ```
      */
-    listen(
-        listener: DelegationListener<D, E, R>,
-        listenerOptions?: boolean | AddEventListenerOptions,
-    ): Mode extends 'MANY' ? EventHandler<R>[] :
-       Mode extends 'SINGLE' ? EventHandler<R> :
-       never
+    listen(listener: DelegationListener<D, E, R>, listenerOptions?: boolean | AddEventListenerOptions): Build<Mode, R>
 }
 
 declare const EventDelegation: AskRoot
