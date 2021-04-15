@@ -7,14 +7,12 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        "suppressImplicitAnyIndexErrors": true,
         "sourceMap": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "declaration": true,
         "outDir": "cjs",
-        "downlevelIteration": true,
-        "experimentalDecorators": true
+        "downlevelIteration": true
     },
     "include":[
         "src/**/*.ts"
