@@ -26,7 +26,7 @@ describe('lib/matches()', () => {
             const element = document.createElement('div')
             const spy = jest.fn()
             element.matches = undefined as any
-            element[vendorVersion] = spy
+            (element as any)[vendorVersion] = spy
             matches(element, '.some-selector')
             expect(spy).toBeCalledWith('.some-selector')
         })
