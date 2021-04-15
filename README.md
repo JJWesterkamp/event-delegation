@@ -4,7 +4,7 @@
 
 Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.
 
-[![npm version](https://badgen.net/npm/v/@jjwesterkamp/event-delegation?label=npm%20package&color=green)][npm]
+[![npm version](https://badgen.net/npm/v/@jjwesterkamp/event-delegation?label=npm%20package&color=green&cache=600)][npm]
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#1)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
 
@@ -26,7 +26,7 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 
 ### npm
 
-![npm module size](https://badgen.net/bundlephobia/minzip/@jjwesterkamp/event-delegation?label=module%20size%20-%20gzipped&color=cyan)
+![npm module size](https://badgen.net/bundlephobia/minzip/@jjwesterkamp/event-delegation?label=module%20size%20-%20gzipped&color=cyan&cache=600)
 
 Install the package with npm, and then import the default export:
 
@@ -39,7 +39,7 @@ import EventDelegation from '@jjwesterkamp/event-delegation'
 ```
 
 ### CDN
-[![UMD bundle size](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js?color=cyan&label=download%20size%20-%20gzipped)][cdn-min]
+[![UMD bundle size](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js?color=cyan&label=download%20size%20-%20gzipped&cache=600)][cdn-min]
 
 UMD bundles are also included in the npm package, you can load them from any CDN that lists npm packages. For example:
 
