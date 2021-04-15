@@ -4,7 +4,7 @@
 
 Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.
 
-[![npm version](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg)](https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation)
+[![npm version](https://badgen.net/npm/v/@jjwesterkamp/event-delegation?label=npm%20package&color=green)][npm]
 [![Build Status](https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master)](https://travis-ci.com/JJWesterkamp/event-delegation)
 [![Coverage Status](https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#1)](https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master)
 
@@ -13,7 +13,7 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 ![carbon](https://user-images.githubusercontent.com/12270687/114447455-b9f1c880-9bd2-11eb-9222-c5f5be14655c.png)
 
 > Featuring full type inference of the event type, the delegating descendants and the event's currentTarget.
-> 
+
 ## Quick links
 
 - [npm]
@@ -24,27 +24,30 @@ Event delegation for browser DOM events. Flexible, cross-browser compatible and 
 
 ## Installation
 
-**CDN**
+### npm
 
-You can find this package [on jsDelivr][cdn]. The minified UMD bundle is about 1.7KB (gzipped).
+![npm module size](https://badgen.net/bundlephobia/minzip/@jjwesterkamp/event-delegation?label=module%20size%20-%20gzipped&color=cyan)
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js"></script>
-```
+Install the package with npm, and then import the default export:
 
-**npm**
-
-When installing with [npm][npm] and using webpack, the package will add about 1KB (gzipped) to your bundle.
-
-```
+```text
 $ npm install @jjwesterkamp/event-delegation --save
 ```
-
-## Usage
 
 ```typescript
 import EventDelegation from '@jjwesterkamp/event-delegation'
 ```
+
+### CDN
+[![UMD bundle size](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js?color=cyan&label=download%20size%20-%20gzipped)][cdn-min]
+
+UMD bundles are also included in the npm package, you can load them from any CDN that lists npm packages. For example:
+
+```html
+<script src="//cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js"></script>
+```
+
+## Usage
 
 There are three main functions on the EventDelegation namespace object. All methods are used to start an event listener
 through the same kind of builder-pattern.
@@ -103,8 +106,7 @@ EventDelegation
 
 **Type inference**
 
-This builder pattern is convenient because it allows for automatic type completion of practically all required type information.
-Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt
+This builder pattern allows for automatic type inference of all type information. Each of the above steps implements an interface with multiple overloads. Methods that take CSS selectors will attempt
 to parse the selectors and infer the element type from them. The inferred types are then automatically
 known in the listener callback provided in the `.listen()` step.
 
@@ -123,7 +125,7 @@ EventDelegation
     .global()
     .events('click')
     .select('#my-div > button.submit, fieldset input.submit')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 
 // event is DelegationEvent<HTMLButtonElement | HTMLInputElement, MouseEvent, HTMLElement>
 ```
@@ -148,9 +150,9 @@ EventDelegation
     .global()
     .events('click')
     .select('#my-div > .submit-button, fieldset iput.submit')
-    //       ^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^
-    //       not tag-qualified               invalid (iput)
-    .listen((event) => { /* ... */ })
+    //       ------------------------  --------------------
+    //       not tag-qualified         invalid (iput)
+    .listen((event) => { ... })
 
 // event is DelegationEvent<Element, MouseEvent, HTMLElement>
 ```
@@ -177,7 +179,7 @@ const handler = EventDelegation
     .within(myRoot)
     .events('click')
     .select('button')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 ```
 
 **Using selectors**
@@ -191,7 +193,7 @@ const handler = EventDelegation
     .within('form#my-form')
     .events('click')
     .select('button')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 
 // handler is EventHandler<HTMLFormElement>
 ```
@@ -213,7 +215,7 @@ const handlers = EventDelegation
     .withinMany('form.my-form')
     .events('click')
     .select('button')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 
 // event.currentTarget is HTMLFormElement
 // handlers is EventHandler<HTMLFormElement>[]
@@ -226,7 +228,7 @@ const handlers = EventDelegation
     .withinMany('form.my-form, #article fieldset')
     .events('click')
     .select('button')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 
 // event.currentTarget is HTMLFormElement | HTMLFieldSetElement
 // handlers is EventHandler<HTMLFormElement | HTMLFieldSetElement>[]
@@ -246,7 +248,7 @@ const handlers = EventDelegation
     .withinMany([myForm, myFieldset])
     .events('click')
     .select('button')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 
 // event.currentTarget is HTMLFormElement | HTMLFieldSetElement
 // handlers is EventHandler<HTMLFormElement | HTMLFieldSetElement>[]
@@ -293,7 +295,7 @@ const handler = EventDelegation
     .within<CustomComponent>('custom-component')
     .events('click')
     .select<CustomButton>('custom-button')
-    .listen((event) => { /* ... */ })
+    .listen((event) => { ... })
 
 // event is DelegationEvent<CustomButton, MouseEvent, CustomComponent>
 // handler is EventHandler<CustomComponent>
@@ -360,7 +362,7 @@ const handler = EventDelegation
     .within('custom-component')
     .events('click')
     .select('custom-button')
-    .listen((e) => { /* ... */ })
+    .listen((e) => { ... })
 
 const x = handler.root()
 ```
@@ -378,6 +380,7 @@ The MIT License (MIT). See [license file] for more information.
 [mdn-event-listener-options]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
 [cdn]: https://www.jsdelivr.com/package/npm/@jjwesterkamp/event-delegation
+[cdn-min]: https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js
 [npm]: https://www.npmjs.com/package/@jjwesterkamp/event-delegation
 [gh]: https://github.com/JJWesterkamp/event-delegation
 [changelog]: https://github.com/JJWesterkamp/event-delegation/blob/master/CHANGELOG.md
