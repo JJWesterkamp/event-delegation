@@ -120,25 +120,24 @@
 					<a name="listen" class="tsd-anchor"></a>
 					<h3>listen</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">listen<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><a href="../modules.html#delegationlistener" class="tsd-signature-type" data-tsd-kind="Type alias">DelegationListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span>, listenerOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AddEventListenerOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Mode</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol"> ? </span><a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">Mode</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol"> ? </span><a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">never</span></li>
+						<li class="tsd-signature tsd-kind-icon">listen<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><a href="../modules.html#delegationlistener" class="tsd-signature-type" data-tsd-kind="Type alias">DelegationListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span>, listenerOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AddEventListenerOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#build" class="tsd-signature-type" data-tsd-kind="Type alias">Build</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Mode</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L409">event-delegation.d.ts:409</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L403">event-delegation.d.ts:403</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Takes the event listener function for an event-delegation build process. Uses the previously
-										constructed types for delegator elements and event instances to provide full type completion
-									inside listener callbacks.</p>
+									<p>Takes the event listener function. Uses the previously constructed types for delegator elements
+									and event instances to provide full type inference inside listener callbacks.</p>
 								</div>
 								<p>returns one <a href="eventhandler.html"><code>EventHandler</code></a> instance when the build started with either
-									<a href="askroot.html#global"><code>EventDelegation.global()</code></a> or <a href="askroot.html#within"><code>EventDelegation.within()</code></a>,
+									<a href="askroot.html#global"><code>global()</code></a> or <a href="askroot.html#within"><code>within()</code></a>,
 									or an array of EventHandler instances when the build started with
-								<a href="askroot.html#withinmany"><code>EventDelegation.withinMany()</code></a>.</p>
+								<a href="askroot.html#withinmany"><code>withinMany()</code></a>.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-typescript"><span style="color: #616E88">// Returns either one handler</span>
@@ -167,7 +166,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> listenerOptions: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AddEventListenerOptions</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Mode</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol"> ? </span><a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">Mode</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol"> ? </span><a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">never</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules.html#build" class="tsd-signature-type" data-tsd-kind="Type alias">Build</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Mode</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -209,6 +208,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#build" class="tsd-kind-icon">Build</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../modules.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>

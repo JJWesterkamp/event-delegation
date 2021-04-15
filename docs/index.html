@@ -62,10 +62,14 @@
 					<h1>event-delegation</h1>
 				</a>
 				<p>Event delegation for browser DOM events. Flexible, cross-browser compatible and Typescript-focused.</p>
-				<p><a href="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation"><img src="https://badge.fury.io/js/%40jjwesterkamp%2Fevent-delegation.svg" alt="npm version"></a>
+				<p><a href="https://www.npmjs.com/package/@jjwesterkamp/event-delegation"><img src="https://badgen.net/npm/v/@jjwesterkamp/event-delegation?label=npm%20package&color=green" alt="npm version"></a>
 					<a href="https://travis-ci.com/JJWesterkamp/event-delegation"><img src="https://travis-ci.com/JJWesterkamp/event-delegation.svg?branch=master" alt="Build Status"></a>
 				<a href="https://coveralls.io/github/JJWesterkamp/event-delegation?branch=master"><img src="https://coveralls.io/repos/github/JJWesterkamp/event-delegation/badge.svg?branch=master#1" alt="Coverage Status"></a></p>
-				<img src="https://user-images.githubusercontent.com/12270687/114304467-9bf16e80-9ad3-11eb-9da5-c0a3b48f3393.jpg" alt="EventDelegation type inference" width="700">
+				<br>
+				<p><img src="https://user-images.githubusercontent.com/12270687/114447455-b9f1c880-9bd2-11eb-9222-c5f5be14655c.png" alt="carbon"></p>
+				<blockquote>
+					<p>Featuring full type inference of the event type, the delegating descendants and the event&#39;s currentTarget.</p>
+				</blockquote>
 				<a href="#quick-links" id="quick-links" style="color: inherit; text-decoration: none;">
 					<h2>Quick links</h2>
 				</a>
@@ -79,19 +83,25 @@
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
-				<p><strong>CDN</strong></p>
-				<p>You can find this package <a href="https://www.jsdelivr.com/package/npm/@jjwesterkamp/event-delegation">on jsDelivr</a>. The minified UMD bundle is about 1.7KB (gzipped).</p>
-				<pre><code class="language-html"><span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
+				<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
+					<h3>npm</h3>
+				</a>
+				<p><img src="https://badgen.net/bundlephobia/minzip/@jjwesterkamp/event-delegation?label=module%20size%20-%20gzipped&color=cyan" alt="npm module size"></p>
+				<p>Install the package with npm, and then import the default export:</p>
+				<pre><code class="language-text">$ npm install @jjwesterkamp/event-delegation --save
 </code></pre>
-				<p><strong>npm</strong></p>
-				<p>When installing with <a href="https://www.npmjs.com/package/@jjwesterkamp/event-delegation">npm</a> and using webpack, the package will add about 1KB (gzipped) to your bundle.</p>
-				<pre><code><span style="color: #D8DEE9">$</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">npm</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">install</span><span style="color: #D8DEE9FF"> </span><span style="color: #D08770">@jjwesterkamp</span><span style="color: #81A1C1">/</span><span style="color: #D08770">event</span><span style="color: #81A1C1">-</span><span style="color: #D08770">delegation</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">--</span><span style="color: #D8DEE9">save</span>
+				<pre><code class="language-typescript"><span style="color: #81A1C1">import</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">EventDelegation</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">from</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">@jjwesterkamp/event-delegation</span><span style="color: #ECEFF4">&#039;</span>
+</code></pre>
+				<a href="#cdn" id="cdn" style="color: inherit; text-decoration: none;">
+					<h3>CDN</h3>
+				</a>
+				<p><a href="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js"><img src="https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js?color=cyan&label=download%20size%20-%20gzipped" alt="UMD bundle size"></a></p>
+				<p>UMD bundles are also included in the npm package, you can load them from any CDN that lists npm packages. For example:</p>
+				<pre><code class="language-html"><span style="color: #81A1C1">&lt;script</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">src</span><span style="color: #ECEFF4">=</span><span style="color: #ECEFF4">&quot;</span><span style="color: #A3BE8C">//cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js</span><span style="color: #ECEFF4">&quot;</span><span style="color: #81A1C1">&gt;&lt;/script&gt;</span>
 </code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-typescript"><span style="color: #81A1C1">import</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">EventDelegation</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">from</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">@jjwesterkamp/event-delegation</span><span style="color: #ECEFF4">&#039;</span>
-</code></pre>
 				<p>There are three main functions on the EventDelegation namespace object. All methods are used to start an event listener
 				through the same kind of builder-pattern.</p>
 				<ol>
@@ -137,8 +147,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">.</span><span style="color: #D8DEE9">delegator</span><span style="color: #ECEFF4">.</span><span style="color: #D8DEE9">classList</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">add</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">button--clicked</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">))</span>
 </code></pre>
 				<p><strong>Type inference</strong></p>
-				<p>This builder pattern is convenient because it allows for automatic type completion of practically all required type information.
-					Each of the above steps are represented by interfaces with multiple overloads. Methods that take CSS selectors will attempt
+				<p>This builder pattern allows for automatic type inference of all type information. Each of the above steps implements an interface with multiple overloads. Methods that take CSS selectors will attempt
 					to parse the selectors and infer the element type from them. The inferred types are then automatically
 				known in the listener callback provided in the <code>.listen()</code> step.</p>
 				<p>In the above example the event type is automatically identified as <code>MouseEvent</code>, and <code>event.delegator</code> (or <code>this</code>) is
@@ -152,7 +161,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">global</span><span style="color: #D8DEE9FF">()</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">#my-div &gt; button.submit, fieldset input.submit</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// event is DelegationEvent&lt;HTMLButtonElement | HTMLInputElement, MouseEvent, HTMLElement&gt;</span>
 </code></pre>
@@ -172,9 +181,9 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">global</span><span style="color: #D8DEE9FF">()</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">#my-div &gt; .submit-button, fieldset iput.submit</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #ECEFF4">    </span><span style="color: #616E88">//       ^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^</span>
-<span style="color: #ECEFF4">    </span><span style="color: #616E88">//       not tag-qualified               invalid (iput)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">//       ------------------------  --------------------</span>
+<span style="color: #ECEFF4">    </span><span style="color: #616E88">//       not tag-qualified         invalid (iput)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// event is DelegationEvent&lt;Element, MouseEvent, HTMLElement&gt;</span>
 </code></pre>
@@ -196,7 +205,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #D8DEE9FF">(</span><span style="color: #D8DEE9">myRoot</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 </code></pre>
 				<p><strong>Using selectors</strong></p>
 				<p>In the case of a selector the type is inferred from the given string just as with the <code>.select()</code> method.
@@ -206,7 +215,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">form#my-form</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// handler is EventHandler&lt;HTMLFormElement&gt;</span>
 </code></pre>
@@ -223,7 +232,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">form.my-form</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// event.currentTarget is HTMLFormElement</span>
 <span style="color: #616E88">// handlers is EventHandler&lt;HTMLFormElement&gt;[]</span>
@@ -233,7 +242,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">form.my-form, #article fieldset</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// event.currentTarget is HTMLFormElement | HTMLFieldSetElement</span>
 <span style="color: #616E88">// handlers is EventHandler&lt;HTMLFormElement | HTMLFieldSetElement&gt;[]</span>
@@ -249,7 +258,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">withinMany</span><span style="color: #D8DEE9FF">([</span><span style="color: #D8DEE9">myForm</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">myFieldset</span><span style="color: #D8DEE9FF">])</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// event.currentTarget is HTMLFormElement | HTMLFieldSetElement</span>
 <span style="color: #616E88">// handlers is EventHandler&lt;HTMLFormElement | HTMLFieldSetElement&gt;[]</span>
@@ -286,7 +295,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #ECEFF4">&lt;</span><span style="color: #8FBCBB">CustomComponent</span><span style="color: #ECEFF4">&gt;</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">custom-component</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #ECEFF4">&lt;</span><span style="color: #8FBCBB">CustomButton</span><span style="color: #ECEFF4">&gt;</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">custom-button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">event</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #616E88">// event is DelegationEvent&lt;CustomButton, MouseEvent, CustomComponent&gt;</span>
 <span style="color: #616E88">// handler is EventHandler&lt;CustomComponent&gt;</span>
@@ -345,7 +354,7 @@
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">within</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">custom-component</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">events</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">click</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
 <span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">select</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">&#039;</span><span style="color: #A3BE8C">custom-button</span><span style="color: #ECEFF4">&#039;</span><span style="color: #D8DEE9FF">)</span>
-<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">e</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #616E88">/* ... */</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #D8DEE9FF">    </span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">listen</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">e</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">{</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">...</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">}</span><span style="color: #D8DEE9FF">)</span>
 
 <span style="color: #81A1C1">const</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">x</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">handler</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">root</span><span style="color: #D8DEE9FF">()</span>
 </code></pre>
@@ -382,6 +391,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#build" class="tsd-kind-icon">Build</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>

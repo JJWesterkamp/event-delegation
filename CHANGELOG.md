@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] (2021-04-15)
+
 ### Fixed
 
 - Removed UMD namespace declaration from d.ts file, as it was incorrect.
@@ -160,7 +162,8 @@ No notable changes.
 
 - Initial version
 
-[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.1...v2.0.2

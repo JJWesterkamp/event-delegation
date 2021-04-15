@@ -75,6 +75,7 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#build" class="tsd-kind-icon">Build</a></li>
 								<li class="tsd-kind-type-alias"><a href="modules.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#delegationevent" class="tsd-kind-icon">Delegation<wbr>Event</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#delegationlistener" class="tsd-kind-icon">Delegation<wbr>Listener</a></li>
@@ -93,13 +94,32 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="build" class="tsd-anchor"></a>
+					<h3>Build</h3>
+					<div class="tsd-signature tsd-kind-icon">Build&lt;M, R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">M</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">&quot;MANY&quot;</span><span class="tsd-signature-symbol"> ? </span><a href="interfaces/eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol"> ? </span><a href="interfaces/eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">never</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L70">event-delegation.d.ts:70</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>M<span class="tsd-signature-symbol">: </span><a href="modules.html#buildmode" class="tsd-signature-type" data-tsd-kind="Type alias">BuildMode</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="buildmode" class="tsd-anchor"></a>
 					<h3>Build<wbr>Mode</h3>
 					<div class="tsd-signature tsd-kind-icon">Build<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;SINGLE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANY&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L68">event-delegation.d.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L68">event-delegation.d.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -109,13 +129,13 @@
 					<div class="tsd-signature tsd-kind-icon">Delegation<wbr>Event&lt;D, E, R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">E</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>currentTarget<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">; </span>delegator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L28">event-delegation.d.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L28">event-delegation.d.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A delegation event the default event with an additional property <code>delegator</code> to be able to reference the
-							child element that dispatched the event within arrow function handlers.</p>
+							<p>A delegation event. The inferred event instance type with an additional property <code>delegator</code> referencing the
+							descendant element that matched the delegation selector.</p>
 						</div>
 					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -146,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">Delegation<wbr>Listener&lt;D, E, R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">D</span>, event<span class="tsd-signature-symbol">: </span><a href="modules.html#delegationevent" class="tsd-signature-type" data-tsd-kind="Type alias">DelegationEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L14">event-delegation.d.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L14">event-delegation.d.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,7 +176,7 @@
 						</div>
 						<ul>
 							<li>Through <code>this</code> binding</li>
-							<li>Through a property <code>delegator</code> on the event argument.</li>
+							<li>Through the property {@link DelegationEvent.delegator <code>delegator</code>} on the event argument.</li>
 						</ul>
 					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -211,7 +231,7 @@
 					<div class="tsd-signature tsd-kind-icon">Event<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GlobalEventHandlersEventMap</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L67">event-delegation.d.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L67">event-delegation.d.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,7 +241,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tag<wbr>Name<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElementTagNameMap</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">SVGElementTagNameMap</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L66">event-delegation.d.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L66">event-delegation.d.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -234,7 +254,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <a href="interfaces/askroot.html" class="tsd-signature-type" data-tsd-kind="Interface">AskRoot</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/8c97ff2/event-delegation.d.ts#L417">event-delegation.d.ts:417</a></li>
+							<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/1f25932/event-delegation.d.ts#L406">event-delegation.d.ts:406</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -267,6 +287,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#build" class="tsd-kind-icon">Build</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#buildmode" class="tsd-kind-icon">Build<wbr>Mode</a>
