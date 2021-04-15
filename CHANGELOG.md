@@ -5,6 +5,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed UMD namespace declaration from d.ts file, as it was incorrect.
+
+  _event-delegation.d.ts_
+  ```diff
+  - export as namespace EventDelegation
+  ```
+
+  This was incorrectly assuming the following global shape:
+
+  ```typescript
+  const EventDelegation = {
+    default: { // < this is wrong
+      global() { ... },
+      within() { ... },
+      withinMany() { ... },
+    }
+  }
+  ```
+  When taking the UMD bundle from an npm installation you can still
+  declare the types manually in a declaration file like this:
+  ```typescript
+  import { AskRoot } from '@jjwesterkamp/event-delegation'
+
+  declare global {
+      const EventDelegation: AskRoot
+  }
+  ```
+
 ## [2.0.4] (2021-04-12)
 
 ### Fixed

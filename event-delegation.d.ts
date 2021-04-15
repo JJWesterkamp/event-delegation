@@ -405,4 +405,3 @@ export interface AskListener<R extends Element, E extends Event, D extends Eleme
 
 declare const EventDelegation: AskRoot
 export default EventDelegation
-export as namespace EventDelegation
