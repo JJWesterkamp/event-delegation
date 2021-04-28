@@ -5,6 +5,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Improved UMD bundle size.
+
+### Added
+
+- Added default UMD file pointers for CDN services to package.json.
+- Added `"exports"` field to package.json.
+
+### Fixed
+
+- Removed ES2015 syntax from UMD bundles. Bundles are now compatible with ES5 environments.
+
 ## [2.0.5] (2021-04-15)
 
 ### Fixed

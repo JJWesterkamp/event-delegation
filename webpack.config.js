@@ -1,14 +1,16 @@
 const { resolve } = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'production',
+    target: 'es5',
     optimization: {
         minimize: true,
-        minimizer: [new UglifyJsPlugin({
-            include: /\.min\.js$/
-        })]
+        minimizer: [new TerserPlugin({
+            include: /\.min\.js$/,
+            extractComments: false,
+        })],
     },
     entry: {
         'event-delegation': './src/index.ts',
