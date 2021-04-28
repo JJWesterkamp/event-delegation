@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.6] (2021-04-28)
+
 ### Changed
 
 - Improved UMD bundle size.
@@ -175,7 +177,8 @@ No notable changes.
 
 - Initial version
 
-[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.5...HEAD
+[Unreleased]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.6...HEAD
+[2.0.6]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.5...v2.0.6
 [2.0.5]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/JJWesterkamp/event-delegation/compare/v2.0.2...v2.0.3

@@ -39,12 +39,17 @@ import EventDelegation from '@jjwesterkamp/event-delegation'
 ```
 
 ### CDN
-[![UMD bundle size](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js?color=cyan&label=download%20size%20-%20gzipped&cache=600)][cdn-min]
+[![UMD bundle size](https://badgen.net/badgesize/gzip/file-url/https/cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js?color=cyan&label=download%20size%20-%20gzipped&cache=600)][cdn]
 
 UMD bundles are also included in the npm package, you can load them from any CDN that lists npm packages. For example:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation/umd/event-delegation.min.js"></script>
+<!-- Both URLs below point to the minified UMD bundle (v2 range), the long URL version includes sourcemaps support -->
+<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation@2/umd/event-delegation.min.js"></script>
+
+<!-- For a non-minified version: -->
+<script src="https://cdn.jsdelivr.net/npm/@jjwesterkamp/event-delegation@2/umd/event-delegation.js"></script>
 ```
 
 ## Usage
