@@ -403,5 +403,23 @@ export interface AskListener<R extends Element, E extends Event, D extends Eleme
     listen(listener: DelegationListener<D, E, R>, listenerOptions?: boolean | AddEventListenerOptions): Build<Mode, R>
 }
 
-declare const EventDelegation: AskRoot
+export interface Utils {
+    /**
+     * A pure function that provides an alternative to calling the
+     * {@link EventHandler.remove} method. This can be convenient for function
+     * composition and other patterns.
+     *
+     * @example
+     * ```typescript
+     * declare const handlers: EventHandler<any>[]
+     *
+     * handlers.forEach(EventDelegation.remove)
+     * // is the same as
+     * handlers.forEach((handler) => handler.remove())
+     * ```
+     */
+     remove(handler: EventHandler<any>): void
+}
+
+declare const EventDelegation: AskRoot & Utils
 export default EventDelegation
