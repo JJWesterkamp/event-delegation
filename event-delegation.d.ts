@@ -72,8 +72,8 @@ export type Build<M extends BuildMode, R extends Element> = M extends 'MANY' ? E
                                                             never
 
 /**
- * Represents the package's main namespace `EventDelegation`. Provides methods for setting the
- * event-delegation root element(s)
+ * Part of package's main namespace `EventDelegation` (the default export).
+ * Provides methods for setting the event-delegation root element(s)
  *
  * **`AskRoot`** => {@link AskEvent `AskEvent`} => {@link AskSelector `AskSelector`} => {@link AskListener `AskListener`} builds {@link EventHandler `EventHandler`}
  * > All methods / overloads return the {@link AskEvent `AskEvent`} interface.
@@ -403,11 +403,15 @@ export interface AskListener<R extends Element, E extends Event, D extends Eleme
     listen(listener: DelegationListener<D, E, R>, listenerOptions?: boolean | AddEventListenerOptions): Build<Mode, R>
 }
 
+/**
+ * Part of package's main namespace `EventDelegation` (the default export).
+ * Provides utility functions that allow you to integrate this library in functional
+ * patterns such as function composition.
+ */
 export interface Utils {
     /**
-     * A pure function that provides an alternative to calling the
-     * {@link EventHandler.remove} method. This can be convenient for function
-     * composition and other patterns.
+     * A function that provides an alternative to calling the
+     * {@link EventHandler.remove} method.
      *
      * @example
      * ```typescript
@@ -419,6 +423,21 @@ export interface Utils {
      * ```
      */
      remove(handler: EventHandler<any>): void
+
+     /**
+      * A function that provides an alternative to calling the
+     * {@link EventHandler.remove} method iteratively on an array of handlers.
+     *
+     * @example
+     * ```typescript
+     * declare const handlers: EventHandler<any>[]
+     *
+     * EventDelegation.removeAll(handlers)
+     * // is the same as
+     * handlers.forEach((handler) => handler.remove())
+     * ```
+      */
+     removeAll(handlers: EventHandler<any>[]): void
 }
 
 declare const EventDelegation: AskRoot & Utils

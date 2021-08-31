@@ -34,7 +34,17 @@ const EventDelegation: AskRoot & Utils = {
         return createCompositeBuilder(roots.map(createBuilder))
     },
 
-    remove: (handler: EventHandler<any>): void => handler.remove(),
+    // ----------------------------------------------------------------------------------------
+    //      Utils
+    // ----------------------------------------------------------------------------------------
+
+    remove(handler: EventHandler<any>): void {
+        handler.remove()
+    },
+
+    removeAll(handlers: EventHandler<any>[]): void {
+        handlers.forEach((handler) => handler.remove())
+    },
 }
 
 export default EventDelegation

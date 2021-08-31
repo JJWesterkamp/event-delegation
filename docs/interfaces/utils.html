@@ -65,6 +65,15 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Part of package&#39;s main namespace <code>EventDelegation</code> (the default export).
+							Provides utility functions that allow you to integrate this library in functional
+						patterns such as function composition.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -81,6 +90,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="utils.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="utils.html#removeall" class="tsd-kind-icon">remove<wbr>All</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,14 +108,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/cdcfdf4/event-delegation.d.ts#L421">event-delegation.d.ts:421</a></li>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/64982c9/event-delegation.d.ts#L425">event-delegation.d.ts:425</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>A pure function that provides an alternative to calling the
-										<a href="eventhandler.html#remove">EventHandler.remove</a> method. This can be convenient for function
-									composition and other patterns.</p>
+									<p>A function that provides an alternative to calling the
+									<a href="eventhandler.html#remove">EventHandler.remove</a> method.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
@@ -122,6 +131,45 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>handler: <a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="removeall" class="tsd-anchor"></a>
+					<h3>remove<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>All<span class="tsd-signature-symbol">(</span>handlers<span class="tsd-signature-symbol">: </span><a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/JJWesterkamp/event-delegation/blob/64982c9/event-delegation.d.ts#L440">event-delegation.d.ts:440</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A function that provides an alternative to calling the
+									<a href="eventhandler.html#remove">EventHandler.remove</a> method iteratively on an array of handlers.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #81A1C1">declare</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">const</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">handlers</span><span style="color: #81A1C1">:</span><span style="color: #D8DEE9FF"> </span><span style="color: #8FBCBB">EventHandler</span><span style="color: #ECEFF4">&lt;</span><span style="color: #8FBCBB">any</span><span style="color: #ECEFF4">&gt;</span><span style="color: #D8DEE9FF">[]</span>
+
+<span style="color: #D8DEE9">EventDelegation</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">removeAll</span><span style="color: #D8DEE9FF">(</span><span style="color: #D8DEE9">handlers</span><span style="color: #D8DEE9FF">)</span>
+<span style="color: #616E88">// is the same as</span>
+<span style="color: #D8DEE9">handlers</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">forEach</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">handler</span><span style="color: #ECEFF4">)</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=&gt;</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">handler</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">remove</span><span style="color: #D8DEE9FF">())</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>handlers: <a href="eventhandler.html" class="tsd-signature-type" data-tsd-kind="Interface">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -165,6 +213,9 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="utils.html#remove" class="tsd-kind-icon">remove</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="utils.html#removeall" class="tsd-kind-icon">remove<wbr>All</a>
 							</li>
 						</ul>
 					</li>

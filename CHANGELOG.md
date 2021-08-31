@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- utility function `remove`
+- utility function `removeAll`
+
 ## [2.0.6] (2021-04-28)
 
 ### Changed
