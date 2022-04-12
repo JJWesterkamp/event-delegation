@@ -18,11 +18,17 @@
   "types": "./event-delegation.d.ts",
   "exports": {
     ".": {
+      "node": "./cjs/index.js",
       "require": "./cjs/index.js",
       "import": "./esm/index.js",
       "default": "./esm/index.js"
     },
-    "./lib/*": "./lib/*.js"
+    "./lib/*": {
+      "node": "./cjs/lib/*.js",
+      "require": "./cjs/lib/*.js",
+      "import": "./esm/lib/*.js",
+      "default": "./esm/lib/*.js"
+    }
   },
   "unpkg": "umd/event-delegation.min.js",
   "jsdelivr": "umd/event-delegation.min.js",
